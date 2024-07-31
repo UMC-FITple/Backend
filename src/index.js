@@ -1,5 +1,4 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
@@ -18,11 +17,11 @@ await init();
 
 // 미들웨어 설정
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
+app.use('/FITple', SwaggerUi.serve, SwaggerUi.setup(specs));
 
 app.use("/signup",signupRouter);
 

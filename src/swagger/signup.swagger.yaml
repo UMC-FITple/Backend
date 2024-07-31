@@ -1,8 +1,8 @@
 paths:
-  /user/signup:
+  /signup:
     post:
       tags:
-        - User
+        - Signup
       summary: 회원가입
       parameters:
       - name: signup
@@ -103,7 +103,7 @@ paths:
                 type: boolean
                 example: false
               code:
-                type: integer
+                type: string
                 example: 500
               message:
                 type: string
