@@ -21,9 +21,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/FITple', SwaggerUi.serve, SwaggerUi.setup(specs));
+app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 
-app.use("/signup",signupRouter);
+app.use("/FITple/signup",signupRouter);
 
 app.use((req, res, next) => {
   const err = new BaseError(status.NOT_FOUND);
