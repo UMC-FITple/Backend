@@ -1,8 +1,8 @@
 import { Sequelize, DataTypes } from 'sequelize';
 
-export class User extends Sequelize.Model {
+export class Member extends Sequelize.Model {
   static initiate(sequelize) {
-    User.init({
+    Member.init({
       uuid: {
         type: DataTypes.BIGINT.UNSIGNED,
         allowNull: false,
@@ -43,8 +43,8 @@ export class User extends Sequelize.Model {
       sequelize,
       timestamps: false,
       underscored: false,
-      modelName: 'User',
-      tableName: 'user',
+      modelName: 'Member',
+      tableName: 'member',
       paranoid: false,
       charset: 'utf8',
       collate: 'utf8_general_ci',
@@ -52,6 +52,6 @@ export class User extends Sequelize.Model {
   }
 
   static associate(db) {
-    this.hasOne(db.BodyInfo, { foreignKey: 'uuid' });
+    this.hasOne(db.Body_Info, { foreignKey: 'uuid' });
   }
 }

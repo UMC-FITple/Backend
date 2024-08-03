@@ -2,7 +2,7 @@ import db from "../../db/index.js";
 
 export async function ExistUserId(user_id){
     try{
-        const isExistUserId = await db.User.findOne({ where: { user_id }})
+        const isExistUserId = await db.Member.findOne({ where: { user_id }})
         if (isExistUserId) {
             return true;
         }
@@ -15,7 +15,7 @@ export async function ExistUserId(user_id){
 
 export async function CreateUser(user_id,hashedPassword,email){
     try{
-        const result = await db.User.create({
+        const result = await db.Member.create({
             user_id,
             password:hashedPassword,
             email,

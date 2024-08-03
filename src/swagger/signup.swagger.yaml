@@ -1,5 +1,5 @@
 paths:
-  /signup:
+  /FITple/signup:
     post:
       tags:
         - Signup

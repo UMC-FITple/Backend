@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 import { config as dbConfig } from '../config/db.config.js';
-import { User } from './models/user.js';
-import { BodyInfo } from './models/body_info.js';
+import { Member } from './models/member.js';
+import { Body_Info } from './models/body_info.js';
 
 const env = process.env.NODE_ENV || 'development';
 const config = dbConfig[env];
@@ -12,14 +12,14 @@ const db = {};
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-User.initiate(sequelize);
-BodyInfo.initiate(sequelize);
+Member.initiate(sequelize);
+Body_Info.initiate(sequelize);
 
-db.User = User;
-db.BodyInfo = BodyInfo;
+db.Member = Member;
+db.Body_Info = Body_Info;
 
-User.associate(db);
-BodyInfo.associate(db);
+Member.associate(db);
+Body_Info.associate(db);
 
 export const init = async () => {
   try {
