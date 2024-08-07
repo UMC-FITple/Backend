@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import { response } from '../config/response';
-import { status } from '../config/response.status';
+import { response } from '../config/response.js';
+import { status } from '../config/response.status.js';
 
 export async function LoginCheck(req,res,next){
     try{
