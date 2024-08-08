@@ -10,8 +10,9 @@ const __dirname = path.dirname(__filename);
 const options = {
     definition: {
         info: {
+            openapi: '3.0.0',
             title: '핏플 API',
-            version: '0.0.1',
+            version: '3.0.0',
             description: '핏플 API with express, API 설명'
         },
         servers: [
