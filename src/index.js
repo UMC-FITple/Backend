@@ -10,6 +10,7 @@ import { loginRouter } from './routes/login.js';
 import { status } from './config/response.status.js';
 import { BaseError } from './config/error.js';
 import { response } from './config/response.js';
+import { refreshTokenRouter } from './routes/refreshToken.js';
 
 const app = express();
 const port = 3000;
@@ -26,6 +27,7 @@ app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 
 app.use("/FITple/signup",signupRouter);
 app.use("/FITple/login",loginRouter);
+app.use("/FITple/refreshToken",refreshTokenRouter);
 
 app.use((req, res, next) => {
   const err = new BaseError(status.NOT_FOUND);
