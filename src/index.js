@@ -9,6 +9,7 @@ import { signupRouter } from './routes/signup.js';
 import { status } from './config/response.status.js';
 import { BaseError } from './config/error.js';
 import { response } from './config/response.js';
+import compareRouter from './routes/compare.js';
 
 const app = express();
 const port = 3000;
@@ -24,6 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 
 app.use("/FITple/signup",signupRouter);
+app.use("/FITple/comparesize",compareRouter);
 
 app.use((req, res, next) => {
   const err = new BaseError(status.NOT_FOUND);
@@ -39,3 +41,4 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
+
