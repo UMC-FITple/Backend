@@ -3,18 +3,20 @@ export const previewSearchResponseDTO = (data) => {
     
     const cloth = [];
 
-    for (let i = 0; i < data.length; i++) {
-        cloth.push({
-            "nickname": data[i].nickname,
-            "brand": data[i].brand_name,
-            "cloth_name": data[i].name,
-            "size": data[i].size,
-            "fit": data[i].fit
-        })
+    if(data.length == 0){
+        cloth.push("해당 제품은 등록되어 있지 않아요.");
+        return {"clothData": cloth}
+    }else{
+        for (let i = 0; i < data.length; i++) {
+            cloth.push({
+                "nickname": data[i].nickname,
+                "brand": data[i].brand_name,
+                "cloth_name": data[i].name,
+                "size": data[i].size,
+                "fit": data[i].fit
+            })
+        }
     }
-
-    console.log("dto", cloth);
-
     return {"clothData": cloth, "cursorId": data[data.length-1].id};
 }
 
@@ -26,28 +28,36 @@ export const previewClothResponseDTO = (data, userData) => {
     const fit = [];
     const style = [];
 
-    cloth.push({
-        "brand": data[0][0].brand_name,
-        "cloth_name": data[0][0].name,
-        "product_code": data[0][0].product_code,
-        "size": data[0][0].size,
-        "fit": data[0][0].fit,
-        "color": data[0][0].color,
-        "URL": data[0][0].url,
-        "memo": data[0][0].memo
-    })
-    user.push({
-        "nickname": userData[0][0][0].nickname,
-        "height": userData[0][0][0].height,
-        "weight": userData[0][0][0].weight
-    })
-    for (let i = 0; i < userData[1][0].length; i++) {
-        fit.push(userData[1][0][i].pf_name);
-    }
-    for (let i = 0; i < userData[2][0].length; i++) {
-        style.push(userData[2][0][i].style_name);
+    if(data.length == 0){
+        cloth.push("해당 제품은 등록되어 있지 않아요.");
+    }else{
+        cloth.push({
+            "brand": data[0][0].brand_name,
+            "cloth_name": data[0][0].name,
+            "product_code": data[0][0].product_code,
+            "size": data[0][0].size,
+            "fit": data[0][0].fit,
+            "color": data[0][0].color,
+            "URL": data[0][0].url,
+            "memo": data[0][0].memo
+        })
     }
 
+    if(userData.length == 0){
+        user.push("해당 유저는 등록되어 있지 않아요.");
+    }else{
+        user.push({
+            "nickname": userData[0][0][0].nickname,
+            "height": userData[0][0][0].height,
+            "weight": userData[0][0][0].weight
+        })
+        for (let i = 0; i < userData[1][0].length; i++) {
+            fit.push(userData[1][0][i].pf_name);
+        }
+        for (let i = 0; i < userData[2][0].length; i++) {
+            style.push(userData[2][0][i].style_name);
+        }
+    }
     return {"clothData": cloth, "userData": user, "prefer_fit": fit, "prefer_style": style};
 }
 
