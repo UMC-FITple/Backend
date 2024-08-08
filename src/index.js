@@ -8,6 +8,7 @@ import { status } from './config/response.status.js';
 import { BaseError } from './config/error.js';
 import { response } from './config/response.js';
 import { signupRouter } from './routes/signup.js';
+import { loginRouter } from './routes/login.js';
 import { searchRouter } from './routes/search.js';
 
 const app = express();
@@ -30,6 +31,7 @@ app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 
 // router setting
 app.use("/FITple/signup",signupRouter);
+app.use("/FITple/login",loginRouter);
 app.use('/FITple/search', searchRouter);
 
 // error handling
