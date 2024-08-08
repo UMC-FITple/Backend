@@ -28,7 +28,4 @@ export const status = {
   TOKEN_EXPIRED: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "403", message: "토큰을 재발급 받아주세요." },
   INVALID_TOKEN: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "403", message: "유효하지 않은 토큰입니다." },
 
-  //refreshToken err
-  REFRESH_TOKEN_NOT_PROVIDED: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "401", message: "refresh 토큰이 제공되지 않았습니다." },
-  REFRESH_TOKEN_INVALID: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "402", message: "유효하지 않은 refresh 토큰입니다." },
 };
