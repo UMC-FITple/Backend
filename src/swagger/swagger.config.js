@@ -9,9 +9,10 @@ const __dirname = path.dirname(__filename);
 // 현재 작업 디렉토리의 경로를 기준으로 설정
 const options = {
     definition: {
+        openapi: "3.0.0",
         info: {
             title: '핏플 API',
-            version: '0.0.1',
+            version: '1.0.0',
             description: '핏플 API with express, API 설명'
         },
         servers: [
@@ -21,6 +22,21 @@ const options = {
             }
         ]
     },
+    components: {
+        securitySchemes: {
+          BearerAuth: {
+            type: "http",
+            scheme: "bearer",
+            bearerFormat: "JWT",
+          },
+        },
+    },
+    security: [
+        {
+            bearerAuth: []
+        }
+    ],
+
     apis: [path.join(__dirname, '../src/routes/*.js'), path.join(__dirname, './*.swagger.yaml')]
 };
 
