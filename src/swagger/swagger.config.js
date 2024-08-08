@@ -20,23 +20,22 @@ const options = {
                 url: 'http://localhost:3000/',
                 description: 'Local server'
             }
-        ]
-    },
-    components: {
-        securitySchemes: {
-          BearerAuth: {
-            type: "http",
-            scheme: "bearer",
-            bearerFormat: "JWT",
-          },
+        ],
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: 'http',
+                    scheme: 'bearer',
+                    bearerFormat: 'JWT',
+                },
+            },
         },
+        security: [
+            {
+                bearerAuth: []
+            }
+        ],
     },
-    security: [
-        {
-            bearerAuth: []
-        }
-    ],
-
     apis: [path.join(__dirname, '../src/routes/*.js'), path.join(__dirname, './*.swagger.yaml')]
 };
 
