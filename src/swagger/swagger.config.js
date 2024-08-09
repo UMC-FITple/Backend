@@ -11,8 +11,9 @@ const options = {
     definition: {
         openapi: "3.0.0",
         info: {
+            openapi: '3.0.0',
             title: '핏플 API',
-            version: '1.0.0',
+            version: '3.0.0',
             description: '핏플 API with express, API 설명'
         },
         servers: [
