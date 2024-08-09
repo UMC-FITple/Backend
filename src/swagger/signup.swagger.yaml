@@ -4,24 +4,29 @@ paths:
       tags:
         - Signup
       summary: 회원가입
-      parameters:
-      - name: signup
-        in: body
+      requestBody:
         required: true
-        schema:
-          properties:
-            user_id:
-              type: string
-              description: 유저 아이디
-              example: swaggerTest
-            password:
-              type: string
-              description: 유저 비밀번호
-              example: 1234567
-            email:
-              type: string
-              description: 유저 이메일
-              example: swaggerTest@naver.com
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: 유저 아이디
+                  example: swaggerTest
+                password:
+                  type: string
+                  description: 유저 비밀번호
+                  example: 1234567
+                email:
+                  type: string
+                  description: 유저 이메일
+                  example: swaggerTest@naver.com
+              required:
+                - user_id
+                - password
+                - email
       responses:
         '200':
           description: 회원 가입 성공!
