@@ -41,6 +41,9 @@ app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 
 // router setting
 app.use("/FITple/signup",signupRouter);
+app.use("/FITple/login",loginRouter);
+app.use('/FITple/search', searchRouter);
+app.use('/FITple/uploadsize', sizeUploadRoutes);
 
 // error handling
 app.use((req, res, next) => {
