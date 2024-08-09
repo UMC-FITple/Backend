@@ -12,6 +12,7 @@ import { signupRouter } from './routes/signup.js';
 import { loginRouter } from './routes/login.js';
 import { searchRouter } from './routes/search.js';
 import sizeUploadRoutes from './routes/uploadsize.routes.js';
+import { closetRouter } from './routes/closet.js';
 
 dotenv.config();
 
@@ -40,6 +41,7 @@ app.use("/FITple/signup",signupRouter);
 app.use("/FITple/login",loginRouter);
 app.use('/FITple/search', searchRouter);
 app.use('/FITple/uploadsize', sizeUploadRoutes);
+app.use('/FITple/my/closet', closetRouter);
 
 // error handling
 app.use((req, res, next) => {

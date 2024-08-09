@@ -37,6 +37,10 @@ paths:
               message:
                 type: string
                 example: "success!"
+              result:
+                properties:
+                  accessToken:
+                    type: string
         '400':
           description: 잘못된 요청
           schema:
