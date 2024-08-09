@@ -6,6 +6,7 @@ import SwaggerUi from 'swagger-ui-express';
 import { specs } from './swagger/swagger.config.js';
 import { init } from './db/index.js';
 import { signupRouter } from './routes/signup.js';
+import { loginRouter } from './routes/login.js';
 import { status } from './config/response.status.js';
 import { BaseError } from './config/error.js';
 import { response } from './config/response.js';
@@ -24,6 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 
 app.use("/FITple/signup",signupRouter);
+app.use("/FITple/login",loginRouter);
 
 app.use((req, res, next) => {
   const err = new BaseError(status.NOT_FOUND);
