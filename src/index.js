@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import SwaggerUi from 'swagger-ui-express';
 import { specs } from './swagger/swagger.config.js';
 import { init } from './db/index.js';
+import { bodyinfoRouter } from "./routes/recommend.js"
 import { status } from './config/response.status.js';
 import { BaseError } from './config/error.js';
 import { response } from './config/response.js';
@@ -45,6 +46,7 @@ app.use("/FITple/signup",signupRouter);
 app.use("/FITple/login",loginRouter);
 app.use('/FITple/search', searchRouter);
 app.use('/FITple/uploadsize', sizeUploadRoutes);
+app.use('/FITple/recommend', bodyinfoRouter)
 
 // error handling
 app.use((req, res, next) => {

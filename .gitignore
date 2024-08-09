@@ -1,3 +1,10 @@
 node_modules/
 dist/
 .env
+
+# 수정부분
+
+# 파이썬 가상환경
+fitple/ 
+# csv 파일 저장 위치
+data/   

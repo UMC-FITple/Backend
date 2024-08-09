@@ -1,0 +1,83 @@
+paths:
+  /fitple/recommend/bodytype:
+    post:
+      tags:
+        - Recommend-Bodytype
+      summary: 비슷한 체형 사용자 추천
+      parameters:
+      - name: bodytype
+        in: query
+        required: true
+        schema:
+          properties:
+            type: int
+      responses:
+        '200':
+          description: 회원 가입 성공!
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: object
+                example: {
+                  "id": 24,
+                  "name": "fitple",
+                  "height": 160,
+                  "weight": 48,
+                  "fit": [
+                    "슬림",
+                    "세미오버"
+                  ],
+                  "style": [
+                    "페미닌",
+                    "모던시크"
+                  ]
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001 
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
