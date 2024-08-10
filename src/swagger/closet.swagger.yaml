@@ -49,13 +49,15 @@ paths:
                       "brand": "아디다스",
                       "cloth_name": "에센셜 풀집 후디",
                       "size": "S",
-                      "fit": "레귤러"
+                      "fit": "레귤러",
+                      "likes": 1
                     },
                     {
                       "brand": "아디다스",
                       "cloth_name": "에센셜 풀집 후디",
                       "size": "M",
-                      "fit": "세미오버"
+                      "fit": "세미오버",
+                      "likes": 0
                     }
                   ],
                   "cursorId": 1

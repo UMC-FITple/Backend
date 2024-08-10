@@ -12,7 +12,8 @@ export const previewMyClosetResponseDTO = (data) => {
                 "brand": data[i].brand_name,
                 "cloth_name": data[i].name,
                 "size": data[i].size,
-                "fit": data[i].fit
+                "fit": data[i].fit,
+                "likes": data[i].likes
             })
         }
     }

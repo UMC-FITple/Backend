@@ -13,24 +13,20 @@ import { myClosetItemAtFirst, myClosetItem, myClosetCategoryItemAtFirst, myClose
             if(typeof cursorId == "undefined"){
                 const [data] = await pool.query(myClosetItemAtFirst, [userId, size]);
                 conn.release();
-                console.log("dao1", data);
                 return data;
             }else{
                 const [data] = await pool.query(myClosetItem, [userId, cursorId, size]);
                 conn.release();
-                console.log("dao2", data);
                 return data;
             }
         }else{
             if(typeof cursorId == "undefined"){
                 const [data] = await pool.query(myClosetCategoryItemAtFirst, [userId, category, size]);
                 conn.release();
-                console.log("dao1", data);
                 return data;
             }else{
                 const [data] = await pool.query(myClosetCategoryItem, [userId, category, cursorId, size]);
                 conn.release();
-                console.log("dao2", data);
                 return data;
             }
         }
