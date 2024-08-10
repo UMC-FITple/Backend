@@ -1,12 +1,12 @@
 import { previewMyClosetResponseDTO, previewMyClothResponseDTO } from "./closet.dto.js"
-import { getNicknameToClothId, getPreviewCloth } from "./closet.dao.js";
+import { getMyClosetPreview, getPreviewCloth } from "./closet.dao.js";
 
-export const getMyCloset = async (query) => {
+export const getMyCloset = async (userId, query) => {
     const { category, size = 8, clothId } = query;
 
-    console.log("provider",query);
+    console.log("provider", query);
 
-    return previewMyClosetResponseDTO(await getNicknameToClothId(category, size, clothId));
+    return previewMyClosetResponseDTO(await getMyClosetPreview(userId, category, size, clothId));
 }
 
 export const getMyCloth = async (clothId) => {

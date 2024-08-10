@@ -1,36 +1,34 @@
 import { pool } from "../../config/db.config.js";
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
-import { UserNicknameToClothIdAtFirst, UserNicknameToClothId, UserCategoryToClothIdAtFirst, UserCategoryToClothId, 
+import { myClosetItemAtFirst, myClosetItem, myClosetCategoryItemAtFirst, myClosetCategoryItem, 
     getClothByClothId } from "./closet.sql.js";
 
-// nickname+cloth 반환
-    export const getNicknameToClothId = async (category, size, cursorId) => {
+// ncloth 반환
+    export const getMyClosetPreview = async (userId, category, size, cursorId) => {
     try {
         const conn = await pool.getConnection();
         
-        console.log("카테고리 : ", category);
-        console.log("옷 id : ", cursorId);
-        if(category == "undefined" || typeof category == "undefined" || category == null){
-            if(cursorId == "undefined" || typeof cursorId == "undefined" || cursorId == null){
-                const [data] = await pool.query(UserNicknameToClothIdAtFirst, [size]);
+        if(typeof category == "undefined"){
+            if(typeof cursorId == "undefined"){
+                const [data] = await pool.query(myClosetItemAtFirst, [userId, size]);
                 conn.release();
                 console.log("dao1", data);
                 return data;
             }else{
-                const [data] = await pool.query(UserNicknameToClothId, [cursorId, size]);
+                const [data] = await pool.query(myClosetItem, [userId, cursorId, size]);
                 conn.release();
                 console.log("dao2", data);
                 return data;
             }
         }else{
-            if(cursorId == "undefined" || typeof cursorId == "undefined" || cursorId == null){
-                const [data] = await pool.query(UserCategoryToClothIdAtFirst, [category, size]);
+            if(typeof cursorId == "undefined"){
+                const [data] = await pool.query(myClosetCategoryItemAtFirst, [userId, category, size]);
                 conn.release();
                 console.log("dao1", data);
                 return data;
             }else{
-                const [data] = await pool.query(UserCategoryToClothId, [category, cursorId, size]);
+                const [data] = await pool.query(myClosetCategoryItem, [userId, category, cursorId, size]);
                 conn.release();
                 console.log("dao2", data);
                 return data;

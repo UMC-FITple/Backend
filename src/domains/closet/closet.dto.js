@@ -9,7 +9,6 @@ export const previewMyClosetResponseDTO = (data) => {
     }else{
         for (let i = 0; i < data.length; i++) {
             cloth.push({
-                "nickname": data[i].nickname,
                 "brand": data[i].brand_name,
                 "cloth_name": data[i].name,
                 "size": data[i].size,
