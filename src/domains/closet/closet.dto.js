@@ -36,7 +36,14 @@ export const previewMyClothResponseDTO = (data) => {
             "fit": data[0][0].fit,
             "color": data[0][0].color,
             "URL": data[0][0].url,
-            "memo": data[0][0].memo
+            "memo": data[0][0].memo,
+            "length": data[0][0].length,
+            "shoulder": data[0][0].shoulder,
+            "chest": data[0][0].chest,
+            "armhole": data[0][0].armhole,
+            "sleeve": data[0][0].sleeve,
+            "sleeve_length": data[0][0].sleeve_length,
+            "hem": data[0][0].hem
         })
     }
     return {"clothData": cloth};
