@@ -24,7 +24,11 @@ export const myClosetCategoryItem =
 
 
 export const getClothByClothId = 
-"SELECT m.uuid, c.id, c.brand_name, c.name, c.product_code, c.size, c.fit, c.color, c.url, c.memo, r.length, r.shoulder, r.chest, r.armhole, r.sleeve, r.sleeve_length, r.hem "
+"SELECT m.uuid, c.id, c.brand_name, c.name, c.product_code, c.size, c.fit, c.color, c.url, c.memo "
 + "FROM cloth c JOIN member m on c.uuid = m.uuid "
-+ "JOIN real_size r on c.id = r.cloth_id "
++ "WHERE m.uuid = ? AND WHERE c.id = ? ;"
+
+export const getRealSizeByClothId = 
+"SELECT c.id, r.length, r.shoulder, r.chest, r.armhole, r.sleeve, r.sleeve_length, r.hem "
++ "FROM cloth c JOIN real_size r on c.id = r.cloth_id "
 + "WHERE c.id = ? ;"

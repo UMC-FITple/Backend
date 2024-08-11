@@ -7,7 +7,7 @@ export const getMyCloset = async (userId, query) => {
     return previewMyClosetResponseDTO(await getMyClosetPreview(userId, category, size, clothId));
 }
 
-export const getMyCloth = async (clothId) => {
+export const getMyCloth = async (userId, clothId) => {
 
-    return previewMyClothResponseDTO(await getPreviewCloth(clothId));
+    return previewMyClothResponseDTO(await getPreviewCloth(userId, clothId));
 }

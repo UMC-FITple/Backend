@@ -2,7 +2,7 @@ import { pool } from "../../config/db.config.js";
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
 import { myClosetItemAtFirst, myClosetItem, myClosetCategoryItemAtFirst, myClosetCategoryItem, 
-    getClothByClothId } from "./closet.sql.js";
+    getClothByClothId, getRealSizeByClothId } from "./closet.sql.js";
 
 // ncloth 반환
     export const getMyClosetPreview = async (userId, category, size, cursorId) => {
@@ -35,15 +35,15 @@ import { myClosetItemAtFirst, myClosetItem, myClosetCategoryItemAtFirst, myClose
     }
 }
 
-export const getPreviewCloth = async (clothId) => {
+export const getPreviewCloth = async (userId, clothId) => {
     try {
-        console.log("dao getPreviewCloth");
         const conn = await pool.getConnection();
-        const cloth = await pool.query(getClothByClothId, clothId);
+        const cloth = await pool.query(getClothByClothId, [userId, clothId]);
+        const size = await pool.query(getRealSizeByClothId, clothId);
 
         conn.release();
             
-        return cloth;
+        return { cloth, size };
     } catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }

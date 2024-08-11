@@ -9,6 +9,7 @@ export const previewMyClosetResponseDTO = (data) => {
     }else{
         for (let i = 0; i < data.length; i++) {
             cloth.push({
+                "cloth_id": data[i].id,
                 "brand": data[i].brand_name,
                 "cloth_name": data[i].name,
                 "size": data[i].size,
@@ -22,29 +23,35 @@ export const previewMyClosetResponseDTO = (data) => {
 
 // preview cloth response DTO
 export const previewMyClothResponseDTO = (data) => {
-    
+
     const cloth = [];
 
-    if(data.length == 0){
+    const createCloth = (item, size = {}) => ({
+        "cloth_id": item.id,
+        "brand": item.brand_name,
+        "cloth_name": item.name,
+        "product_code": item.product_code,
+        "size": item.size,
+        "fit": item.fit,
+        "color": item.color,
+        "URL": item.url,
+        "memo": item.memo,
+        "length": size.length || null,
+        "shoulder": size.shoulder || null,
+        "chest": size.chest || null,
+        "armhole": size.armhole || null,
+        "sleeve": size.sleeve || null,
+        "sleeve_length": size.sleeve_length || null,
+        "hem": size.hem || null
+    });
+
+    if (data.cloth.length === 0) {
         cloth.push("해당 제품은 등록되어 있지 않아요.");
-    }else{
-        cloth.push({
-            "brand": data[0][0].brand_name,
-            "cloth_name": data[0][0].name,
-            "product_code": data[0][0].product_code,
-            "size": data[0][0].size,
-            "fit": data[0][0].fit,
-            "color": data[0][0].color,
-            "URL": data[0][0].url,
-            "memo": data[0][0].memo,
-            "length": data[0][0].length,
-            "shoulder": data[0][0].shoulder,
-            "chest": data[0][0].chest,
-            "armhole": data[0][0].armhole,
-            "sleeve": data[0][0].sleeve,
-            "sleeve_length": data[0][0].sleeve_length,
-            "hem": data[0][0].hem
-        })
+    } else {
+        const item = data.cloth[0][0];
+        const size = data.size[0][0] || {};
+        cloth.push(createCloth(item, size));
     }
-    return {"clothData": cloth};
+
+    return { "clothData": cloth };
 }
