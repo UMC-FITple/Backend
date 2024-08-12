@@ -35,16 +35,20 @@ import { myClosetItemAtFirst, myClosetItem, myClosetCategoryItemAtFirst, myClose
     }
 }
 
+
 export const getPreviewCloth = async (userId, clothId) => {
     try {
         const conn = await pool.getConnection();
-        const cloth = await pool.query(getClothByClothId, [userId, clothId]);
+        const cloth = await pool.query(getClothByClothId, [userId, clothId]).catch(err => {
+            throw new BaseError(status.UNAUTHORIZED);
+        });
         const size = await pool.query(getRealSizeByClothId, clothId);
-
         conn.release();
-            
         return { cloth, size };
     } catch (err) {
+        if (err.data.code === status.UNAUTHORIZED.code) {
+            throw err;
+        }
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
 }
