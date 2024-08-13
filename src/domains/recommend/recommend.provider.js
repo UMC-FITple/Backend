@@ -18,4 +18,5 @@ export const get_userfit = async (uuid) => {
 
 export const get_userstyle = async (uuid) => {
     return member_styleResponseDTO(await getUserStyleByID(uuid));
+
 }

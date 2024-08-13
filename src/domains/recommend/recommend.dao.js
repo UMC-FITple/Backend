@@ -12,12 +12,6 @@ export const getBodyinfoByID = async (uuid) => {
 
         conn.release();
         return result;
-        
-    }catch (err) {
-        console.log('dao error in get_bodyinfo_by_id:', err);
-        throw new BaseError(status.PARAMETER_IS_WRONG);
-    }
-}
 
 // 모든 체형 정보 get
 export const getBodyinfo = async () => {
@@ -34,7 +28,7 @@ export const getBodyinfo = async () => {
         console.log('dao error in get_bodyinfo:', err);
 
         // 에러 메세지 수정 필요!
-        throw new BaseError(status.NOT_FOUND);
+        throw new BaseError(status.PARAMETER_IS_WRONG);
     }
 }
 

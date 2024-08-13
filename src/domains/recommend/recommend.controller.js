@@ -64,8 +64,6 @@ export const recommend_style_by_uuid = async (req, res, next) => {
     
 }
 
-// export const recommend_style = async (req, res, next) => {
-
 export const get_bodyinfo_by_uuid = async (req, res, next) => {
     console.log("사용자 체형정보 요청.");
     console.log("path:", req.params.uuid);

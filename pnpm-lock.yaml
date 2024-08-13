@@ -8,9 +8,12 @@ importers:
 
   .:
     dependencies:
+<<<<<<< Updated upstream
       axios:
         specifier: ^1.7.3
         version: 1.7.3
+=======
+>>>>>>> Stashed changes
       bcrypt:
         specifier: ^5.1.1
         version: 5.1.1
@@ -35,9 +38,12 @@ importers:
       jsonwebtoken:
         specifier: ^9.0.2
         version: 9.0.2
+<<<<<<< Updated upstream
       multer:
         specifier: 1.4.5-lts.1
         version: 1.4.5-lts.1
+=======
+>>>>>>> Stashed changes
       mysql2:
         specifier: ^3.10.3
         version: 3.10.3
@@ -863,9 +869,12 @@ packages:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
     engines: {node: '>= 8'}
 
+<<<<<<< Updated upstream
   append-field@1.0.0:
     resolution: {integrity: sha512-klpgFSWLW1ZEs8svjfb7g4qWY0YS5imI82dTg+QahUvJ8YqAY0P10Uk8tTyh9ZGuYEZEMaeJYCF5BFuX552hsw==}
 
+=======
+>>>>>>> Stashed changes
   aproba@2.0.0:
     resolution: {integrity: sha512-lYe4Gx7QT+MKGbDsA+Z+he/Wtef0BiwDOlK/XkBrdfsh9J/jPPXbX0tE9x9cl27Tmu5gg3QUbUrQYa/y+KOHPQ==}
 
@@ -1023,10 +1032,13 @@ packages:
     resolution: {integrity: sha512-qiBjkpbMLO/HL68y+lh4q0/O1MZFj2RX6X/KmMa3+gJD3z+WwI1ZzDHysvqHGS3mP6mznPckpXmw1nI9cJjyRg==}
     hasBin: true
 
+<<<<<<< Updated upstream
   combined-stream@1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
     engines: {node: '>= 0.8'}
 
+=======
+>>>>>>> Stashed changes
   commander@6.2.0:
     resolution: {integrity: sha512-zP4jEKbe8SHzKJYQmq8Y9gYjtO/POJLgIdKgV7B9qNmABVFVc+ctqSX6iXh4mCpJfRBOabiZ2YKPg8ciDw6C+Q==}
     engines: {node: '>= 6'}
@@ -1045,10 +1057,13 @@ packages:
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
+<<<<<<< Updated upstream
   concat-stream@1.6.2:
     resolution: {integrity: sha512-27HBghJxjiZtIk3Ycvn/4kbJk/1uZuJFfuPEns6LaEvpvG1f0hTea8lilrouyo9mVc2GWdcEZ8OLoGmSADlrCw==}
     engines: {'0': node >= 0.8}
 
+=======
+>>>>>>> Stashed changes
   console-control-strings@1.1.0:
     resolution: {integrity: sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==}
 
@@ -1139,10 +1154,13 @@ packages:
     resolution: {integrity: sha512-8QmQKqEASLd5nx0U1B1okLElbUuuttJ/AnYmRXbbbGDWh6uS208EjD4Xqq/I9wK7u0v6O08XhTWnt5XtEbR6Dg==}
     engines: {node: '>= 0.4'}
 
+<<<<<<< Updated upstream
   delayed-stream@1.0.0:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
 
+=======
+>>>>>>> Stashed changes
   delegates@1.0.0:
     resolution: {integrity: sha512-bd2L678uiWATM6m5Z1VzNCErI3jiGzt6HGY8OVICs40JQq/HALfbyNJmp0UDakEY4pMMaN0Ly5om/B1VI/+xfQ==}
 
@@ -1811,9 +1829,12 @@ packages:
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
 
+<<<<<<< Updated upstream
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
+=======
+>>>>>>> Stashed changes
   minipass@3.3.6:
     resolution: {integrity: sha512-DxiNidxSEK+tHG6zOIklvNOwm3hvCrbUrdtzY74U6HKTJxvIDfOUL5W5P2Ghd3DTkhhKPYGqeNUIh5qcM4YBfw==}
     engines: {node: '>=8'}
@@ -1826,10 +1847,13 @@ packages:
     resolution: {integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==}
     engines: {node: '>= 8'}
 
+<<<<<<< Updated upstream
   mkdirp@0.5.6:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
     hasBin: true
 
+=======
+>>>>>>> Stashed changes
   mkdirp@1.0.4:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
     engines: {node: '>=10'}
@@ -1884,8 +1908,13 @@ packages:
       encoding:
         optional: true
 
+<<<<<<< Updated upstream
   node-releases@2.0.18:
     resolution: {integrity: sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==}
+=======
+  node-releases@2.0.14:
+    resolution: {integrity: sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==}
+>>>>>>> Stashed changes
 
   nodemon@3.1.4:
     resolution: {integrity: sha512-wjPBbFhtpJwmIeY2yP7QF+UKzPfltVGtfce1g/bB15/8vCGZj8uxD62b/b9M9/WVgme0NZudpownKN+c0plXlQ==}
@@ -2068,9 +2097,12 @@ packages:
     resolution: {integrity: sha512-8zGqypfENjCIqGhgXToC8aB2r7YrBX+AQAfIPs/Mlk+BtPTztOvTS01NRW/3Eh60J+a48lt8qsCzirQ6loCVfA==}
     engines: {node: '>= 0.8'}
 
+<<<<<<< Updated upstream
   readable-stream@2.3.8:
     resolution: {integrity: sha512-8p0AUk4XODgIewSi0l8Epjs+EVnWiK7NoDIEGU0HhE7+ZyY8D1IMY7odu5lRrFXGg71L15KG8QrPmum45RTtdA==}
 
+=======
+>>>>>>> Stashed changes
   readable-stream@3.6.2:
     resolution: {integrity: sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==}
     engines: {node: '>= 6'}
@@ -2294,9 +2326,12 @@ packages:
     resolution: {integrity: sha512-UXSH262CSZY1tfu3G3Secr6uGLCFVPMhIqHjlgCUtCCcgihYc/xKs9djMTMUOb2j1mVSeU8EU6NWc/iQKU6Gfg==}
     engines: {node: '>= 0.4'}
 
+<<<<<<< Updated upstream
   string_decoder@1.1.1:
     resolution: {integrity: sha512-n/ShnvDi6FHbbVfviro+WojiFzv+s8MPMHBczVePfUpDJLwoLT0ht1l4YwBCbi8pJAveEEdnkHyPyTP/mzRfwg==}
 
+=======
+>>>>>>> Stashed changes
   string_decoder@1.3.0:
     resolution: {integrity: sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA==}
 
@@ -3463,7 +3498,11 @@ snapshots:
       nopt: 5.0.0
       npmlog: 5.0.1
       rimraf: 3.0.2
+<<<<<<< Updated upstream
       semver: 7.6.3
+=======
+      semver: 7.6.2
+>>>>>>> Stashed changes
       tar: 6.2.1
     transitivePeerDependencies:
       - encoding
@@ -3552,8 +3591,11 @@ snapshots:
       normalize-path: 3.0.0
       picomatch: 2.3.1
 
+<<<<<<< Updated upstream
   append-field@1.0.0: {}
 
+=======
+>>>>>>> Stashed changes
   aproba@2.0.0: {}
 
   are-we-there-yet@2.0.0:
@@ -3757,10 +3799,13 @@ snapshots:
 
   color-support@1.1.3: {}
 
+<<<<<<< Updated upstream
   combined-stream@1.0.8:
     dependencies:
       delayed-stream: 1.0.0
 
+=======
+>>>>>>> Stashed changes
   commander@6.2.0: {}
 
   commander@6.2.1: {}
@@ -3772,6 +3817,7 @@ snapshots:
 
   concat-map@0.0.1: {}
 
+<<<<<<< Updated upstream
   concat-stream@1.6.2:
     dependencies:
       buffer-from: 1.1.2
@@ -3779,6 +3825,8 @@ snapshots:
       readable-stream: 2.3.8
       typedarray: 0.0.6
 
+=======
+>>>>>>> Stashed changes
   console-control-strings@1.1.0: {}
 
   content-disposition@0.5.4:
@@ -3863,8 +3911,11 @@ snapshots:
       has-property-descriptors: 1.0.2
       object-keys: 1.1.1
 
+<<<<<<< Updated upstream
   delayed-stream@1.0.0: {}
 
+=======
+>>>>>>> Stashed changes
   delegates@1.0.0: {}
 
   denque@2.1.0: {}
@@ -4475,7 +4526,11 @@ snapshots:
       lodash.isstring: 4.0.1
       lodash.once: 4.1.1
       ms: 2.1.3
+<<<<<<< Updated upstream
       semver: 7.6.3
+=======
+      semver: 7.6.2
+>>>>>>> Stashed changes
 
   jwa@1.4.1:
     dependencies:
@@ -4575,8 +4630,11 @@ snapshots:
     dependencies:
       brace-expansion: 1.1.11
 
+<<<<<<< Updated upstream
   minimist@1.2.8: {}
 
+=======
+>>>>>>> Stashed changes
   minipass@3.3.6:
     dependencies:
       yallist: 4.0.0
@@ -4588,10 +4646,13 @@ snapshots:
       minipass: 3.3.6
       yallist: 4.0.0
 
+<<<<<<< Updated upstream
   mkdirp@0.5.6:
     dependencies:
       minimist: 1.2.8
 
+=======
+>>>>>>> Stashed changes
   mkdirp@1.0.4: {}
 
   moment-timezone@0.5.45:
@@ -4647,7 +4708,11 @@ snapshots:
     dependencies:
       whatwg-url: 5.0.0
 
+<<<<<<< Updated upstream
   node-releases@2.0.18: {}
+=======
+  node-releases@2.0.14: {}
+>>>>>>> Stashed changes
 
   nodemon@3.1.4:
     dependencies:
@@ -4811,6 +4876,7 @@ snapshots:
       iconv-lite: 0.4.24
       unpipe: 1.0.0
 
+<<<<<<< Updated upstream
   readable-stream@2.3.8:
     dependencies:
       core-util-is: 1.0.3
@@ -4821,6 +4887,8 @@ snapshots:
       string_decoder: 1.1.1
       util-deprecate: 1.0.2
 
+=======
+>>>>>>> Stashed changes
   readable-stream@3.6.2:
     dependencies:
       inherits: 2.0.4
@@ -5053,10 +5121,13 @@ snapshots:
       define-properties: 1.2.1
       es-object-atoms: 1.0.0
 
+<<<<<<< Updated upstream
   string_decoder@1.1.1:
     dependencies:
       safe-buffer: 5.1.2
 
+=======
+>>>>>>> Stashed changes
   string_decoder@1.3.0:
     dependencies:
       safe-buffer: 5.2.1

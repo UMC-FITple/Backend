@@ -166,5 +166,4 @@ export const member_fitResponseDTO = (data) => {
     return {
         "memeberfit": memberfit
     }
-    
 }
