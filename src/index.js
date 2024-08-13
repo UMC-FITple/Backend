@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import bodyParser from 'body-parser';
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -12,6 +13,7 @@ import { signupRouter } from './routes/signup.js';
 import { loginRouter } from './routes/login.js';
 import { searchRouter } from './routes/search.js';
 import sizeUploadRoutes from './routes/uploadsize.routes.js';
+import ocrRoutes from './routes/ocr.routes.js'; 
 
 dotenv.config();
 
@@ -31,6 +33,10 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 // swagger
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
@@ -40,6 +46,7 @@ app.use("/FITple/signup",signupRouter);
 app.use("/FITple/login",loginRouter);
 app.use('/FITple/search', searchRouter);
 app.use('/FITple/uploadsize', sizeUploadRoutes);
+app.use('/FITple/ocrresults', ocrRoutes);
 
 // error handling
 app.use((req, res, next) => {
