@@ -28,4 +28,6 @@ export const status = {
   TOKEN_EXPIRED: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "403", message: "토큰을 재발급 받아주세요." },
   INVALID_TOKEN: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "403", message: "유효하지 않은 토큰입니다." },
 
+  // recommend err
+
 };

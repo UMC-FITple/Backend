@@ -1,19 +1,20 @@
 paths:
-  /fitple/recommend/bodytype:
-    post:
+  /fitple/recommend/bodyinfo/{uuid}:
+    get:
       tags:
-        - Recommend-Bodytype
+        - Recommend
       summary: 비슷한 체형 사용자 추천
       parameters:
-      - name: bodytype
-        in: query
+      - name: uuid
+        in: path
         required: true
         schema:
-          properties:
-            type: int
+          type: integer
+          example: 37
+
       responses:
         '200':
-          description: 회원 가입 성공!
+          description: 불러오기 성공!
           schema:
             type: object
             properties:
@@ -32,18 +33,394 @@ paths:
               data:
                 type: object
                 example: {
-                  "id": 24,
-                  "name": "fitple",
-                  "height": 160,
-                  "weight": 48,
-                  "fit": [
-                    "슬림",
-                    "세미오버"
-                  ],
-                  "style": [
-                    "페미닌",
-                    "모던시크"
-                  ]
+                    "uuid": 37,
+                    "name": "히어로",
+                    "img_url": "url",
+                    "weight": 71,
+                    "height": 167,
+                    "fit": ["세미오버", "오버"],
+                    "style": ["모던시크", "캐주얼"]
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001 
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
+  /fitple/recommend/style/{uuid}:
+    get:
+      tags:
+        - Recommend
+      summary: 비슷한 스타일 사용자 추천
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 37
+
+      responses:
+        '200':
+          description: 불러오기 성공!
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: object
+                example: {
+                    "uuid": 37,
+                    "name": "히어로",
+                    "img_url": "url",
+                    "weight": 71,
+                    "height": 167,
+                    "fit": ["세미오버", "오버"],
+                    "style": ["모던시크", "캐주얼"]
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001 
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
+  /fitple/recommend/getbodyinfo/{uuid}:
+    get:
+      tags:
+        - Recommend
+      summary: 특정 사용자 체형정보
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 37
+
+      responses:
+        '200':
+          description: 불러오기 성공!
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: object
+                example: {
+                    "height": 167,
+                    "weight": 71,
+                    "shoulder_width": 40,
+                    "chest_circumference": 96,
+                    "arm_length": 59,
+                    "waist_circumference": 89,
+                    "thigh_circumference": 57,
+                    "hip_circumference": 98
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001 
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.\
+  /fitple/recommend/getmember/{uuid}:
+    get:
+      tags:
+        - Recommend
+      summary: 특정 사용자 정보
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 37
+
+      responses:
+        '200':
+          description: 불러오기 성공!
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: object
+                example: {
+                    "uuid": 37,
+                    "name": "히어로",
+                    "img_url": "url",
+                    "weight": 71,
+                    "height": 167,
+                    "fit": ["세미오버", "오버"],
+                    "style": ["모던시크", "캐주얼"]
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001 
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
+  /fitple/recommend/getuserfit/{uuid}:
+    get:
+      tags:
+        - Recommend
+      summary: 특정 사용자 선호 핏 정보
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 37
+
+      responses:
+        '200':
+          description: 불러오기 성공!
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: object
+                example: {
+                    "uuid": 37,
+                    "fit": ["세미오버", "오버"]
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001 
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
+  /fitple/recommend/getuserstyle/{uuid}:
+    get:
+      tags:
+        - Recommend
+      summary: 특정 사용자 선호 스타일 정보
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 37
+
+      responses:
+        '200':
+          description: 불러오기 성공!
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: object
+                example: {
+                    "uuid": 37,
+                    "style": ["모던시크", "캐주얼"]
                 }
                 
         '400':
