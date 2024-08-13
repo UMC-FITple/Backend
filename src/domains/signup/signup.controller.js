@@ -7,7 +7,7 @@ export async function SignupLogic(req, res) {
     const { email, user_id, password } = req.body;
 
     if (!email || !user_id || !password) {
-        return res.send(response(status.EMPTY_DATA));
+        return res.send(response(status.SIGNUP_EMPTY_DATA));
     }
 
     const signupData = createSignupDTO(user_id, password, email);

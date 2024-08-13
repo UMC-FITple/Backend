@@ -11,6 +11,7 @@ import { response } from './config/response.js';
 import { signupRouter } from './routes/signup.js';
 import { loginRouter } from './routes/login.js';
 import { searchRouter } from './routes/search.js';
+import { refreshTokenRouter } from './routes/refreshToken.js';
 import sizeUploadRoutes from './routes/uploadsize.routes.js';
 
 dotenv.config();
@@ -40,6 +41,8 @@ app.use("/FITple/signup",signupRouter);
 app.use("/FITple/login",loginRouter);
 app.use('/FITple/search', searchRouter);
 app.use('/FITple/uploadsize', sizeUploadRoutes);
+app.use("/FITple/refreshToken",refreshTokenRouter);
+
 
 // error handling
 app.use((req, res, next) => {
