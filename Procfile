@@ -1,0 +1,1 @@
+web: pnpm ci & pnpm run start
