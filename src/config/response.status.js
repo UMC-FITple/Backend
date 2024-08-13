@@ -15,20 +15,21 @@ export const status = {
   PARAMETER_IS_WRONG : {status : StatusCodes.PARAMETER_IS_WRONG, "isSuccess" : false, "code": "COMMON006", "message":"잘못된 파라미터가 전달되었습니다."},
   
   // signup err
-  USERID_ALREADY_EXIST: { status: StatusCodes.CONFLICT, isSuccess: false, code: "401", message: "이미 존재하는 아이디입니다." },
-  EMPTY_DATA: { status: StatusCodes.CONFLICT, isSuccess: false, code: "402", message: "데이터가 비어있습니다." },
-  SIGNUP_ERROR: { status: StatusCodes.CONFLICT, isSuccess: false, code: "403", message: "회원가입 에러" }, // 디테일하게 수정할 필요있음
+  USERID_ALREADY_EXIST: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "SIGNUP001", message: "이미 존재하는 아이디입니다." },
+  SIGNUP_EMPTY_DATA: { status: StatusCodes.PAYMENT_REQUIRED, isSuccess: false, code: "SIGNUP002", message: "데이터가 비어있습니다." },
+  SIGNUP_ERROR: { status: StatusCodes.FORBIDDEN,isSuccess: false, code: "SIGNUP003", message: "회원가입 에러" },
 
   // login err
-  USER_NOT_FOUND: { status: StatusCodes.CONFLICT, isSuccess: false, code: "401", message: "존재하지 않는 아이디입니다." },
-  PASSWORD_MISMATCH: { status: StatusCodes.CONFLICT, isSuccess: false, code: "403", message: "비밀번호가 일치하지 않습니다." },
+  USER_NOT_FOUND: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "LOGIN001", message: "존재하지 않는 아이디입니다." },
+  LOGIN_EMPTY_DATA: { status: StatusCodes.PAYMENT_REQUIRED, isSuccess: false, code: "SIGNUP002", message: "데이터가 비어있습니다." },
+  PASSWORD_MISMATCH: { status: StatusCodes.FORBIDDEN, isSuccess: false, code: "LOGIN002", message: "비밀번호가 일치하지 않습니다." },
 
   // login middlewares err
-  TOKEN_NOT_PROVIDED: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "401", message: "로그인이 필요합니다." },
-  TOKEN_EXPIRED: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "403", message: "토큰을 재발급 받아주세요." },
-  INVALID_TOKEN: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "403", message: "유효하지 않은 토큰입니다." },
+  TOKEN_NOT_PROVIDED: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "LOGINMIDDLEWARES001", message: "로그인이 필요합니다." },
+  TOKEN_EXPIRED: { status: StatusCodes.PAYMENT_REQUIRED, isSuccess: false, code: "LOGINMIDDLEWARES002", message: "토큰을 재발급 받아주세요." },
+  INVALID_TOKEN: { status: StatusCodes.FORBIDDEN, isSuccess: false, code: "LOGINMIDDLEWARES003", message: "유효하지 않은 토큰입니다." },
 
   // refreshToken err
-  REFRESH_TOKEN_NOT_PROVIDED: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "401", message: "refresh 토큰이 제공되지 않았습니다." },
-  REFRESH_TOKEN_INVALID: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "402", message: "유효하지 않은 refresh 토큰입니다." },
+  REFRESH_TOKEN_NOT_PROVIDED: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "REFRESHTOKEN001", message: "refresh 토큰이 제공되지 않았습니다." },
+  REFRESH_TOKEN_INVALID: { status: StatusCodes.PAYMENT_REQUIRED, isSuccess: false, code: "REFRESHTOKEN002", message: "유효하지 않은 refresh 토큰입니다." },
 };

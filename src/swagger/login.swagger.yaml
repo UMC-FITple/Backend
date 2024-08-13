@@ -32,8 +32,8 @@ paths:
                 type: boolean
                 example: true
               code:
-                type: string
-                example: 2000
+                type: number
+                example: 200
               message:
                 type: string
                 example: "success!"
@@ -47,7 +47,7 @@ paths:
                 example: false
               code:
                 type: string
-                example: 400
+                example: COMMON001
               message:
                 type: string
                 example: 잘못된 요청입니다
@@ -61,7 +61,7 @@ paths:
                 example: false
               code:
                 type: string
-                example: 401
+                example: LOGIN001
               message:
                 type: string
                 example: 존재하지 않는 아이디입니다.
@@ -75,7 +75,7 @@ paths:
                 example: false
               code:
                 type: string
-                example: 402
+                example: LOGIN002
               message:
                 type: string
                 example: 데이터가 비어있습니다.
@@ -89,7 +89,7 @@ paths:
                 example: false
               code:
                 type: string
-                example: 403
+                example: LOGIN003
               message:
                 type: string
                 example: 비밀번호가 일치하지 않습니다.
@@ -103,7 +103,7 @@ paths:
                 example: false
               code:
                 type: string
-                example: 500
+                example: COMMON000
               message:
                 type: string
                 example: 서버 에러, 관리자에게 문의 바랍니다.

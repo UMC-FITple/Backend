@@ -29,7 +29,7 @@ paths:
                 example: false
               code:
                 type: string
-                example: 400
+                example: COMMON001
               message:
                 type: string
                 example: 잘못된 요청입니다
@@ -43,7 +43,7 @@ paths:
                 example: false
               code:
                 type: string
-                example: 401
+                example: REFRESHTOKEN001
               message:
                 type: string
                 example: refresh 토큰이 존재하지 않았습니다.
@@ -57,7 +57,7 @@ paths:
                 example: false
               code:
                 type: string
-                example: 402
+                example: REFRESHTOKEN002
               message:
                 type: string
                 example: 유효하지 않은 refresh 토큰입니다.
@@ -71,7 +71,7 @@ paths:
                 example: false
               code:
                 type: string
-                example: 500
+                example: COMMON000
               message:
                 type: string
                 example: 서버 에러, 관리자에게 문의 바랍니다.
