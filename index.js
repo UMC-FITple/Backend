@@ -3,16 +3,16 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import SwaggerUi from 'swagger-ui-express';
-import { specs } from './swagger/swagger.config.js';
-import { init } from './db/index.js';
-import { status } from './config/response.status.js';
-import { BaseError } from './config/error.js';
-import { response } from './config/response.js';
-import { signupRouter } from './routes/signup.js';
-import { loginRouter } from './routes/login.js';
-import { searchRouter } from './routes/search.js';
-import { refreshTokenRouter } from './routes/refreshToken.js';
-import sizeUploadRoutes from './routes/uploadsize.routes.js';
+import { specs } from './src/swagger/swagger.config.js';
+import { init } from './src/db/index.js';
+import { status } from './src/config/response.status.js';
+import { BaseError } from './src/config/error.js';
+import { response } from './src/config/response.js';
+import { signupRouter } from './src/routes/signup.js';
+import { loginRouter } from './src/routes/login.js';
+import { searchRouter } from './src/routes/search.js';
+import { refreshTokenRouter } from './src/routes/refreshToken.js';
+import sizeUploadRoutes from './src/routes/uploadsize.routes.js';
 
 dotenv.config();
 
