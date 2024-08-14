@@ -17,6 +17,9 @@ jobs:
         node-version: ['18', '16', '14']  # 노드 버전 지정! 여러 개도 가능! ['18.x', '14.x'] 요렇게
         
     steps:
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       # build 할 코드를 가져옴 (코드 checkout - github에서 제공해주는 checkout@v3 사용)
       - name: Checkout
         uses: actions/checkout@v3   
