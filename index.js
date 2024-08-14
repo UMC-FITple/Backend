@@ -8,6 +8,7 @@ import { init } from './src/db/index.js';
 import { status } from './src/config/response.status.js';
 import { BaseError } from './src/config/error.js';
 import { response } from './src/config/response.js';
+import { healthRoute } from './src/routes/health.js';
 import { signupRouter } from './src/routes/signup.js';
 import { loginRouter } from './src/routes/login.js';
 import { searchRouter } from './src/routes/search.js';
@@ -37,6 +38,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 
 // router setting
+app.use("/health", healthRoute);
 app.use("/FITple/signup",signupRouter);
 app.use("/FITple/login",loginRouter);
 app.use('/FITple/search', searchRouter);
