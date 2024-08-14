@@ -17,12 +17,15 @@ jobs:
         node-version: ['18', '16', '14']  # 노드 버전 지정! 여러 개도 가능! ['18.x', '14.x'] 요렇게
         
     steps:
-      - name: Install pnpm
-        run: npm install -g pnpm
-
       # build 할 코드를 가져옴 (코드 checkout - github에서 제공해주는 checkout@v3 사용)
       - name: Checkout
-        uses: actions/checkout@v3   
+        uses: actions/checkout@v3
+
+      # pnpm 세팅
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
 
       # Node.js 세팅
       - name: Set up Node.js ${{ matrix.node-version }}
@@ -38,7 +41,7 @@ jobs:
 
       # dependencies 설치, test and build
       - name: Install dependencies
-        run: pnpm ci   # dependencies 설치 pnpm ci, pnpm install 모두 다 됨!
+        run: pnpm install   # dependencies 설치
 
       - name: Run Build
         run: pnpm run build # 빌드
