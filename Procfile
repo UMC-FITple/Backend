@@ -1,1 +1,1 @@
-web: pnpm ci & pnpm run start
+web: pnpm install & pnpm run start
