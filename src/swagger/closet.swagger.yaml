@@ -173,7 +173,43 @@ paths:
                 example: COMMON001
               message:
                 type: string
-                example: 잘못된 요청입니다
+                example: 잘못된 요청입니다.
+
+        '403':
+          description: 금지됨
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 403
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON004
+              message:
+                type: string
+                example: 금지된 요청입니다.
+
+        '404':
+          description: 찾을 수 없음
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 404
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON005
+              message:
+                type: string
+                example: 요청한 페이지를 찾을 수 없습니다.
 
         '500':
           description: 서버 에러
