@@ -1,6 +1,9 @@
 import SwaggerJsdoc from 'swagger-jsdoc';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // 현재 파일의 URL을 파일 경로로 변환
 const __filename = fileURLToPath(import.meta.url);
@@ -19,6 +22,10 @@ const options = {
             {
                 url: 'http://localhost:3000/',
                 description: 'Local server'
+            }, 
+            {
+                url: process.env.DEVELOPMENT_SERVER_URL,
+                description: 'Development server'
             }
         ],
         components: {

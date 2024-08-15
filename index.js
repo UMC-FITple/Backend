@@ -19,7 +19,7 @@ dotenv.config();
 
 // require('dotenv').config(); 
 const app = express();
-const port = 3000;
+app.set('port', process.env.PORT || 3000);
 
 app.get('/', (req, res) => {
   res.send('환영합니다 핏플 백엔드!');
@@ -58,6 +58,6 @@ app.use((err, req, res, next) => {
   res.status(err.data.status || status.INTERNAL_SERVER_ERROR).send(response(err.data));
 });
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+app.listen(app.get('port'), () => {
+  console.log(`Example app listening on port ${app.get('port')}`);
 });
