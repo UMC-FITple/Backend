@@ -1,9 +1,9 @@
 paths:
-  /FITple/login:
+  /FITple/auth/find-id:
     post:
       tags:
-        - Login
-      summary: 로그인
+        - Find-id
+      summary: 아이디 찾기
       requestBody:
         required: true
         content:
@@ -11,20 +11,20 @@ paths:
             schema:
               type: object
               properties:
-                user_id:
+                email:
                   type: string
-                  description: 유저 아이디
-                  example: swaggerTest
-                password:
+                  description: 유저 이메일
+                  example: swaggerTest@naver.com
+                name:
                   type: string
-                  description: 유저 비밀번호
-                  example: 1234567
+                  description: 유저 이름
+                  example: test
               required:
-                - user_id
-                - password
+                - email
+                - name
       responses:
         '200':
-          description: 로그인 성공!
+          description: 아이디 찾기 성공!
           schema:
             type: object
             properties:
@@ -37,6 +37,24 @@ paths:
               message:
                 type: string
                 example: "success!"
+              result:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      user_id:
+                        type: string
+                        description: 유저 아이디
+                        example: swaggerTest
+                      email:
+                        type: string
+                        description: 유저 이메일
+                        example: swaggerTest@naver.com
+                      name:
+                        type: string
+                        description: 유저 이름
+                        example: test
         '400':
           description: 잘못된 요청
           schema:
@@ -52,20 +70,6 @@ paths:
                 type: string
                 example: 잘못된 요청입니다
         '401':
-          description: 존재하지 않는 아이디
-          schema:
-            type: object
-            properties:
-              isSuccess:
-                type: boolean
-                example: false
-              code:
-                type: string
-                example: LOGIN001
-              message:
-                type: string
-                example: 존재하지 않는 아이디입니다.
-        '402':
           description: 비어있는 데이터
           schema:
             type: object
@@ -75,12 +79,12 @@ paths:
                 example: false
               code:
                 type: string
-                example: LOGIN002
+                example: FINDID002
               message:
                 type: string
                 example: 데이터가 비어있습니다.
-        '403':
-          description: 일치하지 않는 비밀번호
+        '402':
+          description: 존재하지 않는 사용자
           schema:
             type: object
             properties:
@@ -89,10 +93,10 @@ paths:
                 example: false
               code:
                 type: string
-                example: LOGIN003
+                example: FINDID002
               message:
                 type: string
-                example: 비밀번호가 일치하지 않습니다.
+                example: 존재하지 않는 사용자입니다.
         '500':
           description: 서버 에러
           schema:
