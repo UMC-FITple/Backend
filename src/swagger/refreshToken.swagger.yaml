@@ -1,30 +1,12 @@
 paths:
-  /FITple/login:
-    post:
+  /FITple/refreshToken:
+    get:
       tags:
-        - Login
-      summary: 로그인
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                user_id:
-                  type: string
-                  description: 유저 아이디
-                  example: swaggerTest
-                password:
-                  type: string
-                  description: 유저 비밀번호
-                  example: 1234567
-              required:
-                - user_id
-                - password
+        - RefreshToken
+      summary: 토큰 재발급
       responses:
         '200':
-          description: 로그인 성공!
+          description: 토큰 재발급 성공!
           schema:
             type: object
             properties:
@@ -37,10 +19,6 @@ paths:
               message:
                 type: string
                 example: "success!"
-              result:
-                properties:
-                  accessToken:
-                    type: string
         '400':
           description: 잘못된 요청
           schema:
@@ -56,7 +34,7 @@ paths:
                 type: string
                 example: 잘못된 요청입니다
         '401':
-          description: 존재하지 않는 아이디
+          description: refresh 토큰이 존재하지 않음
           schema:
             type: object
             properties:
@@ -65,12 +43,12 @@ paths:
                 example: false
               code:
                 type: string
-                example: LOGIN001
+                example: REFRESHTOKEN001
               message:
                 type: string
-                example: 존재하지 않는 아이디입니다.
+                example: refresh 토큰이 존재하지 않았습니다.
         '402':
-          description: 비어있는 데이터
+          description: 유효하지 않는 refresh 토큰
           schema:
             type: object
             properties:
@@ -79,24 +57,10 @@ paths:
                 example: false
               code:
                 type: string
-                example: LOGIN002
+                example: REFRESHTOKEN002
               message:
                 type: string
-                example: 데이터가 비어있습니다.
-        '403':
-          description: 일치하지 않는 비밀번호
-          schema:
-            type: object
-            properties:
-              isSuccess:
-                type: boolean
-                example: false
-              code:
-                type: string
-                example: LOGIN003
-              message:
-                type: string
-                example: 비밀번호가 일치하지 않습니다.
+                example: 유효하지 않은 refresh 토큰입니다.
         '500':
           description: 서버 에러
           schema:

@@ -8,7 +8,7 @@ export async function LoginLogic(req, res) {
         const { user_id, password } = req.body;
 
         if (!user_id || !password) {
-            return res.send(response(status.EMPTY_DATA));
+            return res.send(response(status.LOGIN_EMPTY_DATA));
         }
 
         const LoginData = LoginDTO(user_id, password);
