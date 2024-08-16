@@ -19,7 +19,7 @@ dotenv.config();
 
 // require('dotenv').config(); 
 const app = express();
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8080);
 
 app.get('/', (req, res) => {
   res.send('환영합니다 핏플 백엔드!');
