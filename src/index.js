@@ -48,6 +48,9 @@ app.use("/FITple/signup",signupRouter);
 app.use("/FITple/login",loginRouter);
 app.use('/FITple/search', searchRouter);
 app.use('/FITple/uploadsize', sizeUploadRoutes);
+app.use("/FITple/auth",AuthRouter)
+app.use("/FITple/refreshToken",refreshTokenRouter);
+app.use("/FITple/orcresults",ocrRoutes);
 
 // error handling
 app.use((req, res, next) => {
