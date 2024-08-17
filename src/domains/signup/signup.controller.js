@@ -17,13 +17,18 @@ export async function SignupLogic(req, res) {
 
         if (result.code === "401") {
             return res.send(response(status.USERID_ALREADY_EXIST));
-        } else if (result.code === "403") {
+        } 
+        if (result.code === "403") {
             return res.send(response(status.SIGNUP_ERROR));
-        } else if (result.code === "404") {
-            return res.send(response(status.INTERNAL_SERVER_ERROR));
-        } else {
-            return res.send(response(status.SUCCESS));
         }
+        if (result.code === "404") {
+            return res.send(response(status.INTERNAL_SERVER_ERROR));
+        } 
+
+        res.cookie('accessToken', result.accessToken, { httpOnly: true, secure: false });
+        res.cookie('refreshToken', result.refreshToken, { httpOnly: true, secure: false });
+
+        return res.send(response(status.SUCCESS));
     } catch (err) {
         console.error(err);
         return res.send(response(status.INTERNAL_SERVER_ERROR));

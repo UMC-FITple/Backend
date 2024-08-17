@@ -23,7 +23,7 @@ export async function CreateUser(user_id,hashedPassword,email){
         if(!result){
             return false
         }
-        return true;
+        return result;
     }catch(err){
         console.error(err);
         return false;
