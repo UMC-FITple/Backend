@@ -8,7 +8,7 @@ export async function LoginLogic(req, res) {
         const { user_id, password } = req.body;
 
         if (!user_id || !password) {
-            return res.send(response(status.EMPTY_DATA));
+            return res.send(response(status.LOGIN_EMPTY_DATA));
         }
 
         const LoginData = LoginDTO(user_id, password);
@@ -28,7 +28,7 @@ export async function LoginLogic(req, res) {
         res.cookie('accessToken', result.accessToken, { httpOnly: true, secure: false });
         res.cookie('refreshToken', result.refreshToken, { httpOnly: true, secure: false });
 
-        return res.send(response(status.SUCCESS));
+        return res.send(response(status.SUCCESS, result.accessToken));
     } catch (err) {
         console.error(err);
         return res.send(response(status.INTERNAL_SERVER_ERROR));
