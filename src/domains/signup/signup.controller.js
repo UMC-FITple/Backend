@@ -28,7 +28,7 @@ export async function SignupLogic(req, res) {
         res.cookie('accessToken', result.accessToken, { httpOnly: true, secure: false });
         res.cookie('refreshToken', result.refreshToken, { httpOnly: true, secure: false });
 
-        return res.send(response(status.SUCCESS));
+        return res.send(response(status.SUCCESS,result.accessToken));
     } catch (err) {
         console.error(err);
         return res.send(response(status.INTERNAL_SERVER_ERROR));
