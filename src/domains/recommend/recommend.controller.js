@@ -4,19 +4,19 @@ import { getBodyinfoByID, getUserStyleByID } from "./recommend.dao.js";
 import { bodyinfo_toFlask_DTO, member_style_toFlaskDTO } from "./recommend.dto.js";
 import axios from 'axios';
 
-import { get_member, get_user_bodyinfo, get_userfit, get_userstyle } from "./recommend.provider.js";
+import { get_member, get_user_bodyinfo, get_user_bodyinfo_all, get_userfit, get_userstyle } from "./recommend.provider.js";
 
-// 추천시스템 대신하기 위한 랜덤 함수
-function getRandomNumbers(count, min, max) {
-    const randomNumbers = new Set(); // 중복 방지를 위해 Set 사용
+// // 추천시스템 대신하기 위한 랜덤 함수
+// function getRandomNumbers(count, min, max) {
+//     const randomNumbers = new Set(); // 중복 방지를 위해 Set 사용
 
-    while (randomNumbers.size < count) {
-        const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-        randomNumbers.add(randomNumber); // Set에 추가 (중복 시 무시됨)
-    }
+//     while (randomNumbers.size < count) {
+//         const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+//         randomNumbers.add(randomNumber); // Set에 추가 (중복 시 무시됨)
+//     }
 
-    return Array.from(randomNumbers); // Set을 배열로 변환
-}
+//     return Array.from(randomNumbers); // Set을 배열로 변환
+// }
 
 export const recommend_bodyinfo_by_uuid = async (req, res, next) => {
     // 추천 요청한 uuid
@@ -70,6 +70,12 @@ export const get_bodyinfo_by_uuid = async (req, res, next) => {
 
     res.send(response(status.SUCCESS, await get_user_bodyinfo(req.params.uuid)));
     
+}
+
+export const get_bodyinfo_all = async (req, res, next) => {
+    console.log("사용자 체형정보 요청.");
+
+    res.send(response(status.SUCCESS, await get_user_bodyinfo_all()));
 }
 
 export const get_member_by_uuid = async (req, res, next) => {

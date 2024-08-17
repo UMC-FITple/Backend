@@ -1,11 +1,15 @@
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
 import { bodyinfoResponseDTO, member_fitResponseDTO, member_styleResponseDTO, memberResponseDTO } from "./recommend.dto.js"
-import { getMemberByID, getBodyinfoByID, getUserFitByID, getUserStyleByID } from "./recommend.dao.js";
+import { getMemberByID, getBodyinfoByID, getUserFitByID, getUserStyleByID, getBodyinfo } from "./recommend.dao.js";
 
 
 export const get_user_bodyinfo = async (uuid) => {
     return bodyinfoResponseDTO(await getBodyinfoByID(uuid));
+}
+
+export const get_user_bodyinfo_all = async () => {
+    return bodyinfoResponseDTO(await getBodyinfo());
 }
 
 export const get_member = async (uuid_arr) => {

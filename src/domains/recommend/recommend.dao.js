@@ -26,7 +26,9 @@ export const getBodyinfo = async () => {
         const conn = await pool.getConnection();
 
         // 체형 데이터 get sql
-        const result = await pool.query(getBodyinfo_sql, []);
+        const result = await pool.query(getBodyinfo_sql);
+
+        console.log('bodyinfo: ', result);
 
         conn.release();
         return result;

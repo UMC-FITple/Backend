@@ -1,3 +1,6 @@
+import { BaseError } from "../../config/error.js";
+import { status } from "../../config/response.status.js";
+
 // 멤버 정보 dto
 export const memberResponseDTO = (memberData, bodyData, fitData, styleData) => {
 
@@ -27,19 +30,58 @@ export const memberResponseDTO = (memberData, bodyData, fitData, styleData) => {
         });  
     }
 
-    if(memberData.length != 0) {
+    if (memberData.length !== 0) {
         for (let i = 0; i < memberData.length; i++) {
+            const uuid = memberData[i].uuid;
+            
+            console.log(i);
+            // fits와 styles의 값이 존재하는지 확인
+            const fitValue = (fits[uuid] !== undefined ? fits[uuid] : null);
+            const styleValue = (styles[uuid] !== undefined ? styles[uuid] : null);
+            
+            // fitValue가 null인 경우 에러 처리
+            try{
+                if (fitValue === null) {
+                    // signup의 EMPTY_DATA error
+                    throw new BaseError(`Missing Data: Missing fit data for member with UUID ${uuid}. Fit: ${fitValue}`);
+                }
+                if (styleValue === null) {
+                    // signup의 EMPTY_DATA error
+                    throw new BaseError(`Missing Data: Missing style data for member with UUID ${uuid}. Style: ${styleValue}`);
+                }
+                if (memberData[i].nickname === null) {
+                    // signup의 EMPTY_DATA error
+                    throw new BaseError(`Missing Data: Missing nickname data for member with UUID ${uuid}. memberdata: ${memberData[i].nickname}`);
+                }
+                if (memberData[i].img_url === null) {
+                    // signup의 EMPTY_DATA error
+                    throw new BaseError(`Missing Data: Missing img_url data for member with UUID ${uuid}. img_url: ${memberData[i].img_url}`);
+                }
+                if (bodyData[i].weight === null) {
+                    // signup의 EMPTY_DATA error
+                    throw new BaseError(`Missing Data: Missing nickname data for member with UUID ${uuid}. memberdata: ${bodyData[i].weight}`);
+                }
+                if (bodyData[i].height === null) {
+                    // signup의 EMPTY_DATA error
+                    throw new BaseError(`Missing Data: Missing nickname data for member with UUID ${uuid}. memberdata: ${bodyData[i].height}`);
+                }
+            } catch(err) {
+                console.log(err);
+                throw new BaseError(status.EMPTY_DATA);
+            }
+
             member.push({
-                "uuid": memberData[i].uuid,
+                "uuid": uuid,
                 "nickname": memberData[i].nickname,
                 "img_url": memberData[i].img_url,
                 "weight": bodyData[i].weight,
                 "height": bodyData[i].height,
-                "fit": fits[memberData[i].uuid],
-                "style": styles[memberData[i].uuid]
-            })
+                "fit": fitValue,
+                "style": styleValue
+            });
         }
     }
+    
 
     return {
         "member": member
