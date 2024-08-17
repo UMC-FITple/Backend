@@ -15,13 +15,13 @@ paths:
                   type: string
                   description: 유저 이메일
                   example: swaggerTest@naver.com
-                name:
+                nickname:
                   type: string
-                  description: 유저 이름
+                  description: 유저 닉네임
                   example: test
               required:
                 - email
-                - name
+                - nickname
       responses:
         '200':
           description: 아이디 찾기 성공!
@@ -51,9 +51,9 @@ paths:
                         type: string
                         description: 유저 이메일
                         example: swaggerTest@naver.com
-                      name:
+                      nickname:
                         type: string
-                        description: 유저 이름
+                        description: 유저 닉네임
                         example: test
         '400':
           description: 잘못된 요청
