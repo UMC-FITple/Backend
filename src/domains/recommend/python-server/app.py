@@ -58,10 +58,19 @@ def recommend_user_style():
     # 예시로 간단한 응답을 반환합니다.
     return json.dumps(result_dict)
 
-# @app.route('/train/bodyinfo', methods=['POST'])
-# def train_bodyinfo():
-#     
-#     return jsonify({'message': 'Model updated successfully'})
+@app.route('/train/bodyinfo', methods=['POST'])
+def train_user_bodyinfo():
+    # 클라이언트로부터 받은 bodyinfo 데이터
+    data = request.json
+    print(f"data: ", data)
+
+
+    data_df = pd.DataFrame(data)
+
+    # 터미널에 출력
+    print(f"추천 요청 받은 스타일 정보: \n", data_df)
+    
+    return json.dumps({'message': 'Model updated successfully'})
 
 print(f"app.py __name__ : {__name__}")
 

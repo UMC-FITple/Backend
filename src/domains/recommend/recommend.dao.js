@@ -10,6 +10,8 @@ export const getBodyinfoByID = async (uuid) => {
 
         const [result] = await pool.query(getBodyinfoByID_sql, [uuid]);
 
+        console.log('bodyinfo: ',result);
+
         conn.release();
         return result;
     }catch (err) {
@@ -28,10 +30,10 @@ export const getBodyinfo = async () => {
         // 체형 데이터 get sql
         const result = await pool.query(getBodyinfo_sql);
 
-        console.log('bodyinfo: ', result);
+        console.log('bodyinfoes: ', result);
 
         conn.release();
-        return result;
+        return result[0];
         
     }catch (err) {
         console.log('dao error in get_bodyinfo:', err);
@@ -47,6 +49,8 @@ export const getMemberByID = async (uuid) => {
         const conn = await pool.getConnection();
 
         const [result] = await pool.query(getMemberinfoByID_sql, [uuid]);
+
+        console.log('member: ', result);
 
         conn.release();
         return result;
@@ -64,6 +68,8 @@ export const getUserFitByID = async (uuid) => {
 
         const [result] = await pool.query(getMemberFitsByID_sql, [uuid]);
 
+        console.log("fit: ", result);
+
         conn.release();
         return result;
     }catch (err) {
@@ -78,6 +84,8 @@ export const getUserStyleByID = async (uuid) => {
         const conn = await pool.getConnection();
 
         const [result] = await pool.query(getMemberStylesByID_sql, [uuid]);
+
+        console.log("style: ". result);
 
         conn.release();
         return result;

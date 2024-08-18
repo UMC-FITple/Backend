@@ -1,26 +1,29 @@
 import { response } from "../../config/response.js";
 import { status } from "../../config/response.status.js";
-import { getBodyinfoByID, getUserStyleByID } from "./recommend.dao.js";
-import { bodyinfo_toFlask_DTO, member_style_toFlaskDTO } from "./recommend.dto.js";
+import { getBodyinfo, getBodyinfoByID, getUserStyleByID } from "./recommend.dao.js";
+import { bodyinfo_toFlask_DTO, bodyinfoResponseDTO, member_style_toFlaskDTO } from "./recommend.dto.js";
 import axios from 'axios';
 
 import { get_member, get_user_bodyinfo, get_user_bodyinfo_all, get_userfit, get_userstyle } from "./recommend.provider.js";
 
-// // 추천시스템 대신하기 위한 랜덤 함수
-// function getRandomNumbers(count, min, max) {
-//     const randomNumbers = new Set(); // 중복 방지를 위해 Set 사용
+export const train_bodyinfo = async (req, res, next) => {
+    // 모든 체형 정보 불러오기
+    const bodyinfo = bodyinfoResponseDTO(await getBodyinfo()).bodyinfo;
 
-//     while (randomNumbers.size < count) {
-//         const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-//         randomNumbers.add(randomNumber); // Set에 추가 (중복 시 무시됨)
-//     }
+    console.log(`쳬형정보: `, bodyinfo);
 
-//     return Array.from(randomNumbers); // Set을 배열로 변환
-// }
+    const response_frm_flask = await axios.post('http://127.0.0.1:5000/train/bodyinfo/', bodyinfo);
+
+    console.log("통신 성공!")
+    console.log("받은 정보: ", response_frm_flask.data);
+
+    res.send(response(status.SUCCESS));
+    
+}
 
 export const recommend_bodyinfo_by_uuid = async (req, res, next) => {
     // 추천 요청한 uuid
-    const uuid = req.params.uuid;
+    const uuid = res.locals.uuid;
 
     console.log("비슷한 체형 사용자 추천 요청. 사용자: ", uuid);
 
@@ -43,7 +46,7 @@ export const recommend_bodyinfo_by_uuid = async (req, res, next) => {
 
 export const recommend_style_by_uuid = async (req, res, next) => {
     // 추천 요청한 uuid
-    const uuid = req.params.uuid;
+    const uuid = res.locals.uuid;
 
     console.log("비슷한 스타일 사용자 추천 요청. 사용자: ", uuid);
 
@@ -55,7 +58,7 @@ export const recommend_style_by_uuid = async (req, res, next) => {
     const response_frm_flask = await axios.post('http://127.0.0.1:5000/recommend/style/', style);
 
     console.log("통신 성공!")
-    console.log("받은 정보: ", response_frm_flask.data);
+    console.log("받은 정보: ", response_frm_flask);
 
     // 응답받은 uuid 데이터 배열로 형태 변환
     const uuid_arr = response_frm_flask.data.result;
@@ -66,9 +69,9 @@ export const recommend_style_by_uuid = async (req, res, next) => {
 
 export const get_bodyinfo_by_uuid = async (req, res, next) => {
     console.log("사용자 체형정보 요청.");
-    console.log("path:", req.params.uuid);
+    console.log("path:", res.locals.uuid);
 
-    res.send(response(status.SUCCESS, await get_user_bodyinfo(req.params.uuid)));
+    res.send(response(status.SUCCESS, await get_user_bodyinfo(res.locals.uuid)));
     
 }
 
@@ -79,19 +82,19 @@ export const get_bodyinfo_all = async (req, res, next) => {
 }
 
 export const get_member_by_uuid = async (req, res, next) => {
-    console.log("사용자 정보 요청. 사용자: ", req.params.uuid);
-    res.send(response(status.SUCCESS, await get_member(req.params.uuid)));
+    console.log("사용자 정보 요청. 사용자: ", res.locals.uuid);
+    res.send(response(status.SUCCESS, await get_member(res.locals.uuid)));
     
 }
 
 export const get_userfit_by_uuid = async (req, res, next) => {
-    console.log("사용자 선호 핏 정보 요청. 사용자:", req.params.uuid);
-    res.send(response(status.SUCCESS, await get_userfit(req.params.uuid)));
+    console.log("사용자 선호 핏 정보 요청. 사용자:", res.locals.uuid);
+    res.send(response(status.SUCCESS, await get_userfit(res.locals.uuid)));
     
 }
 
 export const get_userstyle_by_uuid = async (req, res, next) => {
-    console.log("사용자 선호 스타일 정보 요청. 사용자:", req.params.uuid);
-    res.send(response(status.SUCCESS, await get_userstyle(req.params.uuid)));
+    console.log("사용자 선호 스타일 정보 요청. 사용자:", res.locals.uuid);
+    res.send(response(status.SUCCESS, await get_userstyle(res.locals.uuid)));
     
 }
