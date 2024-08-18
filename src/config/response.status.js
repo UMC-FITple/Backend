@@ -21,7 +21,7 @@ export const status = {
 
   // login err
   USER_NOT_FOUND: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "LOGIN001", message: "존재하지 않는 아이디입니다." },
-  LOGIN_EMPTY_DATA: { status: StatusCodes.PAYMENT_REQUIRED, isSuccess: false, code: "SIGNUP002", message: "데이터가 비어있습니다." },
+  LOGIN_EMPTY_DATA: { status: StatusCodes.PAYMENT_REQUIRED, isSuccess: false, code: "LOGIN002", message: "데이터가 비어있습니다." },
   PASSWORD_MISMATCH: { status: StatusCodes.FORBIDDEN, isSuccess: false, code: "LOGIN002", message: "비밀번호가 일치하지 않습니다." },
 
   // login middlewares err
