@@ -2,7 +2,8 @@ import { pool } from "../../config/db.config.js";
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
 import { myClosetItemAtFirst, myClosetItem, myClosetCategoryItemAtFirst, myClosetCategoryItem, 
-    getClothByClothId, getUserByClothId, getRealSizeByClothId } from "./closet.sql.js";
+    getClothByClothId, getUserByClothId, getRealSizeByClothId,
+    insertClothSql, getCloth, insertRealSize } from "./closet.sql.js";
 
 // ncloth 반환
     export const getMyClosetPreview = async (userId, category, size, cursorId) => {
@@ -50,7 +51,6 @@ export const getPreviewCloth = async (userId, clothId) => {
             throw new BaseError(status.FORBIDDEN);
         }
 
-        console.log("dao3",cloth);
         const size = await pool.query(getRealSizeByClothId, clothId);
         conn.release();
         return { cloth, size };
@@ -58,6 +58,45 @@ export const getPreviewCloth = async (userId, clothId) => {
         if (err.data.code === status.NOT_FOUND.code || status.FORBIDDEN.code) {
             throw err;
         }
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+
+// Cloth 데이터 삽입
+export const clothAdd = async (data) => {
+    try{
+        const conn = await pool.getConnection();
+
+        console.log("\n여기가 문제");
+        const result = await pool.query(insertClothSql, [data.uuid, data.brand, data.name, data.product_code, data.category, data.size, data.fit, data.color, data.url, data.rating, data.memo]);
+
+        conn.release();
+        console.log("\result: ", result);
+        console.log("\nclothAdd", result[0].insertId);
+        return result[0].insertId;
+        
+    }catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+// 등록한 Cloth 반환
+export const getAddCloth = async (clothId) => {
+    try {
+        const conn = await pool.getConnection();
+        const cloth = await pool.query(getCloth, clothId);
+
+        console.log(cloth);
+
+        if(cloth.length == 0){
+            return -1;
+        }
+
+        conn.release();
+        return cloth;
+        
+    } catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
 }

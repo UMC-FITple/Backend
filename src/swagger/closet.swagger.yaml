@@ -1,3 +1,9 @@
+openapi: 3.0.0
+info:
+  title: 핏플 API
+  description: 핏플 API with express, API 설명
+  version: 1.0.0
+
 paths:
   /FITple/my/closet/main:
     get:
@@ -210,6 +216,145 @@ paths:
               message:
                 type: string
                 example: 요청한 페이지를 찾을 수 없습니다.
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
+
+
+  /FITple/my/closet:
+    post:
+      tags:
+        - Closet
+      summary: 옷 직접 등록 로직
+      operationId: closet
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                brand:
+                  type: string
+                  description: 브랜드
+                  example: 아디다스
+                name:
+                  type: string
+                  description: 제품명
+                  example: 에센셜 풀업 후디
+                product_code:
+                  type: string
+                  description: 제품번호
+                  example: IL2516
+                category:
+                  type: integer
+                  description: 분류
+                  example: 2
+                size:
+                  type: string
+                  description: 사이즈
+                  example: S
+                fit:
+                  type: string
+                  description: 핏
+                  example: 레귤러
+                color:
+                  type: string
+                  description: 색상
+                  example: 화이트
+                url:
+                  type: string
+                  description: URL
+                  example: https://adidas.co.kr/1245
+                rating:
+                  type: 평가
+                  description: integer
+                  example: 4
+                memo:
+                  type: 메모
+                  description: 유저 아이디
+                  example: 길이는 딱 맞고, 팔이 조금 길다.
+              required:
+                - name
+                - product_code
+                - size
+                - fit
+      responses:
+        '200':
+          description: 옷장 메인화면 조회 성공
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 2000
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: array
+                example: {
+                  "closetData": [
+                    {
+                      "cloth_id": 7,
+                      "brand": "아디다스",
+                      "cloth_name": "에센셜 풀집 후디",
+                      "size": "S",
+                      "fit": "레귤러",
+                      "likes": 1
+                    },
+                    {
+                      "cloth_id": 6,
+                      "brand": "아디다스",
+                      "cloth_name": "에센셜 풀집 후디",
+                      "size": "M",
+                      "fit": "세미오버",
+                      "likes": 0
+                    }
+                  ],
+                  "cursorId": 1
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
 
         '500':
           description: 서버 에러

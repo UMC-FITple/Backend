@@ -37,3 +37,11 @@ export const getRealSizeByClothId =
 "SELECT c.id, r.length, r.shoulder, r.chest, r.armhole, r.sleeve, r.sleeve_length, r.hem "
 + "FROM cloth c JOIN real_size r on c.id = r.cloth_id "
 + "WHERE c.id = ? ;"
+
+
+export const insertClothSql = "INSERT INTO cloth (uuid, brand_name, name, product_code, category_id, size, fit, color, url, rating, memo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ;"
+
+export const insertRealSize = 
+"INSERT INTO real_size (cloth_id, length, shoulder, chest, armhole, sleeve, sleeve_length, hem) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ;";
+
+export const getCloth = "SELECT * FROM cloth WHERE id = ? ; "

@@ -1,6 +1,7 @@
 import { response } from "../../config/response.js";
 import { status } from "../../config/response.status.js";
 import { getMyCloset, getMyCloth } from "./closet.provider.js";
+import { addMyCloth } from "./closet.service.js";
 
 export const myClosetPreview = async (req, res, next) => {
     console.log("내 옷장을 조회합니다");
@@ -29,4 +30,14 @@ export const myClothView = async (req, res, next) => {
         
         next(error);
     }
+}
+
+export const addCloth = async (req, res, next) => {
+    console.log("옷 등록을 요청하였습니다!");
+    const userId = res.locals.uuid;
+    
+    console.log("userId:", userId);
+    console.log("body:", req.body);
+
+    res.send(response(status.SUCCESS, await addMyCloth(userId, req.body)));
 }

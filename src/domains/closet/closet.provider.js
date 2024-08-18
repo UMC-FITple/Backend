@@ -1,4 +1,4 @@
-import { previewMyClosetResponseDTO, previewMyClothResponseDTO } from "./closet.dto.js"
+import { previewMyClosetResponseDTO, previewMyClothResponseDTO } from "./closet.dto.js";
 import { getMyClosetPreview, getPreviewCloth } from "./closet.dao.js";
 
 export const getMyCloset = async (userId, query) => {
