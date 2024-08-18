@@ -8,7 +8,7 @@ export async function LoginLogic(req, res) {
         const { user_id, password } = req.body;
 
         if (!user_id || !password) {
-            return res.send(response(status.LOGIN_EMPTY_DATA));
+            return res.status(402).send(response(status.LOGIN_EMPTY_DATA));
         }
 
         const LoginData = LoginDTO(user_id, password);
@@ -16,13 +16,13 @@ export async function LoginLogic(req, res) {
         const result = await LoginService(LoginData);
 
         if (result.code == 401) {
-            return res.send(response(status.USER_NOT_FOUND));
+            return res.status(401).send(response(status.USER_NOT_FOUND));
         }
         if(result.code == 403){
-            return res.send(response(status.PASSWORD_MISMATCH));
+            return res.status(403).send(response(status.PASSWORD_MISMATCH));
         }
         if(result.code == 500){
-            return res.send(response(status.INTERNAL_SERVER_ERROR));
+            return res.status(500).send(response(status.INTERNAL_SERVER_ERROR));
         }
 
         res.cookie('accessToken', result.accessToken, { httpOnly: true, secure: false });
@@ -31,6 +31,6 @@ export async function LoginLogic(req, res) {
         return res.send(response(status.SUCCESS, result.accessToken));
     } catch (err) {
         console.error(err);
-        return res.send(response(status.INTERNAL_SERVER_ERROR));
+        return res.status(500).send(response(status.INTERNAL_SERVER_ERROR));
     }
 }
