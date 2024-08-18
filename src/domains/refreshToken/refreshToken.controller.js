@@ -6,12 +6,12 @@ export async function refreshTokenLogic(req, res) {
     try {
         const token = req.cookies.refreshToken;
         if (!token) {
-            return res.send(response(status.REFRESH_TOKEN_NOT_PROVIDED));
+            return res.status(401).send(response(status.REFRESH_TOKEN_NOT_PROVIDED));
         }
         const result = await refreshTokenService(token);
 
         if (!result.success) {
-            return res.send(response(status.REFRESH_TOKEN_INVALID));
+            return res.status(402).send(response(status.REFRESH_TOKEN_INVALID));
         }
 
         res.cookie('accessToken', result.accessToken, { httpOnly: true, secure: false });
@@ -20,6 +20,6 @@ export async function refreshTokenLogic(req, res) {
         return res.send(response(status.SUCCESS));
     } catch (err) {
         console.error(err);
-        return res.send(response(status.INTERNAL_SERVER_ERROR));
+        return res.status(500).send(response(status.INTERNAL_SERVER_ERROR));
     }
 }

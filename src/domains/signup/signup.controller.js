@@ -7,7 +7,7 @@ export async function SignupLogic(req, res) {
     const { email, user_id, password } = req.body;
 
     if (!email || !user_id || !password) {
-        return res.send(response(status.SIGNUP_EMPTY_DATA));
+        return res.status(402).send(response(status.SIGNUP_EMPTY_DATA));
     }
 
     const signupData = createSignupDTO(user_id, password, email);
@@ -16,13 +16,13 @@ export async function SignupLogic(req, res) {
         const result = await SignupService(signupData);
 
         if (result.code === "401") {
-            return res.send(response(status.USERID_ALREADY_EXIST));
+            return res.status(401).send(response(status.USERID_ALREADY_EXIST));
         } 
         if (result.code === "403") {
-            return res.send(response(status.SIGNUP_ERROR));
-        }
+            return res.status(403).send(response(status.SIGNUP_ERROR));
+        } 
         if (result.code === "404") {
-            return res.send(response(status.INTERNAL_SERVER_ERROR));
+            return res.status(500).send(response(status.INTERNAL_SERVER_ERROR));
         } 
 
         res.cookie('accessToken', result.accessToken, { httpOnly: true, secure: false });
@@ -31,6 +31,6 @@ export async function SignupLogic(req, res) {
         return res.send(response(status.SUCCESS,result.accessToken));
     } catch (err) {
         console.error(err);
-        return res.send(response(status.INTERNAL_SERVER_ERROR));
+        return res.status(500).send(response(status.INTERNAL_SERVER_ERROR));
     }
 }

@@ -6,22 +6,22 @@ export async function FindUserId(req, res) {
         const { nickname, email} = req.body;
 
         if (!nickname || !email) {
-            return res.send(response(status.FIND_ID_EMPTY_DATA));
+            return res.status(401).send(response(status.FIND_ID_EMPTY_DATA));
         }
 
         const result = await FindUserIdService(nickname,email);
 
         if (result.code == 401) {
-            return res.send(response(status.FIND_ID_USER_NOT_FOUND));
+            return res.status(402).send(response(status.FIND_ID_USER_NOT_FOUND));
         }
         if(result.code == 500){
-            return res.send(response(status.INTERNAL_SERVER_ERROR));
+            return res.status(500).send(response(status.INTERNAL_SERVER_ERROR));
         }
 
         return res.send(response(status.SUCCESS,result));
     } catch (err) {
         console.error(err);
-        return res.send(response(status.INTERNAL_SERVER_ERROR));
+        return res.status(500).send(response(status.INTERNAL_SERVER_ERROR));
     }
 }
 
@@ -30,16 +30,16 @@ export async function AuthResetPassword(req, res) {
         const { nickname, email, user_id } = req.body;
 
         if (!nickname || !email || !user_id) {
-            return res.send(response(status.AUTH_RESET_PASSWORD_EMPTY_DATA));
+            return res.status(401).send(response(status.AUTH_RESET_PASSWORD_EMPTY_DATA));
         }
 
         const result = await AuthResetPasswordService(nickname, email, user_id);
 
         if (result.code == 401) {
-            return res.send(response(status.AUTH_RESET_PASSWORD_USER_NOT_FOUND));
+            return res.status(402).send(response(status.AUTH_RESET_PASSWORD_USER_NOT_FOUND));
         }
         if (result.code == 500) {
-            return res.send(response(status.INTERNAL_SERVER_ERROR));
+            return res.status(500).send(response(status.INTERNAL_SERVER_ERROR));
         }
 
         const newPasswordKey = await AuthResetPasswordCookie(result.uuid);
@@ -49,7 +49,7 @@ export async function AuthResetPassword(req, res) {
         return res.send(response(status.SUCCESS));
     } catch (err) {
         console.error(err);
-        return res.send(response(status.INTERNAL_SERVER_ERROR));
+        return res.status(500).send(response(status.INTERNAL_SERVER_ERROR));
     }
 }
 
@@ -57,27 +57,27 @@ export async function SetResetPassword(req, res) {
     try {
         const newPasswordKey = req.cookies.newPasswordKey;
         if(!newPasswordKey){
-            return res.send(response(status.SET_RESET_PASSWORD_EMPTY_TOKEN));
+            return res.status(401).send(response(status.SET_RESET_PASSWORD_EMPTY_TOKEN));
         }
 
         const decoded = await SetResetPasswordVerifyToken(newPasswordKey);
 
         if(!decoded){
-            return res.send(response(status.SET_RESET_PASSWORD_VERIFY_TOKEN_ERROR));
+            return res.status(406).send(response(status.SET_RESET_PASSWORD_VERIFY_TOKEN_ERROR));
         }
 
         const uuid = decoded.uuid;
         const { newPassword } = req.body;
         if (!newPassword ) {
-            return res.send(response(status.SET_RESET_PASSWORD_EMPTY_NEW_PASSWORD));
+            return res.status(402).send(response(status.SET_RESET_PASSWORD_EMPTY_NEW_PASSWORD));
         }
 
         const result = await SetResetPasswordService(uuid,newPassword);
         if(result.code == 403){
-            return res.send(response(status.SET_RESET_PASSWORD_CHANGE_PASSWORD_ERROR));
+            return res.status(403).send(response(status.SET_RESET_PASSWORD_CHANGE_PASSWORD_ERROR));
         }
         if(result.code == 500){
-            return res.send(response(status.INTERNAL_SERVER_ERROR));
+            return res.status(500).send(response(status.INTERNAL_SERVER_ERROR));
         }
 
         res.clearCookie('newPasswordKey');
@@ -85,6 +85,6 @@ export async function SetResetPassword(req, res) {
         return res.send(response(status.SUCCESS));
     } catch (err) {
         console.error(err);
-        return res.send(response(status.INTERNAL_SERVER_ERROR));
+        return res.status(500).send(response(status.INTERNAL_SERVER_ERROR));
     }
 }
