@@ -7,7 +7,7 @@ export async function LoginCheck(req,res,next){
         const token = req.cookies.accessToken;
 
         if (!token) {
-            return res.send(response(status.TOKEN_NOT_PROVIDED));
+            return res.status(401).send(response(status.TOKEN_NOT_PROVIDED));
         }
     
         const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
@@ -17,8 +17,8 @@ export async function LoginCheck(req,res,next){
         next();
     }catch(err){
         if(err.name === "TokenExpiredError"){
-            return res.send(response(status.TOKEN_EXPIRED));
+            return res.status(402).send(response(status.TOKEN_EXPIRED));
         }
-        return res.send(response(status.INVALID_TOKEN));
+        return res.status(403).send(response(status.INVALID_TOKEN));
     }
 }
