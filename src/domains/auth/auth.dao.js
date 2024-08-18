@@ -1,11 +1,11 @@
 import { Op } from "sequelize";
 import db from "../../db/index.js";
-export async function FindUserRepository(name,email){
+export async function FindUserRepository(nickname,email){
     try{
         const isExistUser = await db.Member.findOne({
             where: {
                 [Op.and]: [
-                  { name },
+                  { nickname },
                   { email }
                 ]
             }
@@ -17,12 +17,12 @@ export async function FindUserRepository(name,email){
     }
 }
 
-export async function AuthResetPasswordRepository(name,email,user_id){
+export async function AuthResetPasswordRepository(nickname,email,user_id){
     try{
         const isExistUser = await db.Member.findOne({
             where: {
                 [Op.and]: [
-                  { name },
+                  { nickname },
                   { email },
                   { user_id },
                 ]

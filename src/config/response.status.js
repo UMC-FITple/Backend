@@ -46,4 +46,13 @@ export const status = {
   SET_RESET_PASSWORD_EMPTY_NEW_PASSWORD: { status: StatusCodes.PAYMENT_REQUIRED, isSuccess: false, code: "SETRESETPASSWORD002", message: "변경할 비밀번호 데이터가 비어있습니다." },
   SET_RESET_PASSWORD_CHANGE_PASSWORD_ERROR: { status: StatusCodes.FORBIDDEN, isSuccess: false, code: "SETRESETPASSWORD003", message: "비밀번호 변경에 실패했습니다." },
   SET_RESET_PASSWORD_VERIFY_TOKEN_ERROR: { status: StatusCodes.NOT_ACCEPTABLE, isSuccess: false, code: "SETRESETPASSWORD004", message: "비밀번호 변경 권한 토큰이 유효하지 않습니다." },
+
+  // myprofile-set err
+  MYPROFILE_EMPTY_IMG: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "MYPROFILE001", message: "사용자 이미지가 존재하지 않습니다." },
+  MYPROFILE_EMPTY_DATA: { status: StatusCodes.PAYMENT_REQUIRED, isSuccess: false, code: "MYPROFILE002", message: "기본 정보 또는 체형 정보 데이터가 없습니다." },
+  MYPROFILE_EXIST_BODY_INFO: { status: StatusCodes.FORBIDDEN, isSuccess: false, code: "MYPROFILE003", message: "체형 정보 데이터가 존재합니다." },
+  MYPROFILE_BODY_INFO_SAVE_ERROR:{ status: StatusCodes.NOT_FOUND, isSuccess: false, code: "MYPROFILE004", message: "체형 정보 데이터 저장 중 오류가 발생했습니다." },
+  MYPROFILE_USER_INFO_SAVE_ERROR:{ status: StatusCodes.METHOD_NOT_ALLOWED, isSuccess: false, code: "MYPROFILE005", message: "기본 정보 데이터 저장 중 오류가 발생했습니다." },
+  MYPROFILE_USER_IMG_SAVE_ERROR:{ status: StatusCodes.NOT_ACCEPTABLE, isSuccess: false, code: "MYPROFILE006", message: "사용자 이미지 데이터 저장 중 오류가 발생했습니다." },
+  MYPROFILE_EXIST_USER_NICKNAME: { status: StatusCodes.PROXY_AUTHENTICATION_REQUIRED, isSuccess: false, code: "MYPROFILE007", message: "이미 존재하는 닉네임입니다." },
 };

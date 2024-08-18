@@ -16,6 +16,8 @@ import { recommendRouter } from "./routes/recommend.routes.js"
 import sizeUploadRoutes from './routes/uploadsize.routes.js';
 import { AuthRouter } from './routes/auth.js';
 import { closetRouter } from './routes/closet.js';
+import { LoginCheck } from './middlewares/logincheck.js';
+import { MyprofileRouter } from './routes/myprofile.js';
 
 dotenv.config();
 
@@ -53,6 +55,7 @@ app.use('/FITple/uploadsize', sizeUploadRoutes);
 app.use("/FITple/refreshToken",refreshTokenRouter);
 app.use("/FITple/auth",AuthRouter)
 app.use('/FITple/my/closet', closetRouter);
+app.use("/FITple/myprofile",LoginCheck,MyprofileRouter);
 app.use('/FITple/recommend', recommendRouter)
 
 // error handling
