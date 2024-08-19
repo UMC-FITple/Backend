@@ -4,7 +4,6 @@ import { addClothResponseDTO } from "./closet.dto.js";
 import { clothAdd, getAddCloth } from "./closet.dao.js";
 
 export const addMyCloth = async (userId, body) => {
-    console.log("서비스 도착");
     const requiredFields = ['name', 'product_code', 'category', 'size', 'fit'];
     let miss;
     for(const field of requiredFields) {
@@ -26,7 +25,6 @@ export const addMyCloth = async (userId, body) => {
             throw new BaseError(status.FIT_BAD_REQUEST);
       }
 
-
     const clothData = await clothAdd({
         'uuid': userId,
         'brand': body.brand,
@@ -38,8 +36,14 @@ export const addMyCloth = async (userId, body) => {
         'color': body.color,
         'url': body.url,
         'rating': body.rating,
-        'memo': body.memo
+        'memo': body.memo,
+        'length': body.length,
+        'shoulder': body.shoulder,
+        'chest': body.chest,
+        'armhole': body.armhole,
+        'sleeve': body.sleeve,
+        'sleeve_length': body.sleeve_length,
+        'hem': body.hem
     });
-    console.log("옷 삽입");
     return addClothResponseDTO(await getAddCloth(clothData));
 }

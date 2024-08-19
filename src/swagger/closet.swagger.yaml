@@ -284,13 +284,34 @@ paths:
                   description: URL
                   example: https://adidas.co.kr/1245
                 rating:
-                  type: 평가
-                  description: integer
+                  type: integer
+                  description: 평가
                   example: 4
                 memo:
-                  type: 메모
-                  description: 유저 아이디
+                  type: string
+                  description: 메모
                   example: 길이는 딱 맞고, 팔이 조금 길다.
+                length:
+                  type: integer
+                  example: 69
+                shoulder:
+                  type: integer
+                  example: 71
+                chest:
+                  type: integer
+                  example: 73
+                armhole:
+                  type: integer
+                  example: null
+                sleeve:
+                  type: integer
+                  example: null
+                sleeve_length:
+                  type: integer
+                  example: 75
+                hem:
+                  type: integer
+                  example: null
               required:
                 - name
                 - product_code
@@ -311,32 +332,18 @@ paths:
                 example: true
               code:
                 type: integer
-                example: 2000
+                example: 200
               message:
                 type: string
                 example: "success!"
               data:
                 type: array
                 example: {
-                  "closetData": [
+                  "clothData": [
                     {
-                      "cloth_id": 7,
-                      "brand": "아디다스",
-                      "cloth_name": "에센셜 풀집 후디",
-                      "size": "S",
-                      "fit": "레귤러",
-                      "likes": 1
-                    },
-                    {
-                      "cloth_id": 6,
-                      "brand": "아디다스",
-                      "cloth_name": "에센셜 풀집 후디",
-                      "size": "M",
-                      "fit": "세미오버",
-                      "likes": 0
+                      "cloth_id": 20
                     }
-                  ],
-                  "cursorId": 1
+                  ]
                 }
                 
         '400':

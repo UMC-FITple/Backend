@@ -3,7 +3,7 @@ import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
 import { myClosetItemAtFirst, myClosetItem, myClosetCategoryItemAtFirst, myClosetCategoryItem, 
     getClothByClothId, getUserByClothId, getRealSizeByClothId,
-    insertClothSql, getCloth, insertRealSize } from "./closet.sql.js";
+    insertCloth, insertRealSize, getCloth } from "./closet.sql.js";
 
 // ncloth 반환
     export const getMyClosetPreview = async (userId, category, size, cursorId) => {
@@ -68,14 +68,11 @@ export const clothAdd = async (data) => {
     try{
         const conn = await pool.getConnection();
 
-        console.log("\n여기가 문제");
-        const result = await pool.query(insertClothSql, [data.uuid, data.brand, data.name, data.product_code, data.category, data.size, data.fit, data.color, data.url, data.rating, data.memo]);
+        const cloth = await pool.query(insertCloth, [data.uuid, data.brand, data.name, data.product_code, data.category, data.size, data.fit, data.color, data.url, data.rating, data.memo]);
+        const size = await pool.query(insertRealSize, [cloth[0].insertId, data.length, data.shoulder, data.chest, data.armhole, data.sleeve, data.sleeve_length, data.hem]);
 
         conn.release();
-        console.log("\result: ", result);
-        console.log("\nclothAdd", result[0].insertId);
-        return result[0].insertId;
-        
+        return cloth[0].insertId;
     }catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
@@ -87,15 +84,12 @@ export const getAddCloth = async (clothId) => {
         const conn = await pool.getConnection();
         const cloth = await pool.query(getCloth, clothId);
 
-        console.log(cloth);
-
         if(cloth.length == 0){
             return -1;
         }
 
         conn.release();
         return cloth;
-        
     } catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }

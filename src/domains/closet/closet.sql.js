@@ -39,7 +39,8 @@ export const getRealSizeByClothId =
 + "WHERE c.id = ? ;"
 
 
-export const insertClothSql = "INSERT INTO cloth (uuid, brand_name, name, product_code, category_id, size, fit, color, url, rating, memo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ;"
+export const insertCloth = 
+"INSERT INTO cloth (uuid, brand_name, name, product_code, category_id, size, fit, color, url, rating, memo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ;"
 
 export const insertRealSize = 
 "INSERT INTO real_size (cloth_id, length, shoulder, chest, armhole, sleeve, sleeve_length, hem) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ;";

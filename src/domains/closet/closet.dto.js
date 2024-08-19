@@ -59,15 +59,11 @@ export const previewMyClothResponseDTO = (data) => {
 export const addClothResponseDTO = (data) => {
     
     const cloth = [];
-    console.log("\n옷데이터", data[0][0])
-
     if(data.length == 0){
         cloth.push("제품이 등록되지 않았어요.");
     }else{
         cloth.push({
-            "cloth_id": data[0][0].id,
-            "brand": data[0][0].brand_name,
-            "cloth_name": data[0][0].name
+            "cloth_id": data[0][0].id
         })
     }
     return {"clothData": cloth};
