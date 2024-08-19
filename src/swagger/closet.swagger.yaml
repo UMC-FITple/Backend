@@ -294,6 +294,7 @@ paths:
               required:
                 - name
                 - product_code
+                - category
                 - size
                 - fit
       responses:

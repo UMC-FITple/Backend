@@ -46,4 +46,12 @@ export const status = {
   SET_RESET_PASSWORD_EMPTY_NEW_PASSWORD: { status: StatusCodes.PAYMENT_REQUIRED, isSuccess: false, code: "SETRESETPASSWORD002", message: "변경할 비밀번호 데이터가 비어있습니다." },
   SET_RESET_PASSWORD_CHANGE_PASSWORD_ERROR: { status: StatusCodes.FORBIDDEN, isSuccess: false, code: "SETRESETPASSWORD003", message: "비밀번호 변경에 실패했습니다." },
   SET_RESET_PASSWORD_VERIFY_TOKEN_ERROR: { status: StatusCodes.NOT_ACCEPTABLE, isSuccess: false, code: "SETRESETPASSWORD004", message: "비밀번호 변경 권한 토큰이 유효하지 않습니다." },
+
+  //closet err
+  NAME_BAD_REQUEST: { status: StatusCodes.BAD_REQUEST, isSuccess: false, code: "CLOSET001", message: "제품명을 입력해주세요." },
+  CODE_BAD_REQUEST: { status: StatusCodes.BAD_REQUEST, isSuccess: false, code: "CLOSET002", message: "제품번호를 입력해주세요." },
+  CATEGORY_BAD_REQUEST: { status: StatusCodes.BAD_REQUEST, isSuccess: false, code: "CLOSET003", message: "분류를 입력해주세요." },
+  SIZE_BAD_REQUEST: { status: StatusCodes.BAD_REQUEST, isSuccess: false, code: "CLOSET004", message: "사이즈를 입력해주세요." },
+  FIT_BAD_REQUEST: { status: StatusCodes.BAD_REQUEST, isSuccess: false, code: "CLOSET005", message: "핏을 입력해주세요." },
+  CLOSET_BAD_REQUEST: { status: StatusCodes.BAD_REQUEST, isSuccess: false, code: "CLOSET006", message: "옷 정보를 입력해주세요." },
 };
