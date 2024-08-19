@@ -55,4 +55,7 @@ export const status = {
   MYPROFILE_USER_INFO_SAVE_ERROR:{ status: StatusCodes.METHOD_NOT_ALLOWED, isSuccess: false, code: "MYPROFILE005", message: "기본 정보 데이터 저장 중 오류가 발생했습니다." },
   MYPROFILE_USER_IMG_SAVE_ERROR:{ status: StatusCodes.NOT_ACCEPTABLE, isSuccess: false, code: "MYPROFILE006", message: "사용자 이미지 데이터 저장 중 오류가 발생했습니다." },
   MYPROFILE_EXIST_USER_NICKNAME: { status: StatusCodes.PROXY_AUTHENTICATION_REQUIRED, isSuccess: false, code: "MYPROFILE007", message: "이미 존재하는 닉네임입니다." },
+  MYPROFILE_UNAVAILABLE_FIT: { status: StatusCodes.REQUEST_TIMEOUT, isSuccess: false, code: "MYPROFILE008", message: "존재하지 않는 선호 핏입니다." },
+  MYPROFILE_UNAVAILABLE_STYLE: { status: StatusCodes.CONFLICT, isSuccess: false, code: "MYPROFILE009", message: "존재하지 않는 선호 스타일입니다." },
+  MYPROFILE_UNAVAILABLE_GENDER: { status: StatusCodes.GONE, isSuccess: false, code: "MYPROFILE010", message: "존재하지 않는 성별입니다." },
 };

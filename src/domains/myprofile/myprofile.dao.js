@@ -47,13 +47,7 @@ export async function UserInfoDataSaveDao(userInfo,uuid) {
                     pf_name:fit,
                 });
             } else {
-                await db.PreferFit.create({
-                    pf_name:fit
-                });
-                await db.UserFit.create({
-                    uuid: uuid,
-                    pf_name:fit,
-                });
+                return ({ isSuccess: false, code: 406 ,message: '존재하지 않은 선호 핏입니다.' });
             }
         }
 
@@ -65,13 +59,7 @@ export async function UserInfoDataSaveDao(userInfo,uuid) {
                     style_name:style,
                 });
             } else {
-                await db.Style.create({
-                    style_name:style
-                });
-                await db.UserStyle.create({
-                    uuid: uuid,
-                    style_name: style,
-                });
+                return ({ isSuccess: false, code: 407 ,message: '존재하지 않는 선호 스타일입니다.' });
             }
         }
         return true;

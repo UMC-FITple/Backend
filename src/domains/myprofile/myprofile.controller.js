@@ -38,6 +38,15 @@ export async function MyprofileSaveLogic(req, res) {
         if(result.code == 405){
             return res.status(407).send(response(status.MYPROFILE_EXIST_USER_NICKNAME));
         }
+        if(result.code == 406){
+            return res.status(408).send(response(status.MYPROFILE_UNAVAILABLE_FIT));
+        }
+        if(result.code == 407){
+            return res.status(409).send(response(status.MYPROFILE_UNAVAILABLE_STYLE));
+        }
+        if(result.code == 408){
+            return res.status(410).send(response(status.MYPROFILE_UNAVAILABLE_GENDER));
+        }
         if(result.code === 500){
             return res.status(500).send(response(status.INTERNAL_SERVER_ERROR));
         }
