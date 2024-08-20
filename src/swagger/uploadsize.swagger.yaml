@@ -2,7 +2,7 @@ paths:
   /FITple/uploadsize:
     post:
       tags:
-        - CompareSize
+        - OCRCompareSize(이미지로사이즈비교)
       summary: 사이즈 이미지 업로드
       description: 사이즈 이미지를 서버에 업로드합니다.
       consumes:
