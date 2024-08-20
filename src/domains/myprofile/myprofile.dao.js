@@ -39,7 +39,7 @@ export async function UserInfoDataSaveDao(userInfo,uuid) {
                 }
             }
         );
-        for (let fit of userInfo.perfer_fit) {
+        for (let fit of userInfo.prefer_fit) {
             const preferFit = await db.PreferFit.findOne({ where: { pf_name: fit } });
             if (preferFit) {
                 await db.UserFit.create({
@@ -51,7 +51,7 @@ export async function UserInfoDataSaveDao(userInfo,uuid) {
             }
         }
 
-        for (let style of userInfo.perfer_style) {
+        for (let style of userInfo.prefer_style) {
             const preferStyle = await db.Style.findOne({ where: { style_name: style } });
             if (preferStyle) {
                 await db.UserStyle.create({

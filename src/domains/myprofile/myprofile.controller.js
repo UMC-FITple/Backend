@@ -47,6 +47,12 @@ export async function MyprofileSaveLogic(req, res) {
         if(result.code == 408){
             return res.status(410).send(response(status.MYPROFILE_UNAVAILABLE_GENDER));
         }
+        if(result.code == 409){
+            return res.status(411).send(response(status.MYPROFILE_PREFER_FIT_LENGHT_ERROR));
+        }
+        if(result.code == 410){
+            return res.status(411).send(response(status.MYPROFILE_PREFER_STYLE_LENGHT_ERROR));
+        }
         if(result.code === 500){
             return res.status(500).send(response(status.INTERNAL_SERVER_ERROR));
         }

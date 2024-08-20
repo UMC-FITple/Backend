@@ -58,4 +58,6 @@ export const status = {
   MYPROFILE_UNAVAILABLE_FIT: { status: StatusCodes.REQUEST_TIMEOUT, isSuccess: false, code: "MYPROFILE008", message: "존재하지 않는 선호 핏입니다." },
   MYPROFILE_UNAVAILABLE_STYLE: { status: StatusCodes.CONFLICT, isSuccess: false, code: "MYPROFILE009", message: "존재하지 않는 선호 스타일입니다." },
   MYPROFILE_UNAVAILABLE_GENDER: { status: StatusCodes.GONE, isSuccess: false, code: "MYPROFILE010", message: "존재하지 않는 성별입니다." },
+  MYPROFILE_PREFER_FIT_LENGHT_ERROR: { status: StatusCodes.LENGTH_REQUIRED, isSuccess: false, code: "MYPROFILE011", message: "선호 핏 개수를 다시 확인해주세요." },
+  MYPROFILE_PREFER_STYLE_LENGHT_ERROR: { status: StatusCodes.PRECONDITION_FAILED, isSuccess: false, code: "MYPROFILE012", message: "선호 스타일 개수를 다시 확인해주세요." },
 };
