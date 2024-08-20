@@ -34,29 +34,32 @@ paths:
                 example: true
               code:
                 type: integer
-                example: 2000
+                example: 200
               message:
                 type: string
                 example: "success!"
               data:
                 type: array
                 example: {
-                  "closetData": [
+                  "clothData": [
                     {
-                      "nickname": "닉네임1",
+                      "cloth_id": 21,
+                      "nickname": "testUser",
                       "brand": "아디다스",
-                      "cloth_name": "에센셜 풀집 후디",
+                      "cloth_name": "에센셜 풀업 후디",
                       "size": "S",
                       "fit": "레귤러"
                     },
                     {
+                      "cloth_id": 20,
+                      "nickname": "testUser",
                       "brand": "아디다스",
-                      "cloth_name": "에센셜 풀집 후디",
-                      "size": "M",
-                      "fit": "세미오버"
+                      "cloth_name": "에센셜 풀업 후디",
+                      "size": "S",
+                      "fit": "레귤러"
                     }
                   ],
-                  "cursorId": 1
+                  "cursorId": 20
                 }
                 
         '400':
@@ -120,7 +123,7 @@ paths:
                 example: true
               code:
                 type: integer
-                example: 2000
+                example: 200
               message:
                 type: string
                 example: "success!"
@@ -232,7 +235,7 @@ paths:
                 example: true
               code:
                 type: integer
-                example: 2000
+                example: 200
               message:
                 type: string
                 example: "success!"
@@ -343,7 +346,7 @@ paths:
                 example: true
               code:
                 type: integer
-                example: 2000
+                example: 200
               message:
                 type: string
                 example: "success!"

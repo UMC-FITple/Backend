@@ -9,6 +9,7 @@ export const previewSearchResponseDTO = (data) => {
     }else{
         for (let i = 0; i < data.length; i++) {
             cloth.push({
+                "cloth_id": data[i].id,
                 "nickname": data[i].nickname,
                 "brand": data[i].brand_name,
                 "cloth_name": data[i].name,
