@@ -18,6 +18,7 @@ import { closetRouter } from './routes/closet.js';
 import { LoginCheck } from './middlewares/logincheck.js';
 import { MyprofileRouter } from './routes/myprofile.js';
 import { tempRouter } from './routes/temp-token.js';
+import compareSizeRoutes from './routes/comparesize.routes.js';
 
 dotenv.config();
 
@@ -54,6 +55,7 @@ app.use("/FITple/auth",AuthRouter)
 app.use('/FITple/my/closet', closetRouter);
 app.use("/FITple/myprofile",LoginCheck,MyprofileRouter);
 app.use('/temp-token', tempRouter);
+app.use('/FITple/comparesizes', compareSizeRoutes);
 
 // error handling
 app.use((req, res, next) => {
