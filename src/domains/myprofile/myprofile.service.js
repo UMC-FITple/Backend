@@ -16,10 +16,6 @@ export async function MyprofileSaveService(userInfo,uuid,bodyInfo,img_url) {
         if(userInfo.nickname.length < 1){
             return ({ isSuccess: false, code: 411 ,message: '닉네임 설정 오류' });
         }
-        console.log(userInfo.one_line_info.length);
-        if(userInfo.one_line_info.length < 1){
-            return ({ isSuccess: false, code: 412 ,message: '한줄 소개 설정 오류' });
-        }
         
         if(userInfoSave.code == 403){
             return ({ isSuccess: false, code: 403 ,message: 'userInfo 저장중 오류' });

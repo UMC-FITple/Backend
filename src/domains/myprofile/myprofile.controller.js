@@ -56,9 +56,6 @@ export async function MyprofileSaveLogic(req, res) {
         if(result.code == 411){
             return res.status(413).send(response(status.MYPROFILE_NICKNAME_SET_ERROR));
         }       
-        if(result.code == 412){
-            return res.status(414).send(response(status.MYPROFILE_ONE_LINE_INFO_ERROR));
-        }
 
         if(result.code === 500){
             return res.status(500).send(response(status.INTERNAL_SERVER_ERROR));

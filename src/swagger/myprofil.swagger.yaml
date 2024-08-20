@@ -247,22 +247,6 @@ paths:
                   message:
                     type: string
                     example: "닉네임을 다시 설정해주세요"
-        '414':
-          description: 한줄 소개 오류
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  isSuccess:
-                    type: boolean
-                    example: false
-                  code:
-                    type: string
-                    example: MYPROFILE014
-                  message:
-                    type: string
-                    example: "한줄 소개를 다시 설정해주세요."
         '500':
           description: 서버 에러
           content:
