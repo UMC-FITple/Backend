@@ -28,27 +28,27 @@ export class Body_Info extends Sequelize.Model {
         },
         shoulder_width: {
           type: DataTypes.INTEGER,
-          allowNull: false,
+          allowNull: true,
         },
         chest_circumference: {
           type: DataTypes.INTEGER,
-          allowNull: false,
+          allowNull: true,
         },
         arm_length: {
           type: DataTypes.INTEGER,
-          allowNull: false,
+          allowNull: true,
         },
         waist_circumference: {
           type: DataTypes.INTEGER,
-          allowNull: false,
+          allowNull: true,
         },
         thigh_circumference: {
           type: DataTypes.INTEGER,
-          allowNull: false,
+          allowNull: true,
         },
         hip_circumference: {
           type: DataTypes.INTEGER,
-          allowNull: false,
+          allowNull: true,
         },
       },
       {
