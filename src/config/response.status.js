@@ -21,7 +21,7 @@ export const status = {
 
   // login err
   USER_NOT_FOUND: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "LOGIN001", message: "존재하지 않는 아이디입니다." },
-  LOGIN_EMPTY_DATA: { status: StatusCodes.PAYMENT_REQUIRED, isSuccess: false, code: "SIGNUP002", message: "데이터가 비어있습니다." },
+  LOGIN_EMPTY_DATA: { status: StatusCodes.PAYMENT_REQUIRED, isSuccess: false, code: "LOGIN002", message: "데이터가 비어있습니다." },
   PASSWORD_MISMATCH: { status: StatusCodes.FORBIDDEN, isSuccess: false, code: "LOGIN002", message: "비밀번호가 일치하지 않습니다." },
 
   // login middlewares err
@@ -55,6 +55,11 @@ export const status = {
   MYPROFILE_USER_INFO_SAVE_ERROR:{ status: StatusCodes.METHOD_NOT_ALLOWED, isSuccess: false, code: "MYPROFILE005", message: "기본 정보 데이터 저장 중 오류가 발생했습니다." },
   MYPROFILE_USER_IMG_SAVE_ERROR:{ status: StatusCodes.NOT_ACCEPTABLE, isSuccess: false, code: "MYPROFILE006", message: "사용자 이미지 데이터 저장 중 오류가 발생했습니다." },
   MYPROFILE_EXIST_USER_NICKNAME: { status: StatusCodes.PROXY_AUTHENTICATION_REQUIRED, isSuccess: false, code: "MYPROFILE007", message: "이미 존재하는 닉네임입니다." },
+  MYPROFILE_UNAVAILABLE_FIT: { status: StatusCodes.REQUEST_TIMEOUT, isSuccess: false, code: "MYPROFILE008", message: "존재하지 않는 선호 핏입니다." },
+  MYPROFILE_UNAVAILABLE_STYLE: { status: StatusCodes.CONFLICT, isSuccess: false, code: "MYPROFILE009", message: "존재하지 않는 선호 스타일입니다." },
+  MYPROFILE_UNAVAILABLE_GENDER: { status: StatusCodes.GONE, isSuccess: false, code: "MYPROFILE010", message: "존재하지 않는 성별입니다." },
+  MYPROFILE_PREFER_FIT_LENGHT_ERROR: { status: StatusCodes.LENGTH_REQUIRED, isSuccess: false, code: "MYPROFILE011", message: "선호 핏 개수를 다시 확인해주세요." },
+  MYPROFILE_PREFER_STYLE_LENGHT_ERROR: { status: StatusCodes.PRECONDITION_FAILED, isSuccess: false, code: "MYPROFILE012", message: "선호 스타일 개수를 다시 확인해주세요." },
 
   // recommend err
   TRAIN_ERROR:{status: StatusCodes.NOT_FOUND, isSuccess: false, code: "TRAIN001", message: "모델 훈련 중 에러가 발생했습니다."},

@@ -39,7 +39,7 @@ export async function UserInfoDataSaveDao(userInfo,uuid) {
                 }
             }
         );
-        for (let fit of userInfo.perfer_fit) {
+        for (let fit of userInfo.prefer_fit) {
             const preferFit = await db.PreferFit.findOne({ where: { pf_name: fit } });
             if (preferFit) {
                 await db.UserFit.create({
@@ -47,17 +47,11 @@ export async function UserInfoDataSaveDao(userInfo,uuid) {
                     pf_name:fit,
                 });
             } else {
-                await db.PreferFit.create({
-                    pf_name:fit
-                });
-                await db.UserFit.create({
-                    uuid: uuid,
-                    pf_name:fit,
-                });
+                return ({ isSuccess: false, code: 406 ,message: '존재하지 않은 선호 핏입니다.' });
             }
         }
 
-        for (let style of userInfo.perfer_style) {
+        for (let style of userInfo.prefer_style) {
             const preferStyle = await db.Style.findOne({ where: { style_name: style } });
             if (preferStyle) {
                 await db.UserStyle.create({
@@ -65,13 +59,7 @@ export async function UserInfoDataSaveDao(userInfo,uuid) {
                     style_name:style,
                 });
             } else {
-                await db.Style.create({
-                    style_name:style
-                });
-                await db.UserStyle.create({
-                    uuid: uuid,
-                    style_name: style,
-                });
+                return ({ isSuccess: false, code: 407 ,message: '존재하지 않는 선호 스타일입니다.' });
             }
         }
         return true;

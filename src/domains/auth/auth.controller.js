@@ -5,7 +5,7 @@ export async function FindUserId(req, res) {
     try {
         const { nickname, email} = req.body;
 
-        if (!name || !email) {
+        if (!nickname || !email) {
             return res.status(401).send(response(status.FIND_ID_EMPTY_DATA));
         }
 
@@ -29,7 +29,7 @@ export async function AuthResetPassword(req, res) {
     try {
         const { nickname, email, user_id } = req.body;
 
-        if (!name || !email || !user_id) {
+        if (!nickname || !email || !user_id) {
             return res.status(401).send(response(status.AUTH_RESET_PASSWORD_EMPTY_DATA));
         }
 
