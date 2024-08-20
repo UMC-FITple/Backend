@@ -1,0 +1,291 @@
+paths:
+  /FITple/comparesizes:
+    post:
+      tags:
+        - ComparerSize(notOCR - 유저 직접 등록)
+      summary: 유저가 직접 사이즈 등록을 합니다.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                size:
+                  type: string
+                  example: "S"
+                totalLength:
+                  type: integer
+                  example: 65
+                shoulderWidth:
+                  type: integer
+                  example: 45
+                chestWidth:
+                  type: integer
+                  example: 50
+                armholeWidth:
+                  type: integer
+                  example: 20
+                sleeveWidth:
+                  type: integer
+                  example: 18
+                sleeveLength:
+                  type: integer
+                  example: 60
+                hemWidth:
+                  type: integer
+                  example: 48
+      responses:
+        '201':
+          description: Compare size created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isSuccess:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 201
+                  message:
+                    type: string
+                    example: "Compare size created successfully."
+                  result:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 2
+                      size:
+                        type: string
+                        example: "S"
+                      totalLength:
+                        type: integer
+                        example: 65
+                      shoulderWidth:
+                        type: integer
+                        example: 45
+                      chestWidth:
+                        type: integer
+                        example: 50
+                      armholeWidth:
+                        type: integer
+                        example: 20
+                      sleeveWidth:
+                        type: integer
+                        example: 18
+                      sleeveLength:
+                        type: integer
+                        example: 60
+                      hemWidth:
+                        type: integer
+                        example: 48
+
+    get:
+      tags:
+        - ComparerSize(notOCR - 유저 직접 등록)
+      summary: 유저가 등록한 사이즈를 모두 확인합니다.
+      responses:
+        '200':
+          description: A list of compare sizes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 2
+                    size:
+                      type: string
+                      example: "S"
+                    totalLength:
+                      type: integer
+                      example: 65
+                    shoulderWidth:
+                      type: integer
+                      example: 45
+                    chestWidth:
+                      type: integer
+                      example: 50
+                    armholeWidth:
+                      type: integer
+                      example: 20
+                    sleeveWidth:
+                      type: integer
+                      example: 18
+                    sleeveLength:
+                      type: integer
+                      example: 60
+                    hemWidth:
+                      type: integer
+                      example: 48
+
+  /comparesizes/{id}:
+    get:
+      tags:
+        - ComparerSize(notOCR - 유저 직접 등록)
+      summary: 유저가 등록한 사이즈를 확인합니다.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the compare size to retrieve
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Compare size retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isSuccess:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: "Compare size retrieved successfully."
+                  result:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 2
+                      size:
+                        type: string
+                        example: "S"
+                      totalLength:
+                        type: integer
+                        example: 65
+                      shoulderWidth:
+                        type: integer
+                        example: 45
+                      chestWidth:
+                        type: integer
+                        example: 50
+                      armholeWidth:
+                        type: integer
+                        example: 20
+                      sleeveWidth:
+                        type: integer
+                        example: 18
+                      sleeveLength:
+                        type: integer
+                        example: 60
+                      hemWidth:
+                        type: integer
+                        example: 48
+
+    put:
+      tags:
+        - ComparerSize(notOCR - 유저 직접 등록)
+      summary: 유저가 사이즈 등록을 추가합니다.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the compare size to update
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                size:
+                  type: string
+                  example: "M"
+                totalLength:
+                  type: integer
+                  example: 68
+                shoulderWidth:
+                  type: integer
+                  example: 47
+                chestWidth:
+                  type: integer
+                  example: 52
+                armholeWidth:
+                  type: integer
+                  example: 21
+                sleeveWidth:
+                  type: integer
+                  example: 19
+                sleeveLength:
+                  type: integer
+                  example: 62
+                hemWidth:
+                  type: integer
+                  example: 50
+      responses:
+        '200':
+          description: Compare size updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isSuccess:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: "Compare size updated successfully."
+                  result:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 2
+                      size:
+                        type: string
+                        example: "M"
+                      totalLength:
+                        type: integer
+                        example: 68
+                      shoulderWidth:
+                        type: integer
+                        example: 47
+                      chestWidth:
+                        type: integer
+                        example: 52
+                      armholeWidth:
+                        type: integer
+                        example: 21
+                      sleeveWidth:
+                        type: integer
+                        example: 19
+                      sleeveLength:
+                        type: integer
+                        example: 62
+                      hemWidth:
+                        type: integer
+                        example: 50
+
+    delete:
+      tags:
+        - ComparerSize(notOCR - 유저 직접 등록)
+      summary: 유저가 등록했던 사이즈를 삭제합니다.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the compare size to delete
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Compare size deleted successfully
