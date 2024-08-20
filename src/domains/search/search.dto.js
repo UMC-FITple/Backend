@@ -9,6 +9,7 @@ export const previewSearchResponseDTO = (data) => {
     }else{
         for (let i = 0; i < data.length; i++) {
             cloth.push({
+                "cloth_id": data[i].id,
                 "nickname": data[i].nickname,
                 "brand": data[i].brand_name,
                 "cloth_name": data[i].name,
@@ -73,6 +74,7 @@ export const SearchResultResponseDTO = (clothData, brandData, userData) => {
     }else{
         for (let i = 0; i < clothData.length; i++) {
             cloth.push({
+                "cloth_id": clothData[i].id,
                 "nickname": clothData[i].nickname,
                 "brand": clothData[i].brand_name,
                 "cloth_name": clothData[i].name,
@@ -80,7 +82,7 @@ export const SearchResultResponseDTO = (clothData, brandData, userData) => {
                 "fit": clothData[i].fit
             })
         }
-    }console.log(cloth)
+    }
 
     if(brandData.length == 0){
         brand.push("해당 브랜드는 등록되어 있지 않아요.");
@@ -92,7 +94,7 @@ export const SearchResultResponseDTO = (clothData, brandData, userData) => {
                 "eng_name": brandData[i].eng_name
             })
         }
-    }console.log(brand)
+    }
 
     if(userData.length == 0){
         user.push("해당 유저는 등록되어 있지 않아요.")
@@ -108,7 +110,7 @@ export const SearchResultResponseDTO = (clothData, brandData, userData) => {
             })
         }
     }
-    return {"clothData": cloth, "brandData": brand, "userData": user};
+    return {"clothData": cloth, "cursorId": clothData[clothData.length-1].id, "brandData": brand, "userData": user};
 }
 
 // search result response DTO

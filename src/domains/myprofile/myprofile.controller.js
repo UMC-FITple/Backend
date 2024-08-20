@@ -51,8 +51,12 @@ export async function MyprofileSaveLogic(req, res) {
             return res.status(411).send(response(status.MYPROFILE_PREFER_FIT_LENGHT_ERROR));
         }
         if(result.code == 410){
-            return res.status(411).send(response(status.MYPROFILE_PREFER_STYLE_LENGHT_ERROR));
+            return res.status(412).send(response(status.MYPROFILE_PREFER_STYLE_LENGHT_ERROR));
         }
+        if(result.code == 411){
+            return res.status(413).send(response(status.MYPROFILE_NICKNAME_SET_ERROR));
+        }       
+
         if(result.code === 500){
             return res.status(500).send(response(status.INTERNAL_SERVER_ERROR));
         }
