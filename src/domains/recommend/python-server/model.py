@@ -4,10 +4,7 @@ from sklearn.neighbors import NearestNeighbors
 import joblib
 
 class RecommendModel:
-    def __init__(self, user_data=None, model_path=None):
-        if user_data is not None:
-            self.train(user_data)
-
+    def __init__(self, model_path=None):
         if model_path is not None:
             self.load_model(model_path)
 
@@ -25,9 +22,12 @@ class RecommendModel:
             self.model.fit(X, y)
 
             self.save_model('./models/model_bodyinfo.joblib')
+            return True  # 성공 시 True 반환
+
         except Exception as e:
             print(f"모델 훈련 중 오류 발생: {str(e)}")
-    
+            return str(e)
+
     # 사용자 데이터(전체 데이터) 받아 훈련 - 스타일
     def train_style(self, user_data):
         try:
@@ -54,8 +54,11 @@ class RecommendModel:
 
             # 모델 저장 (joblib 형식으로 저장)
             self.save_model('./models/model_style.joblib')
+            return True  # 성공 시 True 반환
+        
         except Exception as e:
             print(f"모델 훈련 중 오류 발생: {str(e)}")
+            return str(e)
 
     # 훈련된 모델 저장 (./models/...)
     def save_model(self, filename):

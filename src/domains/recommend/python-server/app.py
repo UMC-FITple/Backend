@@ -64,13 +64,25 @@ def train_user_bodyinfo():
     data = request.json
     print(f"data: ", data)
 
+    try:
+        data_df = pd.DataFrame(data)
+        # 터미널에 출력
+        print(f"훈련 요청 받은 체형 정보: \n", data_df)
 
-    data_df = pd.DataFrame(data)
+        data_cleand = data_df.dropna()
+        print(f"nan값 제거: \n", data_cleand)
 
-    # 터미널에 출력
-    print(f"추천 요청 받은 스타일 정보: \n", data_df)
-    
-    return json.dumps({'message': 'Model updated successfully'})
+        model = RecommendModel()
+
+        result = model.train_bodyinfo(data_cleand)
+        if result is True:
+            return jsonify({"message": "모델 훈련 성공"}), 200
+        else:
+            return jsonify({"error": result}), 400  # 오류 메시지 포함
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400  # 최상위 오류 처리
+        
 
 print(f"app.py __name__ : {__name__}")
 

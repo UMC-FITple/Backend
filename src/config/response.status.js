@@ -55,4 +55,8 @@ export const status = {
   MYPROFILE_USER_INFO_SAVE_ERROR:{ status: StatusCodes.METHOD_NOT_ALLOWED, isSuccess: false, code: "MYPROFILE005", message: "기본 정보 데이터 저장 중 오류가 발생했습니다." },
   MYPROFILE_USER_IMG_SAVE_ERROR:{ status: StatusCodes.NOT_ACCEPTABLE, isSuccess: false, code: "MYPROFILE006", message: "사용자 이미지 데이터 저장 중 오류가 발생했습니다." },
   MYPROFILE_EXIST_USER_NICKNAME: { status: StatusCodes.PROXY_AUTHENTICATION_REQUIRED, isSuccess: false, code: "MYPROFILE007", message: "이미 존재하는 닉네임입니다." },
+
+  // recommend err
+  TRAIN_ERROR:{status: StatusCodes.NOT_FOUND, isSuccess: false, code: "TRAIN001", message: "모델 훈련 중 에러가 발생했습니다."},
+
 };

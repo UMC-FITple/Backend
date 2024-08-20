@@ -12,13 +12,17 @@ export const train_bodyinfo = async (req, res, next) => {
 
     console.log(`쳬형정보: `, bodyinfo);
 
-    const response_frm_flask = await axios.post('http://127.0.0.1:5000/train/bodyinfo/', bodyinfo);
+    const response_frm_flask = await axios.post('http://127.0.0.1:5000/train/bodyinfo', bodyinfo);
 
     console.log("통신 성공!")
-    console.log("받은 정보: ", response_frm_flask.data);
 
-    res.send(response(status.SUCCESS));
-    
+    if (response_frm_flask.status == 200) {
+        console.log(`훈련 결과: ${response_frm_flask.status} \n`, response_frm_flask.data);
+        res.send(response(status.SUCCESS));
+    } else {
+        console.log(`체형정보 훈련 중 에러: `, response_frm_flask.error);
+        res.send(response(status.TRAIN_ERROR));
+    }
 }
 
 export const recommend_bodyinfo_by_uuid = async (req, res, next) => {
