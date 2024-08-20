@@ -125,7 +125,7 @@ paths:
                       type: integer
                       example: 48
 
-  /comparesizes/{id}:
+  /FITple/comparesizes/{id}:
     get:
       tags:
         - ComparerSize(notOCR - 유저 직접 등록)
