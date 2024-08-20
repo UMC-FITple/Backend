@@ -60,4 +60,6 @@ export const status = {
   MYPROFILE_UNAVAILABLE_GENDER: { status: StatusCodes.GONE, isSuccess: false, code: "MYPROFILE010", message: "존재하지 않는 성별입니다." },
   MYPROFILE_PREFER_FIT_LENGHT_ERROR: { status: StatusCodes.LENGTH_REQUIRED, isSuccess: false, code: "MYPROFILE011", message: "선호 핏 개수를 다시 확인해주세요." },
   MYPROFILE_PREFER_STYLE_LENGHT_ERROR: { status: StatusCodes.PRECONDITION_FAILED, isSuccess: false, code: "MYPROFILE012", message: "선호 스타일 개수를 다시 확인해주세요." },
+  MYPROFILE_NICKNAME_SET_ERROR: { status: StatusCodes.REQUEST_TOO_LONG, isSuccess: false, code: "MYPROFILE013", message: "닉네임을 다시 설정해주세요." },
+  MYPROFILE_ONE_LINE_INFO_ERROR: { status: StatusCodes.REQUEST_URI_TOO_LONG, isSuccess: false, code: "MYPROFILE014", message: "한줄 소개를 다시 설정해주세요." },
 };

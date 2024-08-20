@@ -18,7 +18,7 @@ paths:
                 data:
                   type: string
                   description: JSON 형식의 사용자 정보 및 체형 정보
-                  example: '{"userInfo": {"nickname": "testUser", "gender": "male", "one_line_info": "test", "perfer_fit": ["fit1", "fit2"], "perfer_style": ["style1", "style2"]}, "bodyInfo": {"height": 180, "weight": 70, "shoulder_width": 45, "chest_circumference": 100, "arm_length": 60, "waist_circumference": 85, "thigh_circumference": 55, "hip_circumference": 95}}'
+                  example: '{"userInfo": {"nickname": "testUser", "gender": 0, "one_line_info": "test", "prefer_fit": ["슬림", "오버"], "prefer_style": ["러블리", "유니크"]}, "bodyInfo": {"height": 180, "weight": 70, "shoulder_width": 45, "chest_circumference": 100, "arm_length": 60, "waist_circumference": 85, "thigh_circumference": 55, "hip_circumference": 95}}'
               required:
                 - image
                 - data
@@ -231,6 +231,38 @@ paths:
                   message:
                     type: string
                     example: "선호 스타일 개수를 다시 확인해주세요."
+        '413':
+          description: 닉네임 설정 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isSuccess:
+                    type: boolean
+                    example: false
+                  code:
+                    type: string
+                    example: MYPROFILE013
+                  message:
+                    type: string
+                    example: "닉네임을 다시 설정해주세요"
+        '414':
+          description: 한줄 소개 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isSuccess:
+                    type: boolean
+                    example: false
+                  code:
+                    type: string
+                    example: MYPROFILE014
+                  message:
+                    type: string
+                    example: "한줄 소개를 다시 설정해주세요."
         '500':
           description: 서버 에러
           content:
