@@ -2,15 +2,15 @@ import { AuthResetPasswordRepository, FindUserRepository, SetResetPasswordReposi
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-export async function FindUserIdService(name,email){
+export async function FindUserIdService(nickname,email){
     try{
-        const isExistUser = await FindUserRepository(name,email);
+        const isExistUser = await FindUserRepository(nickname,email);
         if(!isExistUser){
             return { success: false, code:401 ,message: "사용자 존재하지 않음" };
         }
         const userData = {
             email:isExistUser.email,
-            name:isExistUser.name,
+            nickname:isExistUser.nickname,
             user_id:isExistUser.user_id,
         }
         return userData;
@@ -20,9 +20,9 @@ export async function FindUserIdService(name,email){
     }
 }
 
-export async function AuthResetPasswordService(name, email, user_id){
+export async function AuthResetPasswordService(nickname, email, user_id){
     try{
-        const isExistUser = await AuthResetPasswordRepository(name,email,user_id);
+        const isExistUser = await AuthResetPasswordRepository(nickname,email,user_id);
         if(!isExistUser){
             return { success: false, code:401 ,message: "사용자 존재하지 않음" };
         }

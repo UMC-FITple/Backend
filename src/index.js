@@ -15,7 +15,10 @@ import { refreshTokenRouter } from './routes/refreshToken.js';
 import sizeUploadRoutes from './routes/uploadsize.routes.js';
 import { AuthRouter } from './routes/auth.js';
 import { closetRouter } from './routes/closet.js';
+import { LoginCheck } from './middlewares/logincheck.js';
+import { MyprofileRouter } from './routes/myprofile.js';
 import { tempRouter } from './routes/temp-token.js';
+import compareSizeRoutes from './routes/comparesize.routes.js';
 
 dotenv.config();
 
@@ -31,7 +34,10 @@ await init();
 
 // 미들웨어 설정
 app.use(express.static('public'));
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+}));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
@@ -47,7 +53,9 @@ app.use('/FITple/uploadsize', sizeUploadRoutes);
 app.use("/FITple/refreshToken",refreshTokenRouter);
 app.use("/FITple/auth",AuthRouter)
 app.use('/FITple/my/closet', closetRouter);
+app.use("/FITple/myprofile",LoginCheck,MyprofileRouter);
 app.use('/temp-token', tempRouter);
+app.use('/FITple/comparesizes', compareSizeRoutes);
 
 // error handling
 app.use((req, res, next) => {

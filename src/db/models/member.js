@@ -21,9 +21,8 @@ export class Member extends Sequelize.Model {
       password: {
         type: DataTypes.STRING(150),
         allowNull: false,
-        comment: '해쉬화 된 비밀번호 저장',
       },
-      name: {
+      nickname: {
         type: DataTypes.STRING(10),
         allowNull: true,
       },
@@ -36,7 +35,7 @@ export class Member extends Sequelize.Model {
         allowNull: true,
       },
       img_url: {
-        type: DataTypes.STRING(200),
+        type: DataTypes.STRING(400),
         allowNull: true,
       },
     }, {
@@ -53,5 +52,7 @@ export class Member extends Sequelize.Model {
 
   static associate(db) {
     this.hasOne(db.Body_Info, { foreignKey: 'uuid' });
+    this.hasMany(db.UserFit, { foreignKey: 'uuid' });
+    this.hasMany(db.UserStyle, { foreignKey: 'uuid' });
   }
 }
