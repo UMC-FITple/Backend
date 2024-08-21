@@ -16,9 +16,6 @@ import { recommendRouter } from "./routes/recommend.routes.js"
 import sizeUploadRoutes from './routes/uploadsize.routes.js';
 import { AuthRouter } from './routes/auth.js';
 import { closetRouter } from './routes/closet.js';
-<<<<<<<<< Temporary merge branch 1
-import { tempRouter } from './routes/temp-token.js';
-=========
 import { LoginCheck } from './middlewares/logincheck.js';
 import { MyprofileRouter } from './routes/myprofile.js';
 import { tempRouter } from './routes/temp-token.js';
@@ -63,10 +60,7 @@ app.use('/FITple/uploadsize', sizeUploadRoutes);
 app.use("/FITple/refreshToken",refreshTokenRouter);
 app.use("/FITple/auth",AuthRouter)
 app.use('/FITple/my/closet', closetRouter);
-<<<<<<<<< Temporary merge branch 1
-app.use('/temp-token', tempRouter);
-=========
-app.use("/FITple/myprofile",LoginCheck,MyprofileRouter);
+app.use("/FITple/myprofile",MyprofileRouter);
 app.use('/temp-token', tempRouter);
 app.use('/FITple/comparesizes', compareSizeRoutes);
 app.use('/FITple/recommend', recommendRouter)

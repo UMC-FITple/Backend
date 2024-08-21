@@ -160,6 +160,8 @@ export const member_styleResponseDTO = (data) => {
         }
     }
 
+    console.log("member_style: ", memberstyle);
+
     return {
         "memeberstyle": memberstyle
     }

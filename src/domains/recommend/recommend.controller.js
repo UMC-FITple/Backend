@@ -1,7 +1,7 @@
 import { response } from "../../config/response.js";
 import { status } from "../../config/response.status.js";
-import { getBodyinfo, getBodyinfoByID, getUserStyleByID } from "./recommend.dao.js";
-import { bodyinfo_toFlask_DTO, bodyinfoResponseDTO, member_style_toFlaskDTO } from "./recommend.dto.js";
+import { getBodyinfo, getBodyinfoByID, getUserStyle, getUserStyleByID } from "./recommend.dao.js";
+import { bodyinfo_toFlask_DTO, bodyinfoResponseDTO, member_style_toFlaskDTO, member_styleResponseDTO } from "./recommend.dto.js";
 import axios from 'axios';
 
 import { get_member, get_user_bodyinfo, get_user_bodyinfo_all, get_userfit, get_userstyle } from "./recommend.provider.js";
@@ -21,6 +21,25 @@ export const train_bodyinfo = async (req, res, next) => {
         res.send(response(status.SUCCESS));
     } else {
         console.log(`체형정보 훈련 중 에러: `, response_frm_flask.error);
+        res.send(response(status.TRAIN_ERROR));
+    }
+}
+
+export const train_style = async (req, res, next) => {
+    // 모든 체형 정보 불러오기
+    const memberstyle = member_styleResponseDTO(await getUserStyle()).memeberstyle;
+
+    console.log(`스타일정보: `, memberstyle);
+
+    const response_frm_flask = await axios.post('http://127.0.0.1:5000/train/bodyinfo', memberstyle);
+
+    console.log("통신 성공!")
+
+    if (response_frm_flask.status == 200) {
+        console.log(`훈련 결과: ${response_frm_flask.status} \n`, response_frm_flask.data);
+        res.send(response(status.SUCCESS));
+    } else {
+        console.log(`스타일정보 훈련 중 에러: `, response_frm_flask.error);
         res.send(response(status.TRAIN_ERROR));
     }
 }
@@ -99,6 +118,7 @@ export const get_userfit_by_uuid = async (req, res, next) => {
 
 export const get_userstyle_by_uuid = async (req, res, next) => {
     console.log("사용자 선호 스타일 정보 요청. 사용자:", res.locals.uuid);
+
     res.send(response(status.SUCCESS, await get_userstyle(res.locals.uuid)));
-    
+
 }

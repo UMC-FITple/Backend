@@ -29,4 +29,7 @@ recommendRouter.get('/bodyinfo/', LoginCheck, asyncHandler(recommend_bodyinfo_by
 recommendRouter.get('/style/', LoginCheck, asyncHandler(recommend_style_by_uuid));
 
 // 추천: 체형 정보 데이터로 훈련
-recommendRouter.post('/train/bodyinfo/', asyncHandler(train_bodyinfo));
+recommendRouter.post('/train/bodyinfo', asyncHandler(train_bodyinfo));
+
+// 추천: 체형 정보 데이터로 훈련
+recommendRouter.post('/train/style', asyncHandler(train_bodyinfo));

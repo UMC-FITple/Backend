@@ -8,12 +8,13 @@ export const getMemberinfoByID_sql = "SELECT * FROM member WHERE uuid in (?)"; /
 
 // 핏 정보
 
-// 불러오는 방식 고민 필요!
 export const getMemberFitsByID_sql = "select * from user_fit where uuid in (?)"; // 특정 사용자의 선호 핏 가져오기
 // 스타일 정보
 
 // 불러오는 방식 고민 필요!
 export const getMemberStylesByID_sql = "select * from user_style where uuid in (?)"; // 특정 사용자의 선호 스타일 정보 가져오기
+
+export const getMemberStyles_sql = "select * from user_style;"; // 특정 사용자의 선호 스타일 정보 가져오기
 
 
 // 보류
