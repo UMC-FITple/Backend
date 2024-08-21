@@ -123,17 +123,23 @@ export const getPreviewUser = async (userName) => {
     try {
         const conn = await pool.getConnection();
         const [userData] = await pool.query(userIdToNickname, userName);
-
         const result = [];
-        for (let i = 0; i < userData.length; i++) {
-            const userId = userData[i].uuid;
-            const [user] = await pool.query(userToNickname, userId);
-            const [fit] = await pool.query(getFitToUserId, userId);
-            const [style] = await pool.query(getStyleToUserId, userId);
-            result.push({user, fit, style});
+
+        if(userData.length == 0){
+            console.log("-1");
+            return -1;
+        }else{
+            for (let i = 0; i < userData.length; i++) {
+                const userId = userData[i].uuid;
+                const [user] = await pool.query(userToNickname, userId);
+                const [fit] = await pool.query(getFitToUserId, userId);
+                const [style] = await pool.query(getStyleToUserId, userId);
+                result.push({user, fit, style});
+            }
+            conn.release();
+            console.log(result);
+            return result;
         }
-        conn.release();
-        return result;
     } catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
