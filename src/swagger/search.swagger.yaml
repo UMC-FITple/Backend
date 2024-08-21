@@ -10,7 +10,7 @@ paths:
           required: false
           schema:
             type: integer
-        - name: clothId
+        - name: cursorId
           in: query
           required: false
           schema:
@@ -211,7 +211,7 @@ paths:
           required: false
           schema:
             type: integer
-        - name: clothId
+        - name: cursorId
           in: query
           required: false
           schema:
