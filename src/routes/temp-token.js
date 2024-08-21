@@ -1,16 +1,35 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import { response } from "../config/response.js";
+import { status } from "../config/response.status.js";
 
 dotenv.config();
 
-export const tempRouter = express.Router({mergeParams: true});
+export const tempRouter = express.Router();
 
-tempRouter.post('/', (req, res) => {
-    // 임시 사용자 정보
-    const tempUser = { uuid: 6 };
-    const tempToken = jwt.sign(tempUser, process.env.JWT_SECRET_KEY, { expiresIn: '1h' }); // 1시간 유효
-    res.cookie('accessToken', tempToken, { httpOnly: true, secure: false });
-    res.cookie('refreshToken', tempToken, { httpOnly: true, secure: false });
-    res.json({ token: tempToken });
-});
+tempRouter.post('/', tempLogin);
+
+
+export async function tempLogin(req, res) {
+        const user_id = 6;
+        const password = 1234567;
+
+        const LoginData = { user_id, password };
+
+        const result = await LoginService(LoginData);
+
+        res.cookie('accessToken', result.accessToken, { httpOnly: true, secure: false });
+
+        return res.send(response(status.SUCCESS, result.accessToken));
+}
+
+export async function LoginService(LoginData) {
+        const accessToken = jwt.sign({ 
+            uuid: 6,
+        }, process.env.JWT_SECRET_KEY, { 
+            expiresIn: '1h' 
+        });
+
+        return { success: true, accessToken };
+}
