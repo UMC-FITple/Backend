@@ -7,7 +7,6 @@ export const addMyCloth = async (userId, body) => {
     const requiredFields = ['name', 'product_code', 'category', 'size', 'fit'];
     let miss;
     for(const field of requiredFields) {
-        console.log("body[field]", body[field]);
         if(!body[field]) {
             miss = field;
         }
@@ -27,6 +26,7 @@ export const addMyCloth = async (userId, body) => {
 
     const clothData = await clothAdd({
         'uuid': userId,
+        'image': body.image,
         'brand': body.brand,
         'name': body.name,
         'product_code': body.product_code,

@@ -68,7 +68,7 @@ export const clothAdd = async (data) => {
     try{
         const conn = await pool.getConnection();
 
-        const cloth = await pool.query(insertCloth, [data.uuid, data.brand, data.name, data.product_code, data.category, data.size, data.fit, data.color, data.url, data.rating, data.memo]);
+        const cloth = await pool.query(insertCloth, [data.uuid, data.image, data.brand, data.name, data.product_code, data.category, data.size, data.fit, data.color, data.url, data.rating, data.memo]);
         const size = await pool.query(insertRealSize, [cloth[0].insertId, data.length, data.shoulder, data.chest, data.armhole, data.sleeve, data.sleeve_length, data.hem]);
 
         conn.release();

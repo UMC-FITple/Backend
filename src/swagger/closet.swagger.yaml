@@ -251,6 +251,10 @@ paths:
             schema:
               type: object
               properties:
+                image:
+                  type: string
+                  description: 이미지 URL
+                  example: https://fitple-dev-bucket.s3.ap-northeast-2.amazonaws.com/image/1724229063226-photo_0%20%2811%29.jpg
                 brand:
                   type: string
                   description: 브랜드
