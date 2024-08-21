@@ -37,3 +37,10 @@ export const getRealSizeByClothId =
 "SELECT c.id, r.length, r.shoulder, r.chest, r.armhole, r.sleeve, r.sleeve_length, r.hem "
 + "FROM cloth c JOIN real_size r on c.id = r.cloth_id "
 + "WHERE c.id = ? ;"
+
+
+export const brandToBrandName = 
+"SELECT b.id, b.name, b.eng_name "
++ "FROM brand b "
++ "WHERE b.name REGEXP ? "
++ "ORDER BY b.id ;"

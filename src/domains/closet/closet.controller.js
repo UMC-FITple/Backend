@@ -1,6 +1,6 @@
 import { response } from "../../config/response.js";
 import { status } from "../../config/response.status.js";
-import { getMyCloset, getMyCloth } from "./closet.provider.js";
+import { getMyCloset, getMyCloth, getBrand } from "./closet.provider.js";
 
 export const myClosetPreview = async (req, res, next) => {
     console.log("내 옷장을 조회합니다");
@@ -29,4 +29,9 @@ export const myClothView = async (req, res, next) => {
         
         next(error);
     }
+}
+
+export const brandPreview = async (req, res, next) => {
+    console.log("브랜드를 검색합니다");
+    res.send(response(status.SUCCESS, await getBrand(req.query)));
 }

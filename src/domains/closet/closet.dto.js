@@ -55,3 +55,23 @@ export const previewMyClothResponseDTO = (data) => {
 
     return { "clothData": cloth };
 }
+
+
+// search brand response DTO
+export const SearchBrandResponseDTO = (data) => {
+    
+    const brand = [];
+
+    if(data.length == 0){
+        brand.push("해당 브랜드는 등록되어 있지 않아요.");
+    }else{
+        for (let i = 0; i < data.length; i++) {
+            brand.push({
+                "brand_id": data[i].id,
+                "brand_name": data[i].name,
+                "eng_name": data[i].eng_name
+            })
+        }
+    }
+    return {"brandData": brand};
+}
