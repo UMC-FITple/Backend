@@ -39,22 +39,6 @@ paths:
                   message:
                     type: string
                     example: "success!"
-        '401':
-          description: 사용자 이미지가 존재하지 않음
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  isSuccess:
-                    type: boolean
-                    example: false
-                  code:
-                    type: string
-                    example: MYPROFILE001
-                  message:
-                    type: string
-                    example: "사용자 이미지가 존재하지 않습니다."
         '402':
           description: 기본 정보 또는 체형 정보 데이터가 비어 있음
           content:

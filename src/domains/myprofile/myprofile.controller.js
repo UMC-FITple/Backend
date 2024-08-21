@@ -4,10 +4,7 @@ import { MyprofileSaveService } from "./myprofile.service.js";
 
 export async function MyprofileSaveLogic(req, res) {
     try {
-        if(!req.file){
-            return res.status(401).send(response(status.MYPROFILE_EMPTY_IMG));
-        }
-        const img_url = req.file.location;
+        const img_url = req.file?.location;
 
         if(!req.body.data){
             return res.status(402).send(response(status.MYPROFILE_EMPTY_DATA));
