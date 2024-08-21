@@ -96,8 +96,8 @@ export const SearchResultResponseDTO = (clothData, brandData, userData) => {
         }
     }
 
-    if(userData.length == 0){
-        user.push("해당 유저는 등록되어 있지 않아요.")
+    if(userData == -1){
+        user.push("해당 유저는 등록되어 있지 않아요.");
     }else{
         for (let i = 0; i < userData.length; i++) {
             user.push({
@@ -110,7 +110,11 @@ export const SearchResultResponseDTO = (clothData, brandData, userData) => {
             })
         }
     }
-    return {"clothData": cloth, "cursorId": clothData[clothData.length-1].id, "brandData": brand, "userData": user};
+    if (clothData.length == 0) {
+        return { "clothData": cloth, "brandData": brand, "userData": user };
+    } else {
+        return {"clothData": cloth, "cursorId": clothData[clothData.length-1].id, "brandData": brand, "userData": user};
+    }
 }
 
 // search result response DTO
