@@ -1,7 +1,7 @@
 import { response } from "../../config/response.js";
 import { status } from "../../config/response.status.js";
 import { getMyCloset, getMyCloth } from "./closet.provider.js";
-import { addMyCloth } from "./closet.service.js";
+import { addMyCloth, addClothImage } from "./closet.service.js";
 
 export const myClosetPreview = async (req, res, next) => {
     console.log("내 옷장을 조회합니다");
@@ -36,4 +36,14 @@ export const addCloth = async (req, res, next) => {
     console.log("옷 등록을 요청하였습니다!");
     const userId = res.locals.uuid;
     res.send(response(status.SUCCESS, await addMyCloth(userId, req.body)));
+}
+
+export const addImage = async (req, res, next) => {
+    console.log("이미지 업로드를 요청하였습니다!");
+
+    if(!req.file){
+        res.status(403).send(response(status.FORBIDDEN));
+    }
+    const img_url = req.file.location;
+    res.send(response(status.SUCCESS, await addClothImage(img_url)));
 }

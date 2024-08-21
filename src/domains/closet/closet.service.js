@@ -47,3 +47,8 @@ export const addMyCloth = async (userId, body) => {
     });
     return addClothResponseDTO(await getAddCloth(clothData));
 }
+
+export const addClothImage = async (img_url) => {
+ 
+    return {"image": img_url};
+}

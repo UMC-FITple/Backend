@@ -1,7 +1,8 @@
 import express from "express";
 import asyncHandler from 'express-async-handler';
 import { LoginCheck } from "../middlewares/logincheck.js";
-import { myClosetPreview, myClothView, addCloth } from "../domains/closet/closet.controller.js";
+import upload from "../config/s3.config.js";
+import { myClosetPreview, myClothView, addCloth, addImage } from "../domains/closet/closet.controller.js";
 
 export const closetRouter = express.Router({mergeParams: true});
 
@@ -13,3 +14,6 @@ closetRouter.get('/:clothId', LoginCheck, asyncHandler(myClothView));
 
 //옷장-직접 등록하기
 closetRouter.post('/', LoginCheck, asyncHandler(addCloth));
+
+//옷장-이미지 업로드
+closetRouter.post('/image', LoginCheck, upload.single('image'), asyncHandler(addImage));
