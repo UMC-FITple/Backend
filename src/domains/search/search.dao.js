@@ -14,21 +14,21 @@ import { UserNicknameToClothIdAtFirst, UserNicknameToClothId, UserCategoryToClot
         
         if(typeof category == "undefined"){
             if(typeof cursorId == "undefined"){
-                const [data] = await pool.query(UserNicknameToClothIdAtFirst, [size]);
+                const [data] = await pool.query(UserNicknameToClothIdAtFirst);
                 conn.release();
                 return data;
             }else{
-                const [data] = await pool.query(UserNicknameToClothId, [cursorId, size]);
+                const [data] = await pool.query(UserNicknameToClothId, cursorId);
                 conn.release();
                 return data;
             }
         }else{
             if(typeof cursorId == "undefined"){
-                const [data] = await pool.query(UserCategoryToClothIdAtFirst, [category, size]);
+                const [data] = await pool.query(UserCategoryToClothIdAtFirst, category);
                 conn.release();
                 return data;
             }else{
-                const [data] = await pool.query(UserCategoryToClothId, [category, cursorId, size]);
+                const [data] = await pool.query(UserCategoryToClothId, [category, cursorId]);
                 conn.release();
                 return data;
             }
