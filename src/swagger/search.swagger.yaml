@@ -10,16 +10,6 @@ paths:
           required: false
           schema:
             type: integer
-        - name: clothId
-          in: query
-          required: false
-          schema:
-            type: integer
-        - name: size
-          in: query
-          required: false
-          schema:
-            type: integer
       responses:
         '200':
           description: 검색 메인화면 조회 성공
@@ -58,8 +48,7 @@ paths:
                       "size": "S",
                       "fit": "레귤러"
                     }
-                  ],
-                  "cursorId": 20
+                  ]
                 }
                 
         '400':
@@ -211,11 +200,6 @@ paths:
           required: false
           schema:
             type: integer
-        - name: clothId
-          in: query
-          required: false
-          schema:
-            type: integer
       responses:
         '200':
           description: 통합 검색 조회 성공
@@ -318,11 +302,6 @@ paths:
           schema:
             type: string
         - name: category
-          in: query
-          required: false
-          schema:
-            type: integer
-        - name: size
           in: query
           required: false
           schema:
