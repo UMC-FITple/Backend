@@ -23,7 +23,7 @@ export async function LoginService(loginData) {
         const accessToken = jwt.sign({ 
             uuid: user.uuid,
         }, process.env.JWT_SECRET_KEY, { 
-            expiresIn: '5m' 
+            expiresIn: '30m' 
         });
     
         const refreshToken = jwt.sign({

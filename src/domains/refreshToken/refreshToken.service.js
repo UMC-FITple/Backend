@@ -7,7 +7,7 @@ export async function refreshTokenService(token) {
         const accessToken = jwt.sign({ 
             uuid: decoded.uuid,
         }, process.env.JWT_SECRET_KEY, { 
-            expiresIn: '5m' 
+            expiresIn: '30m' 
         });
     
         const refreshToken = jwt.sign({
