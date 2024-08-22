@@ -25,7 +25,6 @@ export const previewSearchResponseDTO = (data) => {
 
 // preview cloth response DTO
 export const previewClothResponseDTO = (data, userData) => {
-    
     const cloth = [];
     const user = [];
     const fit = [];
@@ -46,11 +45,11 @@ export const previewClothResponseDTO = (data, userData) => {
             "cloth_image": data[0][0].cloth_img
         })
     }
-
     if(userData.length == 0){
         user.push("해당 유저는 등록되어 있지 않아요.");
     }else{
         user.push({
+            "user_id": userData[0][0][0].uuid,
             "nickname": userData[0][0][0].nickname,
             "user_image": userData[0][0][0].img_url,
             "height": userData[0][0][0].height,

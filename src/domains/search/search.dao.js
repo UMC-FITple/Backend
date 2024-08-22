@@ -44,10 +44,16 @@ export const getPreviewCloth = async (clothId) => {
         const conn = await pool.getConnection();
         const cloth = await pool.query(getClothByClothId, clothId);
 
+        if(cloth[0].length == 0){
+            throw new BaseError(status.BAD_REQUEST);
+        }
         conn.release();
             
         return cloth;
     } catch (err) {
+        if (err.data.code === status.BAD_REQUEST.code) {
+            throw err;
+        }
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
 }
@@ -59,7 +65,12 @@ export const getUserToClothId = async (clothId) => {
         const userData =await pool.query(getUserIdToClothId, clothId);
 
         const userId = userData[0][0].uuid;
+
         const user = await pool.query(getUser, userId);
+        if(user[0].length == 0 ){
+            throw new BaseError(status.MYPROFILE_EMPTY_DATA);
+        }
+
         const fit = await pool.query(getFitToUserId, userId);
         const style = await pool.query(getStyleToUserId, userId);
 
@@ -71,6 +82,9 @@ export const getUserToClothId = async (clothId) => {
         return [ user, fit, style ];
         
     } catch (err) {
+        if (err.data.code === "MYPROFILE002") {
+            throw err;
+        }
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
 }

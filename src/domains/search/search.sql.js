@@ -34,7 +34,7 @@ export const getUserIdToClothId =
 
 //user+body_info
 export const getUser = 
-"SELECT m.nickname, m.img_url, m.one_line_info, b.height, b.weight "
+"SELECT m.uuid, m.nickname, m.img_url, m.one_line_info, b.height, b.weight "
 + "FROM body_info b JOIN member m on b.uuid = m.uuid "
 + "WHERE b.uuid = ? ;"
 
