@@ -13,13 +13,13 @@ export const myClosetCategoryItem =
 export const myClosetSearchItem = 
 "SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes, c.cloth_img "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
-+ "WHERE m.uuid = ? AND c.name REGEXP ? "
++ "WHERE m.uuid = ? AND ( c.name REGEXP ? OR c.brand_name REGEXP ? ) "
 + "ORDER BY c.likes DESC, c.id DESC ;"
 
 export const myClosetSearchCategoryItem = 
 "SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes, c.cloth_img "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
-+ "WHERE m.uuid = ? AND c.name REGEXP ? AND c.category_id = ? "
++ "WHERE m.uuid = ? AND ( c.name REGEXP ? OR c.brand_name REGEXP ? ) AND c.category_id = ? "
 + "ORDER BY c.likes DESC, c.id DESC ;"
 
 export const getClothByClothId = 

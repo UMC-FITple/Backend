@@ -19,11 +19,11 @@ import { myClosetItem, myClosetCategoryItem, myClosetSearchItem, myClosetSearchC
             conn.release();
             return data;
         }else if(typeof category == "undefined"){
-            const [data] = await pool.query(myClosetSearchItem, [userId, name]);
+            const [data] = await pool.query(myClosetSearchItem, [userId, name, name]);
             conn.release();
             return data;
         }else{
-            const [data] = await pool.query(myClosetSearchCategoryItem, [userId, name, category]);
+            const [data] = await pool.query(myClosetSearchCategoryItem, [userId, name, name, category]);
             conn.release();
             return data;
         }
