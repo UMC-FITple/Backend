@@ -1,21 +1,29 @@
 import { pool } from "../../config/db.config.js";
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
-import { myClosetItem, myClosetCategoryItem, 
+import { myClosetItem, myClosetCategoryItem, myClosetSearchItem, myClosetSearchCategoryItem,
     getClothByClothId, getUserByClothId, getRealSizeByClothId,
     brandToBrandName, insertBrand, getBrand, insertCloth, insertRealSize, getCloth } from "./closet.sql.js";
 
 // cloth 반환
-    export const getMyClosetPreview = async (userId, category) => {
+    export const getMyClosetPreview = async (userId, name, category) => {
     try {
         const conn = await pool.getConnection();
         
-        if(typeof category == "undefined"){
+        if(typeof name == "undefined" && typeof category == "undefined"){
             const [data] = await pool.query(myClosetItem, userId);
             conn.release();
             return data;
-        }else{
+        }else if(typeof name == "undefined"){
             const [data] = await pool.query(myClosetCategoryItem, [userId, category]);
+            conn.release();
+            return data;
+        }else if(typeof category == "undefined"){
+            const [data] = await pool.query(myClosetSearchItem, [userId, name, name]);
+            conn.release();
+            return data;
+        }else{
+            const [data] = await pool.query(myClosetSearchCategoryItem, [userId, name, name, category]);
             conn.release();
             return data;
         }
