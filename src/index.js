@@ -19,6 +19,7 @@ import { LoginCheck } from './middlewares/logincheck.js';
 import { MyprofileRouter } from './routes/myprofile.js';
 import { tempRouter } from './routes/temp-token.js';
 import compareSizeRoutes from './routes/comparesize.routes.js';
+import manualResultsRoutes from './routes/manualresults.routes.js';
 import { profileRouter } from './routes/profile.js';
 
 dotenv.config();
@@ -57,6 +58,7 @@ app.use('/FITple/my/closet', closetRouter);
 app.use("/FITple/myprofile",LoginCheck,MyprofileRouter);
 app.use('/temp-token', tempRouter);
 app.use('/FITple/comparesizes', compareSizeRoutes);
+app.use('/FITple/manualresults', manualResultsRoutes);
 app.use('/FITple/profile', profileRouter);
 
 // error handling
