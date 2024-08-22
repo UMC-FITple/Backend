@@ -106,3 +106,12 @@ export const addClothResponseDTO = (data) => {
     }
     return {"clothData": cloth};
 }
+
+export const delClothResponseDTO = (clothId, data) => {
+    if(data == -1){
+        return {"err":"제품이 삭제되지 않았어요."};
+    }else{
+        return {"clothId": clothId};
+    }
+    
+}

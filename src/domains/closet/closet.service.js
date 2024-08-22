@@ -1,7 +1,7 @@
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
-import { addBrandResponseDTO, addClothResponseDTO } from "./closet.dto.js";
-import { brandAdd, getAddBrand, clothAdd, getAddCloth } from "./closet.dao.js";
+import { addBrandResponseDTO, addClothResponseDTO, delClothResponseDTO } from "./closet.dto.js";
+import { brandAdd, getAddBrand, clothAdd, getAddCloth, clothDel } from "./closet.dao.js";
 
 export const addNewBrand = async (body) => {
     const data = await brandAdd({
@@ -58,4 +58,9 @@ export const addMyCloth = async (userId, body) => {
 export const addClothImage = async (img_url) => {
  
     return {"image": img_url};
+}
+
+export const delMyCloth = async (userId, clothId) => {
+
+    return delClothResponseDTO(clothId, await clothDel(userId, clothId));
 }

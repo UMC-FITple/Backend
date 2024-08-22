@@ -3,7 +3,8 @@ import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
 import { myClosetItem, myClosetCategoryItem, myClosetSearchItem, myClosetSearchCategoryItem,
     getClothByClothId, getUserByClothId, getRealSizeByClothId,
-    brandToBrandName, insertBrand, getBrand, insertCloth, insertRealSize, getCloth } from "./closet.sql.js";
+    brandToBrandName, insertBrand, getBrand, insertCloth, insertRealSize, getCloth,
+    myClothDel } from "./closet.sql.js";
 
 // cloth 반환
     export const getMyClosetPreview = async (userId, name, category) => {
@@ -122,6 +123,26 @@ export const getAddCloth = async (clothId) => {
         const cloth = await pool.query(getCloth, clothId);
 
         if(cloth.length == 0){
+            return -1;
+        }
+
+        conn.release();
+        return cloth;
+    } catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+// 등록한 Cloth 반환
+export const clothDel = async (userId, clothId) => {
+    try {
+        const conn = await pool.getConnection();
+        pool.query(myClothDel, [userId, clothId]);
+        const cloth = await pool.query(getCloth, clothId);
+
+        console.log(cloth);
+        if(!cloth[0].length == 0){
+            conn.release();
             return -1;
         }
 

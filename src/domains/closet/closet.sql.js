@@ -57,3 +57,5 @@ export const insertRealSize =
 "INSERT INTO real_size (cloth_id, length, shoulder, chest, armhole, sleeve, sleeve_length, hem) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ;";
 
 export const getCloth = "SELECT * FROM cloth WHERE id = ? ; "
+
+export const myClothDel = "DELETE FROM cloth WHERE uuid = ? AND id = ? ;"
