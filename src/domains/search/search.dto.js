@@ -135,5 +135,5 @@ export const SearchBrandResponseDTO = (brand, clothData) => {
             })
         }
     }
-    return {"brand_name": brand[0][0].name, "eng_name": brand[0][0].eng_name, "clothData": cloth};
+    return {"brand_name": brand[0][0].name, "eng_name": brand[0][0].eng_name, "brand_image":brand[0][0].img_url, "clothData": cloth};
 }

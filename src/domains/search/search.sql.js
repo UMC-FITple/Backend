@@ -92,7 +92,7 @@ export const userToNickname =
 
 
 export const getBrandToBrandId = 
-"SELECT b.id, b.name, b.eng_name "
+"SELECT b.id, b.name, b.eng_name, b.img_url "
 + "FROM brand b "
 + "WHERE b.id = ? ; "
 
