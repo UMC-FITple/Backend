@@ -119,7 +119,6 @@ export const SearchResultResponseDTO = (clothData, brandData, userData) => {
 
 // search result response DTO
 export const SearchBrandResponseDTO = (brand, clothData) => {
-    
     const cloth = [];
 
     if(clothData.length == 0){
@@ -131,9 +130,10 @@ export const SearchBrandResponseDTO = (brand, clothData) => {
                 "brand": clothData[i].brand_name,
                 "cloth_name": clothData[i].name,
                 "size": clothData[i].size,
-                "fit": clothData[i].fit
+                "fit": clothData[i].fit,
+                "category_id": clothData[i].category_id
             })
         }
     }
-    return {"brand_name": brand[0].name, "eng_name": brand[0].eng_name, "clothData": cloth};
+    return {"brand_name": brand[0][0].name, "eng_name": brand[0][0].eng_name, "clothData": cloth};
 }

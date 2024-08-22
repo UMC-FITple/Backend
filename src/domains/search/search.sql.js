@@ -96,8 +96,30 @@ export const getBrandToBrandId =
 + "FROM brand b "
 + "WHERE b.id = ? ; "
 
-export const UserNicknameToBrand = 
-"SELECT m.nickname, c.id, c.brand_name, c.name, c.size, c.fit "
+export const userToBrand = 
+"SELECT m.nickname, c.id, c.brand_name, c.name, c.size, c.fit, c.category_id "
 + "FROM cloth c JOIN member m on c.uuid = m.uuid "
 + "JOIN brand b on c.brand_name = b.name "
-+ "WHERE b.id = ? ;"
++ "WHERE b.id = ? "
++ "ORDER BY c.id DESC ;"
+
+export const categoryToBrand = 
+"SELECT m.nickname, c.id, c.brand_name, c.name, c.size, c.fit, c.category_id "
++ "FROM cloth c JOIN member m on c.uuid = m.uuid "
++ "JOIN brand b on c.brand_name = b.name "
++ "WHERE b.id = ? AND c.category_id = ? "
++ "ORDER BY c.id DESC ;"
+
+export const clothToBrand = 
+"SELECT m.nickname, c.id, c.brand_name, c.name, c.size, c.fit, c.category_id "
++ "FROM cloth c JOIN member m on c.uuid = m.uuid "
++ "JOIN brand b on c.brand_name = b.name "
++ "WHERE b.id = ? AND c.name REGEXP ? "
++ "ORDER BY c.id DESC ;"
+
+export const clothCategoryToBrand = 
+"SELECT m.nickname, c.id, c.brand_name, c.name, c.size, c.fit, c.category_id "
++ "FROM cloth c JOIN member m on c.uuid = m.uuid "
++ "JOIN brand b on c.brand_name = b.name "
++ "WHERE b.id = ? AND c.name REGEXP ? AND c.category_id = ? "
++ "ORDER BY c.id DESC ;"

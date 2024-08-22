@@ -5,7 +5,8 @@ import { status } from "../../config/response.status.js";
 import { UserNicknameToClothIdAtFirst, UserNicknameToClothId, UserCategoryToClothIdAtFirst, UserCategoryToClothId, 
     getClothByClothId, getUserIdToClothId, getUser, getFitToUserId, getStyleToUserId, 
     UserNicknameToClothNameAtFirst, UserNicknameToClothName, UserCategoryToClothNameAtFirst, UserCategoryToClothName, 
-    brandToBrandName, userIdToNickname, userToNickname, getBrandToBrandId, UserNicknameToBrand } from "./search.sql.js";
+    brandToBrandName, userIdToNickname, userToNickname, getBrandToBrandId,
+    userToBrand, categoryToBrand, clothToBrand, clothCategoryToBrand } from "./search.sql.js";
 
 // nickname+cloth 반환
     export const getNicknameToClothId = async (category, size, cursorId) => {
@@ -149,8 +150,10 @@ export const getPreviewUser = async (userName) => {
 export const getBrand = async (brandId) => {
     try {
         const conn = await pool.getConnection();
-        const [brand] = await pool.query(getBrandToBrandId, brandId);
-
+        const brand = await pool.query(getBrandToBrandId, brandId);
+        if(brand[0].length == 0){
+            throw new BaseError(status.PARAMETER_IS_WRONG);
+        }
         conn.release();
         return brand;
     } catch (err) {
@@ -162,26 +165,21 @@ export const getBrand = async (brandId) => {
 export const getNicknameToBrand = async (brandId, clothName, category) => {
     try {
         const conn = await pool.getConnection();
-        let query = UserNicknameToBrand;
-
+ 
         if(typeof clothName == "undefined" && typeof category == "undefined"){
-            query += "ORDER BY c.id DESC ;";
-            const [data] = await pool.query(query, brandId);
+            const [data] = await pool.query(userToBrand, brandId);
             conn.release();
             return data;
         }else if(typeof clothName == "undefined"){
-            query += "WHERE c.category_id = ? ORDER BY c.id DESC ;"
-            const [data] = await pool.query(query, [brandId, category]);
+            const [data] = await pool.query(categoryToBrand, [brandId, category]);
             conn.release();
             return data;
         }else if(typeof category == "undefined"){
-            query += "WHERE c.name REGEXP ? ORDER BY c.id DESC ;"
-            const [data] = await pool.query(query, [brandId, clothName]);
+            const [data] = await pool.query(clothToBrand, [brandId, clothName]);
             conn.release();
             return data;
         }else{
-            query += "WHERE c.name REGEXP ? AND c.category_id = ? ORDER BY c.id DESC ;"
-            const [data] = await pool.query(query, [brandId, clothName, category]);
+            const [data] = await pool.query(clothCategoryToBrand, [brandId, clothName, category]);
             conn.release();
             return data;
         }
