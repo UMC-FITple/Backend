@@ -5,7 +5,8 @@ import { status } from "../../config/response.status.js";
 import { UserNicknameToClothIdAtFirst, UserNicknameToClothId, UserCategoryToClothIdAtFirst, UserCategoryToClothId, 
     getClothByClothId, getUserIdToClothId, getUser, getFitToUserId, getStyleToUserId, 
     UserNicknameToClothNameAtFirst, UserNicknameToClothName, UserCategoryToClothNameAtFirst, UserCategoryToClothName, 
-    brandToBrandName, userIdToNickname, userToNickname, getBrandToBrandId, UserNicknameToBrand } from "./search.sql.js";
+    brandToBrandName, userIdToNickname, userToNickname, getBrandToBrandId,
+    userToBrand, categoryToBrand, clothToBrand, clothCategoryToBrand } from "./search.sql.js";
 
 // nickname+cloth 반환
     export const getNicknameToClothId = async (category, size, cursorId) => {
@@ -126,7 +127,7 @@ export const getPreviewUser = async (userName) => {
         const result = [];
 
         if(userData.length == 0){
-            console.log("-1");
+            conn.release();
             return -1;
         }else{
             for (let i = 0; i < userData.length; i++) {
@@ -137,7 +138,6 @@ export const getPreviewUser = async (userName) => {
                 result.push({user, fit, style});
             }
             conn.release();
-            console.log(result);
             return result;
         }
     } catch (err) {
@@ -150,8 +150,10 @@ export const getPreviewUser = async (userName) => {
 export const getBrand = async (brandId) => {
     try {
         const conn = await pool.getConnection();
-        const [brand] = await pool.query(getBrandToBrandId, brandId);
-
+        const brand = await pool.query(getBrandToBrandId, brandId);
+        if(brand[0].length == 0){
+            throw new BaseError(status.PARAMETER_IS_WRONG);
+        }
         conn.release();
         return brand;
     } catch (err) {
@@ -160,29 +162,24 @@ export const getBrand = async (brandId) => {
 }
 
 // brand cloth 조회
-export const getNicknameToBrand = async (brandId, clothName, category, size) => {
+export const getNicknameToBrand = async (brandId, clothName, category) => {
     try {
         const conn = await pool.getConnection();
-        let query = UserNicknameToBrand;
-
+ 
         if(typeof clothName == "undefined" && typeof category == "undefined"){
-            query += "ORDER BY c.id DESC LIMIT ? ;";
-            const [data] = await pool.query(query, [brandId, size]);
+            const [data] = await pool.query(userToBrand, brandId);
             conn.release();
             return data;
         }else if(typeof clothName == "undefined"){
-            query += "WHERE c.category_id = ? ORDER BY c.id DESC LIMIT ? ;"
-            const [data] = await pool.query(query, [brandId, category, size]);
+            const [data] = await pool.query(categoryToBrand, [brandId, category]);
             conn.release();
             return data;
         }else if(typeof category == "undefined"){
-            query += "WHERE c.name REGEXP ? ORDER BY c.id DESC LIMIT ? ;"
-            const [data] = await pool.query(query, [brandId, clothName, size]);
+            const [data] = await pool.query(clothToBrand, [brandId, clothName]);
             conn.release();
             return data;
         }else{
-            query += "WHERE c.name REGEXP ? AND c.category_id = ? ORDER BY c.id DESC LIMIT ? ;"
-            const [data] = await pool.query(query, [brandId, clothName, category, size]);
+            const [data] = await pool.query(clothCategoryToBrand, [brandId, clothName, category]);
             conn.release();
             return data;
         }

@@ -14,7 +14,8 @@ export const previewMyClosetResponseDTO = (data) => {
                 "cloth_name": data[i].name,
                 "size": data[i].size,
                 "fit": data[i].fit,
-                "likes": data[i].likes
+                "likes": data[i].likes,
+                "cloth_image": data[i].cloth_img
             })
         }
     }
@@ -33,8 +34,11 @@ export const previewMyClothResponseDTO = (data) => {
         "product_code": item.product_code,
         "size": item.size,
         "fit": item.fit,
+        "likes": item.likes,
+        "cloth_image": item.cloth_img,
         "color": item.color,
         "URL": item.url,
+        "rating": item.rating,
         "memo": item.memo,
         "length": size.length || null,
         "shoulder": size.shoulder || null,
@@ -54,6 +58,40 @@ export const previewMyClothResponseDTO = (data) => {
     }
 
     return { "clothData": cloth };
+}
+
+// search brand response DTO
+export const SearchBrandResponseDTO = (data) => {
+    
+    const brand = [];
+
+    if(data.length == 0){
+        brand.push("해당 브랜드는 등록되어 있지 않아요.");
+    }else{
+        for (let i = 0; i < data.length; i++) {
+            brand.push({
+                "brand_id": data[i].id,
+                "brand_name": data[i].name,
+                "eng_name": data[i].eng_name,
+                "brand_image": data[i].brand_img
+            })
+        }
+    }
+    return {"brandData": brand};
+}
+
+export const addBrandResponseDTO = (data) => {
+    
+    const brand = [];
+    if(data == -1){
+        brand.push("브랜드가 등록되지 않았어요.");
+    }else{
+        brand.push({
+            "brand_id": data[0][0].id,
+            "brand_name": data[0][0].name
+        })
+    }
+    return {"brandData": brand};
 }
 
 export const addClothResponseDTO = (data) => {

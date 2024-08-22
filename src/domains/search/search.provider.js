@@ -22,7 +22,7 @@ export const getSearchResult = async (query) => {
 }
 
 export const getSearchBrand = async (brandId, query) => {
-    const { name, category, size = 8 } = query;
+    const { name, category } = query;
 
-    return SearchBrandResponseDTO(await getBrand(brandId), await getNicknameToBrand(brandId, name, category, size));
+    return SearchBrandResponseDTO(await getBrand(brandId), await getNicknameToBrand(brandId, name, category));
 }

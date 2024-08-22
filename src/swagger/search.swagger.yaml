@@ -322,11 +322,6 @@ paths:
           required: false
           schema:
             type: integer
-        - name: size
-          in: query
-          required: false
-          schema:
-            type: integer
       responses:
         '200':
           description: 브랜드 상세 조회 성공
