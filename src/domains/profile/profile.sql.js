@@ -50,3 +50,8 @@ export const getBodyInfoSQL =
 "SELECT b.height, b.weight, b.shoulder_width, b.chest_circumference, b.arm_length, b.waist_circumference, b.thigh_circumference, b.hip_circumference "
 + "FROM body_info b "
 + "WHERE b.uuid = ? ;"
+
+export const getSetUpSQL = 
+"SELECT m.img_url, m.nickname, m.gender, m.one_line_info, m.email "
++ "FROM member m "
++ "WHERE m.uuid = ? ;"
