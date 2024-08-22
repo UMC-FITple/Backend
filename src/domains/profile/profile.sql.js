@@ -45,3 +45,8 @@ export const getWishCategorySQL =
 + "JOIN member m on c.uuid = m.uuid "
 + "WHERE w.wisher_uuid = ? AND c.category_id = ? "
 + "ORDER BY c.id DESC ;"
+
+export const getBodyInfoSQL = 
+"SELECT b.height, b.weight, b.shoulder_width, b.chest_circumference, b.arm_length, b.waist_circumference, b.thigh_circumference, b.hip_circumference "
++ "FROM body_info b "
++ "WHERE b.uuid = ? ;"
