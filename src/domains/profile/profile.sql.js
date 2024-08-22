@@ -19,3 +19,15 @@ export const getFollowerToUserId =
 
 export const getFollowingToUserId =
 "SELECT count(*) FROM follow WHERE from_uuid = ? ;"
+
+export const getMyFitSQL =
+"SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes, c.cloth_img "
++ "FROM member m JOIN cloth c on c.uuid = m.uuid "
++ "WHERE m.uuid = ? AND c.likes = 1 "
++ "ORDER BY c.likes DESC, c.id DESC ;"
+
+export const getMyFitCategorySQL =
+"SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes, c.cloth_img "
++ "FROM member m JOIN cloth c on c.uuid = m.uuid "
++ "WHERE m.uuid = ? AND c.likes = 1 AND c.category_id = ? "
++ "ORDER BY c.likes DESC, c.id DESC ;"
