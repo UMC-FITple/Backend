@@ -126,7 +126,7 @@ export const getPreviewUser = async (userName) => {
         const result = [];
 
         if(userData.length == 0){
-            console.log("-1");
+            conn.release();
             return -1;
         }else{
             for (let i = 0; i < userData.length; i++) {
@@ -137,7 +137,6 @@ export const getPreviewUser = async (userName) => {
                 result.push({user, fit, style});
             }
             conn.release();
-            console.log(result);
             return result;
         }
     } catch (err) {

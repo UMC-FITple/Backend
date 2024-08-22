@@ -3,9 +3,9 @@ import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
 import { myClosetItemAtFirst, myClosetItem, myClosetCategoryItemAtFirst, myClosetCategoryItem, 
     getClothByClothId, getUserByClothId, getRealSizeByClothId,
-    brandToBrandName, insertCloth, insertRealSize, getCloth } from "./closet.sql.js";
+    brandToBrandName, insertBrand, getBrand, insertCloth, insertRealSize, getCloth } from "./closet.sql.js";
 
-// ncloth 반환
+// cloth 반환
     export const getMyClosetPreview = async (userId, category, size, cursorId) => {
     try {
         const conn = await pool.getConnection();
@@ -70,6 +70,37 @@ export const getPreviewBrand = async (brandName) => {
         return data;
     } catch (err) {
     throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+// Brand 데이터 삽입
+export const brandAdd = async (data) => {
+    try{
+        const conn = await pool.getConnection();
+        const brand = await pool.query(insertBrand, data.brand);
+
+        conn.release();
+        return brand[0].insertId;
+    }catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+// 등록한 Brand 반환
+export const getAddBrand = async (brandId) => {
+    try {
+        const conn = await pool.getConnection();
+        const brand = await pool.query(getBrand, brandId);
+
+        if(brand.length == 0){
+            conn.release();
+            return -1;
+        }
+
+        conn.release();
+        return brand;
+    } catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
     }
 }
 

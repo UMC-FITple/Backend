@@ -75,6 +75,20 @@ export const SearchBrandResponseDTO = (data) => {
     return {"brandData": brand};
 }
 
+export const addBrandResponseDTO = (data) => {
+    
+    const brand = [];
+    if(data == -1){
+        brand.push("브랜드가 등록되지 않았어요.");
+    }else{
+        brand.push({
+            "brand_id": data[0][0].id,
+            "brand_name": data[0][0].name
+        })
+    }
+    return {"brandData": brand};
+}
+
 export const addClothResponseDTO = (data) => {
     
     const cloth = [];

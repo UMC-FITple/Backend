@@ -1,7 +1,14 @@
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
-import { addClothResponseDTO } from "./closet.dto.js";
-import { clothAdd, getAddCloth } from "./closet.dao.js";
+import { addBrandResponseDTO, addClothResponseDTO } from "./closet.dto.js";
+import { brandAdd, getAddBrand, clothAdd, getAddCloth } from "./closet.dao.js";
+
+export const addNewBrand = async (body) => {
+    const data = await brandAdd({
+        'brand': body.brand
+    });
+    return addBrandResponseDTO(await getAddBrand(data));
+}
 
 export const addMyCloth = async (userId, body) => {
     const requiredFields = ['name', 'product_code', 'category', 'size', 'fit'];
