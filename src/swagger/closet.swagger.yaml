@@ -19,16 +19,6 @@ paths:
           required: false
           schema:
             type: integer
-        - name: clothId
-          in: query
-          required: false
-          schema:
-            type: integer
-        - name: size
-          in: query
-          required: false
-          schema:
-            type: integer
       responses:
         '200':
           description: 옷장 메인화면 조회 성공
