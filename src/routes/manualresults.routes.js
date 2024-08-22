@@ -3,7 +3,6 @@ import { getBestFit } from '../domains/manualcomparesizeresults/manualresults.co
 
 const router = express.Router();
 
-// router.get('/:userId/best-fit', getBestFit);
 router.get('/:clothId/best-fit', getBestFit);
 
 export default router;

@@ -1,16 +1,3 @@
-// import { findBestFit } from './manualresults.service.js';
-
-// const getBestFit = async (req, res) => {
-//     try {
-//         const clothId = req.params.clothId; //
-//         const bestFit = await findBestFit(clothId);
-//         res.json(bestFit);
-//     } catch (error) {
-//         res.status(500).json({ error: error.message });
-//     }
-// };
-
-// export { getBestFit };
 import { findBestFit } from './manualresults.service.js';
 import { response } from "../../config/response.js";
 
