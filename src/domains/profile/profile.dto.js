@@ -70,3 +70,9 @@ export const getWishDTO = (data) => {
     }
     return {"clothData": cloth};
 }
+
+export const getBodyInfoDTO = (data) => {
+
+    return {"height": data[0][0].height, "weight": data[0][0].weight, "shoulder_width": data[0][0].shoulder_width, "chest_circumference": data[0][0].chest_circumference, 
+        "arm_length": data[0][0].arm_length, "waist_circumference": data[0][0].waist_circumference, "thigh_circumference": data[0][0].thigh_circumference, "hip_circumference": data[0][0].hip_circumference};
+}

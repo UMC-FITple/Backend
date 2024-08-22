@@ -2,7 +2,7 @@ import { pool } from "../../config/db.config.js";
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
 import { getUser, getFitToUserId, getStyleToUserId, getFollowerToUserId, getFollowingToUserId,
-    getMyFitSQL, getMyFitCategorySQL, getWishSQL, getWishCategorySQL } from "./profile.sql.js";
+    getMyFitSQL, getMyFitCategorySQL, getWishSQL, getWishCategorySQL, getBodyInfoSQL } from "./profile.sql.js";
 
 export const getUserDAO = async (userId) => {
     try {
@@ -91,6 +91,21 @@ export const getWishDAO = async (userId, category) => {
             conn.release();
             return data;
         }
+    } catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+export const getBodyInfoDAO = async (userId) => {
+    try {
+        const conn = await pool.getConnection();
+        const user = await pool.query(getBodyInfoSQL, userId);
+        if(user[0].length == 0 ){
+            conn.release();
+            return -1;
+        }
+        conn.release();
+        return user;
     } catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
