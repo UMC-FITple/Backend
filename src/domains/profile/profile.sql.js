@@ -24,10 +24,24 @@ export const getMyFitSQL =
 "SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes, c.cloth_img "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
 + "WHERE m.uuid = ? AND c.likes = 1 "
-+ "ORDER BY c.likes DESC, c.id DESC ;"
++ "ORDER BY c.id DESC ;"
 
 export const getMyFitCategorySQL =
 "SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes, c.cloth_img "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
 + "WHERE m.uuid = ? AND c.likes = 1 AND c.category_id = ? "
-+ "ORDER BY c.likes DESC, c.id DESC ;"
++ "ORDER BY c.id DESC ;"
+
+export const getWishSQL =
+"SELECT m.uuid, m.nickname, m.img_url, c.id, c.brand_name, c.name, c.size, c.fit, c.likes, c.cloth_img "
++ "FROM cloth c JOIN wish w on c.id = w.cloth_id "
++ "JOIN member m on c.uuid = m.uuid "
++ "WHERE w.wisher_uuid = ? "
++ "ORDER BY c.id DESC ;"
+
+export const getWishCategorySQL =
+"SELECT m.uuid, m.nickname, m.img_url, c.id, c.brand_name, c.name, c.size, c.fit, c.likes, c.cloth_img "
++ "FROM cloth c JOIN wish w on c.id = w.cloth_id "
++ "JOIN member m on c.uuid = m.uuid "
++ "WHERE w.wisher_uuid = ? AND c.category_id = ? "
++ "ORDER BY c.id DESC ;"
