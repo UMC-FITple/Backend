@@ -1,0 +1,160 @@
+paths:
+  /FITple/profile:
+    get:
+      tags:
+        - Profile
+      summary: 내 정보 조회
+      operationId: profile
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: 내 정보 조회 성공
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: array
+                example: {
+                  "userData": [
+                    {
+                      "user_id": 6,
+                      "nickname": "testUser",
+                      "user_image": "https://fitpletestduke123.s3.ap-northeast-2.amazonaws.com/image/1723872198793-%C3%A1%C2%84%C2%89%C3%A1%C2%85%C2%B3%C3%A1%C2%84%C2%8F%C3%A1%C2%85%C2%B3%C3%A1%C2%84%C2%85%C3%A1%C2%85%C2%B5%C3%A1%C2%86%C",
+                      "one_line_info": "test",
+                      "height": 166,
+                      "weight": 56
+                    }
+                  ],
+                  "fit": [
+                    "레귤러",
+                    "슬림"
+                  ],
+                  "style": [
+                    "심플베이직",
+                    "모던시크"
+                  ]
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              isSuccess:
+                type: boolean
+              code:
+                type: integer
+              message:
+                type: string
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              isSuccess:
+                type: boolean
+              code:
+                type: integer
+              message:
+                type: string
+
+  /FITple/profile/likes:
+    get:
+      tags:
+        - Profile
+      summary: 내가 좋아하는 옷 조회
+      operationId: profile
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: category
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 내 정보 조회 성공
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: array
+                example: {
+                  "userData": [
+                    {
+                      "user_id": 6,
+                      "nickname": "testUser",
+                      "user_image": "https://fitpletestduke123.s3.ap-northeast-2.amazonaws.com/image/1723872198793-%C3%A1%C2%84%C2%89%C3%A1%C2%85%C2%B3%C3%A1%C2%84%C2%8F%C3%A1%C2%85%C2%B3%C3%A1%C2%84%C2%85%C3%A1%C2%85%C2%B5%C3%A1%C2%86%C",
+                      "one_line_info": "test",
+                      "height": 166,
+                      "weight": 56
+                    }
+                  ],
+                  "fit": [
+                    "레귤러",
+                    "슬림"
+                  ],
+                  "style": [
+                    "심플베이직",
+                    "모던시크"
+                  ]
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              isSuccess:
+                type: boolean
+              code:
+                type: integer
+              message:
+                type: string
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              isSuccess:
+                type: boolean
+              code:
+                type: integer
+              message:
+                type: string
