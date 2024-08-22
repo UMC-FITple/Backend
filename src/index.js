@@ -60,7 +60,7 @@ app.use('/FITple/uploadsize', sizeUploadRoutes);
 app.use("/FITple/refreshToken",refreshTokenRouter);
 app.use("/FITple/auth",AuthRouter)
 app.use('/FITple/my/closet', closetRouter);
-app.use("/FITple/myprofile",MyprofileRouter);
+app.use("/FITple/myprofile", LoginCheck,MyprofileRouter);
 app.use('/temp-token', tempRouter);
 app.use('/FITple/comparesizes', compareSizeRoutes);
 app.use('/FITple/recommend', recommendRouter)

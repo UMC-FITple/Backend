@@ -70,7 +70,7 @@ export const memberResponseDTO = (memberData, bodyData, fitData, styleData) => {
                 throw new BaseError(status.EMPTY_DATA);
             }
 
-            member.push({
+            const result = {
                 "uuid": uuid,
                 "nickname": memberData[i].nickname,
                 "img_url": memberData[i].img_url,
@@ -78,7 +78,10 @@ export const memberResponseDTO = (memberData, bodyData, fitData, styleData) => {
                 "height": bodyData[i].height,
                 "fit": fitValue,
                 "style": styleValue
-            });
+            }
+
+            member.push(result);
+            console.log(result);
         }
     }
     

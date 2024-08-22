@@ -87,8 +87,6 @@ def train_user_bodyinfo():
 def train_user_style():
     # 클라이언트로부터 받은 bodyinfo 데이터
     data = request.json
-    print(f"data: ", data)
-
     try:
         data_df = pd.DataFrame(data)
         # 터미널에 출력

@@ -31,7 +31,7 @@ export const train_style = async (req, res, next) => {
 
     console.log(`스타일정보: `, memberstyle);
 
-    const response_frm_flask = await axios.post('http://127.0.0.1:5000/train/bodyinfo', memberstyle);
+    const response_frm_flask = await axios.post('http://127.0.0.1:5000/train/style', memberstyle);
 
     console.log("통신 성공!")
 

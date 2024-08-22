@@ -1,7 +1,7 @@
 // routes/recommend.route.js
 import express from "express";
 import asyncHandler from 'express-async-handler';
-import { get_bodyinfo_all, get_bodyinfo_by_uuid, get_member_by_uuid, get_userfit_by_uuid, get_userstyle_by_uuid, recommend_bodyinfo_by_uuid, recommend_style_by_uuid, train_bodyinfo } from "../domains/recommend/recommend.controller.js"
+import { get_bodyinfo_all, get_bodyinfo_by_uuid, get_member_by_uuid, get_userfit_by_uuid, get_userstyle_by_uuid, recommend_bodyinfo_by_uuid, recommend_style_by_uuid, train_bodyinfo, train_style } from "../domains/recommend/recommend.controller.js"
 import { LoginCheck } from "../middlewares/logincheck.js";
 
 
@@ -32,4 +32,4 @@ recommendRouter.get('/style/', LoginCheck, asyncHandler(recommend_style_by_uuid)
 recommendRouter.post('/train/bodyinfo', asyncHandler(train_bodyinfo));
 
 // 추천: 체형 정보 데이터로 훈련
-recommendRouter.post('/train/style', asyncHandler(train_bodyinfo));
+recommendRouter.post('/train/style', asyncHandler(train_style));
