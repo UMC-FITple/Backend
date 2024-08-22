@@ -12,6 +12,7 @@ import { signupRouter } from './routes/signup.js';
 import { loginRouter } from './routes/login.js';
 import { searchRouter } from './routes/search.js';
 import { refreshTokenRouter } from './routes/refreshToken.js';
+import { recommendRouter } from "./routes/recommend.routes.js"
 import sizeUploadRoutes from './routes/uploadsize.routes.js';
 import { AuthRouter } from './routes/auth.js';
 import { closetRouter } from './routes/closet.js';
@@ -27,6 +28,12 @@ dotenv.config();
 // require('dotenv').config(); 
 const app = express();
 const port = 3000;
+
+app.use(express.static('public'));  
+// app.use(cors());                            // cors 방식 허용
+// app.use(express.static('public'));          // 정적 파일 접근
+// app.use(express.json());                    // request의 본문을 json으로 해석할 수 있도록 함 (JSON 형태의 요청 body를 파싱하기 위함)
+// app.use(express.urlencoded({extended: false})); // 단순 객체 문자열 형태로 본문 데이터 해석
 
 app.get('/', (req, res) => {
   res.send('환영합니다 핏플 백엔드!');
@@ -55,11 +62,12 @@ app.use('/FITple/uploadsize', sizeUploadRoutes);
 app.use("/FITple/refreshToken",refreshTokenRouter);
 app.use("/FITple/auth",AuthRouter)
 app.use('/FITple/my/closet', closetRouter);
-app.use("/FITple/myprofile",LoginCheck,MyprofileRouter);
+app.use("/FITple/myprofile", LoginCheck,MyprofileRouter);
 app.use('/temp-token', tempRouter);
 app.use('/FITple/comparesizes', compareSizeRoutes);
 app.use('/FITple/manualresults', manualResultsRoutes);
 app.use('/FITple/profile', profileRouter);
+app.use('/FITple/recommend', recommendRouter)
 
 // error handling
 app.use((req, res, next) => {
