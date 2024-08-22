@@ -1,7 +1,7 @@
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
-import { addBrandResponseDTO, addClothResponseDTO, delClothResponseDTO } from "./closet.dto.js";
-import { brandAdd, getAddBrand, clothAdd, getAddCloth, clothDel } from "./closet.dao.js";
+import { addBrandResponseDTO, addClothResponseDTO, putClothResponseDTO, delClothResponseDTO } from "./closet.dto.js";
+import { brandAdd, getAddBrand, clothAdd, getAddCloth, clothPut, clothDel } from "./closet.dao.js";
 
 export const addNewBrand = async (body) => {
     const data = await brandAdd({
@@ -58,6 +58,33 @@ export const addMyCloth = async (userId, body) => {
 export const addClothImage = async (img_url) => {
  
     return {"image": img_url};
+}
+
+export const putMyCloth = async (userId, clothId, body) => {
+    const data = await clothPut({
+        'image': body.image,
+        'brand': body.brand,
+        'name': body.name,
+        'product_code': body.product_code,
+        'category': body.category,
+        'size': body.size,
+        'fit': body.fit,
+        'color': body.color,
+        'url': body.url,
+        'rating': body.rating,
+        'memo': body.memo,
+        'length': body.length,
+        'shoulder': body.shoulder,
+        'chest': body.chest,
+        'armhole': body.armhole,
+        'sleeve': body.sleeve,
+        'sleeve_length': body.sleeve_length,
+        'hem': body.hem, 
+        'uuid': userId,
+        'clothId': clothId
+    });
+
+    return putClothResponseDTO(data);
 }
 
 export const delMyCloth = async (userId, clothId) => {

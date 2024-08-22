@@ -4,7 +4,7 @@ import { status } from "../../config/response.status.js";
 import { myClosetItem, myClosetCategoryItem, myClosetSearchItem, myClosetSearchCategoryItem,
     getClothByClothId, getUserByClothId, getRealSizeByClothId,
     brandToBrandName, insertBrand, getBrand, insertCloth, insertRealSize, getCloth,
-    myClothDel } from "./closet.sql.js";
+    updateCloth, updateRealSize, myClothDel } from "./closet.sql.js";
 
 // cloth 반환
     export const getMyClosetPreview = async (userId, name, category) => {
@@ -133,7 +133,23 @@ export const getAddCloth = async (clothId) => {
     }
 }
 
-// 등록한 Cloth 반환
+// Cloth 수정
+export const clothPut = async (data) => {
+    try{
+        const conn = await pool.getConnection();
+
+        pool.query(updateCloth, [data.image, data.brand, data.name, data.product_code, data.category, data.size, data.fit, data.color, data.url, data.rating, data.memo, data.uuid, data.clothId]);
+        pool.query(updateRealSize, [data.length, data.shoulder, data.chest, data.armhole, data.sleeve, data.sleeve_length, data.hem, data.clothId]);
+        const cloth = await pool.query(getCloth, data.clothId);
+        
+        conn.release();
+        return cloth;
+    }catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+// Cloth 삭제
 export const clothDel = async (userId, clothId) => {
     try {
         const conn = await pool.getConnection();

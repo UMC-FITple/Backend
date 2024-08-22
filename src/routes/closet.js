@@ -2,7 +2,7 @@ import express from "express";
 import asyncHandler from 'express-async-handler';
 import { LoginCheck } from "../middlewares/logincheck.js";
 import upload from "../config/s3.config.js";
-import { myClosetPreview, brandPreview, addBrand, myClothView, addCloth, addImage, delCloth } from "../domains/closet/closet.controller.js";
+import { myClosetPreview, brandPreview, addBrand, myClothView, addCloth, addImage, putCloth, delCloth } from "../domains/closet/closet.controller.js";
 
 export const closetRouter = express.Router({mergeParams: true});
 
@@ -23,6 +23,9 @@ closetRouter.post('/', LoginCheck, asyncHandler(addCloth));
 
 //옷장-이미지 업로드
 closetRouter.post('/image', LoginCheck, upload.single('image'), asyncHandler(addImage));
+
+//옷장-아이템 수정
+closetRouter.put('/:clothId/modify', LoginCheck, asyncHandler(putCloth));
 
 //옷장-아이템 삭제
 closetRouter.delete('/:clothId/modify', LoginCheck, asyncHandler(delCloth));
