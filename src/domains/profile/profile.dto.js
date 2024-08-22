@@ -1,8 +1,10 @@
 // preview search response DTO
-export const getInfoDTO = (userData, fitData, styleData) => {
+export const getInfoDTO = (userData, fitData, styleData, followData) => {
     const user = [];
     const fit = [];
     const style = [];
+    const follower = followData.follower[0][0]['count(*)'];
+    const following = followData.following[0][0]['count(*)'];
 
     if(userData == -1){
         user.push("해당 유저는 등록되어 있지 않아요.");
@@ -22,5 +24,5 @@ export const getInfoDTO = (userData, fitData, styleData) => {
     for (let i = 0; i < styleData[0].length; i++) {
         style.push(styleData[0][i].style_name);
     }
-    return { "userData": user, "fit": fit, "style": style };
+    return { "userData": user, "fit": fit, "style": style, "follower": follower, "following": following };
 }

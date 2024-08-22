@@ -13,3 +13,9 @@ export const getStyleToUserId =
 "SELECT us.uuid, us.style_name "
 + "FROM user_style us "
 + "WHERE us.uuid = ? ;"
+
+export const getFollowerToUserId =
+"SELECT count(*) FROM follow WHERE to_uuid = ? ;"
+
+export const getFollowingToUserId =
+"SELECT count(*) FROM follow WHERE from_uuid = ? ;"

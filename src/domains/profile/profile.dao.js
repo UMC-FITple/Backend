@@ -1,9 +1,8 @@
 import { pool } from "../../config/db.config.js";
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
-import { getUser, getFitToUserId, getStyleToUserId } from "./profile.sql.js";
+import { getUser, getFitToUserId, getStyleToUserId, getFollowerToUserId, getFollowingToUserId } from "./profile.sql.js";
 
-// cloth 반환
 export const getUserDAO = async (userId) => {
     try {
         const conn = await pool.getConnection();
@@ -44,6 +43,19 @@ export const getStyleDAO = async (userId) => {
         }
         conn.release();
         return style;
+    } catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+export const getFollowDAO = async (userId) => {
+    try {
+        const conn = await pool.getConnection();
+        const follower = await pool.query(getFollowerToUserId, userId);
+        const following = await pool.query(getFollowingToUserId, userId);
+
+        conn.release();
+        return { follower, following };
     } catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
