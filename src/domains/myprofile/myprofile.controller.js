@@ -7,15 +7,11 @@ export async function MyprofileSaveLogic(req, res) {
     try {
         const img_url = req.file?.location;
 
-        console.log("img_upload");
-
         if(!req.body.data){
             return res.status(402).send(response(status.MYPROFILE_EMPTY_DATA));
         }
         const jsonData = JSON.parse(req.body.data);
         const { userInfo, bodyInfo } = jsonData;
-
-        console.log("json parsing");
 
         if(!userInfo, !bodyInfo){
             return res.status(402).send(response(status.MYPROFILE_EMPTY_DATA));
