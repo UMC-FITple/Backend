@@ -54,6 +54,18 @@ export const insertCloth =
 "INSERT INTO cloth (uuid, cloth_img, brand_name, name, product_code, category_id, size, fit, color, url, rating, memo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ;"
 
 export const insertRealSize = 
-"INSERT INTO real_size (cloth_id, length, shoulder, chest, armhole, sleeve, sleeve_length, hem) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ;";
+"INSERT INTO real_size (cloth_id, length, shoulder, chest, armhole, sleeve, sleeve_length, hem) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ;"
 
 export const getCloth = "SELECT * FROM cloth WHERE id = ? ; "
+
+export const updateCloth = 
+"UPDATE cloth SET "
++ "cloth_img=?, brand_name=?, name=?, product_code=?, category_id=?, size=?, fit=?, color=?, url=?, rating=?, memo=? "
++ "WHERE uuid = ? AND id = ? ;"
+
+export const updateRealSize = 
+"UPDATE real_size SET length=?, shoulder=?, chest=?, armhole=?, sleeve=?, sleeve_length=?, hem=? "
++ "WHERE cloth_id = ? "
+
+
+export const myClothDel = "DELETE FROM cloth WHERE uuid = ? AND id = ? ;"

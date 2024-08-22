@@ -1,7 +1,7 @@
 import { response } from "../../config/response.js";
 import { status } from "../../config/response.status.js";
 import { getMyCloset, getMyCloth, getBrand } from "./closet.provider.js";
-import { addNewBrand, addMyCloth, addClothImage } from "./closet.service.js";
+import { addNewBrand, addMyCloth, addClothImage, putMyCloth, delMyCloth } from "./closet.service.js";
 
 export const myClosetPreview = async (req, res, next) => {
     console.log("내 옷장을 조회합니다");
@@ -57,4 +57,16 @@ export const addImage = async (req, res, next) => {
     }
     const img_url = req.file.location;
     res.send(response(status.SUCCESS, await addClothImage(img_url)));
+}
+
+export const putCloth = async (req, res, next) => {
+    console.log("옷 수정을 요청하였습니다!");
+    const userId = res.locals.uuid;
+    res.send(response(status.SUCCESS, await putMyCloth(userId, req.params.clothId, req.body)));
+}
+
+export const delCloth = async (req, res, next) => {
+    console.log("옷 삭제를 요청하였습니다!");
+    const userId = res.locals.uuid;
+    res.send(response(status.SUCCESS, await delMyCloth(userId, req.params.clothId)));
 }
