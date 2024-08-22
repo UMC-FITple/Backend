@@ -6,7 +6,7 @@ export const UserNicknameToClothIdAtFirst =
 export const UserNicknameToClothId = 
 "SELECT c.id, m.nickname, c.brand_name, c.name, c.size, c.fit, c.id "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
-+ "WHERE c.id < ? ";
++ "WHERE c.id < ? "
 + "ORDER BY c.id DESC LIMIT 8 ;"
 
 export const UserCategoryToClothIdAtFirst = 
@@ -18,7 +18,7 @@ export const UserCategoryToClothIdAtFirst =
 export const UserCategoryToClothId = 
 "SELECT c.id, m.nickname, c.brand_name, c.name, c.size, c.fit, c.id "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
-+ "WHERE c.category_id = ? AND c.id < ? ";
++ "WHERE c.category_id = ? AND c.id < ? "
 + "ORDER BY c.id DESC LIMIT 8 ;"
 
 
@@ -30,18 +30,18 @@ export const getClothByClothId =
 export const getUserIdToClothId = 
 "SELECT m.uuid "
 + "FROM cloth c JOIN member m on c.uuid = m.uuid "
-+ "WHERE c.id = ? ;";
++ "WHERE c.id = ? ;"
 
 //user+body_info
 export const getUser = 
 "SELECT m.nickname, m.one_line_info, b.height, b.weight "
 + "FROM body_info b JOIN member m on b.uuid = m.uuid "
-+ "WHERE b.uuid = ? ;";
++ "WHERE b.uuid = ? ;"
 
 export const getFitToUserId =
 "SELECT uf.uuid, uf.pf_name "
 + "FROM user_fit uf "
-+ "WHERE uf.uuid = ? ;";
++ "WHERE uf.uuid = ? ;"
 
 export const getStyleToUserId =
 "SELECT us.uuid, us.style_name "
@@ -58,7 +58,7 @@ export const UserNicknameToClothNameAtFirst =
 export const UserNicknameToClothName = 
 "SELECT c.id, m.nickname, c.brand_name, c.name, c.size, c.fit, c.id "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
-+ "WHERE c.name REGEXP ? AND c.id < ? ";
++ "WHERE c.name REGEXP ? AND c.id < ? "
 + "ORDER BY c.id DESC LIMIT 8 ;"
 
 export const UserCategoryToClothNameAtFirst = 
@@ -70,7 +70,7 @@ export const UserCategoryToClothNameAtFirst =
 export const UserCategoryToClothName = 
 "SELECT c.id, m.nickname, c.brand_name, c.name, c.size, c.fit, c.id "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
-+ "WHERE c.name REGEXP ? AND c.category_id = ? AND c.id < ? ";
++ "WHERE c.name REGEXP ? AND c.category_id = ? AND c.id < ? "
 + "ORDER BY c.id DESC LIMIT 8 ;"
 
 export const brandToBrandName = 
@@ -82,7 +82,7 @@ export const brandToBrandName =
 export const userIdToNickname = 
 "SELECT m.uuid "
 + "FROM member m "
-+ "WHERE m.nickname REGEXP ? ;";
++ "WHERE m.nickname REGEXP ? ;"
 
 export const userToNickname = 
 "SELECT m.uuid, m.nickname, b.height, b.weight "
@@ -100,4 +100,4 @@ export const UserNicknameToBrand =
 "SELECT m.nickname, c.id, c.brand_name, c.name, c.size, c.fit "
 + "FROM cloth c JOIN member m on c.uuid = m.uuid "
 + "JOIN brand b on c.brand_name = b.name "
-+ "WHERE b.id = ? "
++ "WHERE b.id = ? ;"

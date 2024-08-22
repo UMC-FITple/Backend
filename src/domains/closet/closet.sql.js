@@ -44,3 +44,11 @@ export const brandToBrandName =
 + "FROM brand b "
 + "WHERE b.name REGEXP ? "
 + "ORDER BY b.id ;"
+
+export const insertCloth = 
+"INSERT INTO cloth (uuid, img_url, brand_name, name, product_code, category_id, size, fit, color, url, rating, memo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ;"
+
+export const insertRealSize = 
+"INSERT INTO real_size (cloth_id, length, shoulder, chest, armhole, sleeve, sleeve_length, hem) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ;";
+
+export const getCloth = "SELECT * FROM cloth WHERE id = ? ; "

@@ -56,7 +56,6 @@ export const previewMyClothResponseDTO = (data) => {
     return { "clothData": cloth };
 }
 
-
 // search brand response DTO
 export const SearchBrandResponseDTO = (data) => {
     
@@ -74,4 +73,17 @@ export const SearchBrandResponseDTO = (data) => {
         }
     }
     return {"brandData": brand};
+}
+
+export const addClothResponseDTO = (data) => {
+    
+    const cloth = [];
+    if(data.length == 0){
+        cloth.push("제품이 등록되지 않았어요.");
+    }else{
+        cloth.push({
+            "cloth_id": data[0][0].id
+        })
+    }
+    return {"clothData": cloth};
 }
