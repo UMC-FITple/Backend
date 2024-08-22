@@ -5,9 +5,9 @@ import { getNicknameToClothId,
     getBrand, getNicknameToBrand } from "./search.dao.js";
 
 export const getSearch = async (query) => {
-    const { category, size = 8, cursorId } = query;
+    const { category } = query;
 
-    return previewSearchResponseDTO(await getNicknameToClothId(category, size, cursorId));
+    return previewSearchResponseDTO(await getNicknameToClothId(category));
 }
 
 export const getCloth = async (clothId) => {
@@ -16,9 +16,9 @@ export const getCloth = async (clothId) => {
 }
 
 export const getSearchResult = async (query) => {
-    const { name, category, cursorId } = query;
+    const { name, category } = query;
 
-    return SearchResultResponseDTO(await getNicknameToClothName(name, category, cursorId), await getPreviewBrand(name), await getPreviewUser(name));
+    return SearchResultResponseDTO(await getNicknameToClothName(name, category), await getPreviewBrand(name), await getPreviewUser(name));
 }
 
 export const getSearchBrand = async (brandId, query) => {

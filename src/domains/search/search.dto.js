@@ -20,7 +20,7 @@ export const previewSearchResponseDTO = (data) => {
             })
         }
     }
-    return {"clothData": cloth, "cursorId": data[data.length-1].id};
+    return {"clothData": cloth};
 }
 
 // preview cloth response DTO
@@ -117,11 +117,8 @@ export const SearchResultResponseDTO = (clothData, brandData, userData) => {
             })
         }
     }
-    if (clothData.length == 0) {
-        return { "clothData": cloth, "brandData": brand, "userData": user };
-    } else {
-        return {"clothData": cloth, "cursorId": clothData[clothData.length-1].id, "brandData": brand, "userData": user};
-    }
+    return { "clothData": cloth, "brandData": brand, "userData": user };
+
 }
 
 // search result response DTO
