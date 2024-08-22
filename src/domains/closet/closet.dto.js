@@ -14,7 +14,8 @@ export const previewMyClosetResponseDTO = (data) => {
                 "cloth_name": data[i].name,
                 "size": data[i].size,
                 "fit": data[i].fit,
-                "likes": data[i].likes
+                "likes": data[i].likes,
+                "cloth_image": data[i].cloth_img
             })
         }
     }
@@ -33,8 +34,11 @@ export const previewMyClothResponseDTO = (data) => {
         "product_code": item.product_code,
         "size": item.size,
         "fit": item.fit,
+        "likes": item.likes,
+        "cloth_image": item.cloth_img,
         "color": item.color,
         "URL": item.url,
+        "rating": item.rating,
         "memo": item.memo,
         "length": size.length || null,
         "shoulder": size.shoulder || null,
@@ -68,7 +72,8 @@ export const SearchBrandResponseDTO = (data) => {
             brand.push({
                 "brand_id": data[i].id,
                 "brand_name": data[i].name,
-                "eng_name": data[i].eng_name
+                "eng_name": data[i].eng_name,
+                "brand_image": data[i].brand_img
             })
         }
     }

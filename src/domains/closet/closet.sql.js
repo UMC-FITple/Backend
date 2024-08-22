@@ -1,30 +1,30 @@
 export const myClosetItemAtFirst = 
-"SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes "
+"SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes, c.cloth_img "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
 + "WHERE m.uuid = ? "
 + "ORDER BY c.likes DESC, c.id DESC LIMIT ? ;"
 
 export const myClosetItem = 
-"SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes "
+"SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes, c.cloth_img "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
 + "WHERE m.uuid = ? AND c.id < ? ";
 + "ORDER BY c.likes DESC, c.id DESC LIMIT ? ;"
 
 export const myClosetCategoryItemAtFirst = 
-"SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes "
+"SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes, c.cloth_img "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
 + "WHERE m.uuid = ? AND c.category_id = ? "
 + "ORDER BY c.likes DESC, c.id DESC LIMIT ? ;"
 
 export const myClosetCategoryItem = 
-"SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes "
+"SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes, c.cloth_img "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
 + "WHERE m.uuid = ? AND c.category_id = ? AND c.id < ? ";
 + "ORDER BY c.likes DESC, c.id DESC LIMIT ? ;"
 
 
 export const getClothByClothId = 
-"SELECT c.uuid, c.id, c.brand_name, c.name, c.product_code, c.size, c.fit, c.color, c.url, c.memo "
+"SELECT c.uuid, c.id, c.brand_name, c.name, c.product_code, c.size, c.fit, c.color, c.url, c.rating, c.memo, c.cloth_img "
 + "FROM cloth c "
 + "WHERE c.uuid = ? AND c.id = ? ;"
 
@@ -40,7 +40,7 @@ export const getRealSizeByClothId =
 
 
 export const brandToBrandName = 
-"SELECT b.id, b.name, b.eng_name "
+"SELECT b.id, b.name, b.eng_name, b.brand_img "
 + "FROM brand b "
 + "WHERE b.name REGEXP ? "
 + "ORDER BY b.id ;"
@@ -52,7 +52,7 @@ export const getBrand = "SELECT * FROM brand WHERE id = ? ; "
 
 
 export const insertCloth = 
-"INSERT INTO cloth (uuid, img_url, brand_name, name, product_code, category_id, size, fit, color, url, rating, memo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ;"
+"INSERT INTO cloth (uuid, cloth_img, brand_name, name, product_code, category_id, size, fit, color, url, rating, memo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ;"
 
 export const insertRealSize = 
 "INSERT INTO real_size (cloth_id, length, shoulder, chest, armhole, sleeve, sleeve_length, hem) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ;";
