@@ -1,5 +1,5 @@
-import { getInfoDTO, getMyFitDTO, getWishDTO, getBodyInfoDTO } from "./profile.dto.js"
-import { getUserDAO, getFitDAO, getStyleDAO, getFollowDAO, getMyFitDAO, getWishDAO, getBodyInfoDAO } from "./profile.dao.js";
+import { getInfoDTO, getMyFitDTO, getWishDTO, getBodyInfoDTO, getSetUpDTO } from "./profile.dto.js"
+import { getUserDAO, getFitDAO, getStyleDAO, getFollowDAO, getMyFitDAO, getWishDAO, getBodyInfoDAO, getSetUpDAO } from "./profile.dao.js";
 
 export const getInfo = async (userId) => {
     return getInfoDTO(await getUserDAO(userId), await getFitDAO(userId), await getStyleDAO(userId), await getFollowDAO(userId));
@@ -17,4 +17,8 @@ export const getWish = async (userId, query) => {
 
 export const getBodyInfo = async (userId) => {
     return getBodyInfoDTO(await getBodyInfoDAO(userId));
+}
+
+export const getSetUp = async (userId) => {
+    return getSetUpDTO(await getSetUpDAO(userId), await getFitDAO(userId), await getStyleDAO(userId));
 }

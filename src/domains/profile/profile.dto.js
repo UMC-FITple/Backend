@@ -76,3 +76,28 @@ export const getBodyInfoDTO = (data) => {
     return {"height": data[0][0].height, "weight": data[0][0].weight, "shoulder_width": data[0][0].shoulder_width, "chest_circumference": data[0][0].chest_circumference, 
         "arm_length": data[0][0].arm_length, "waist_circumference": data[0][0].waist_circumference, "thigh_circumference": data[0][0].thigh_circumference, "hip_circumference": data[0][0].hip_circumference};
 }
+
+export const getSetUpDTO = (userData, fitData, styleData) => {
+    const user = [];
+    const fit = [];
+    const style = [];
+
+    if(userData == -1){
+        user.push("해당 유저는 등록되어 있지 않아요.");
+    }else{
+        user.push({
+            "user_image": userData[0][0].img_url,
+            "nickname": userData[0][0].nickname,
+            "gender": userData[0][0].gender,
+            "one_line_info": userData[0][0].one_line_info,
+            "email": userData[0][0].email
+        })
+    }
+    for (let i = 0; i < fitData[0].length; i++) {
+        fit.push(fitData[0][i].pf_name);
+    }
+    for (let i = 0; i < styleData[0].length; i++) {
+        style.push(styleData[0][i].style_name);
+    }
+    return { "userData": user, "fit": fit, "style": style };
+}
