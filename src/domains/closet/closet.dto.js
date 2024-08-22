@@ -19,7 +19,7 @@ export const previewMyClosetResponseDTO = (data) => {
             })
         }
     }
-    return {"clothData": cloth, "cursorId": data[data.length-1].id};
+    return {"clothData": cloth};
 }
 
 // preview cloth response DTO

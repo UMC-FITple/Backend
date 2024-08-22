@@ -1,27 +1,14 @@
-export const myClosetItemAtFirst = 
-"SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes, c.cloth_img "
-+ "FROM member m JOIN cloth c on c.uuid = m.uuid "
-+ "WHERE m.uuid = ? "
-+ "ORDER BY c.likes DESC, c.id DESC LIMIT ? ;"
-
 export const myClosetItem = 
 "SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes, c.cloth_img "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
-+ "WHERE m.uuid = ? AND c.id < ? ";
-+ "ORDER BY c.likes DESC, c.id DESC LIMIT ? ;"
-
-export const myClosetCategoryItemAtFirst = 
-"SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes, c.cloth_img "
-+ "FROM member m JOIN cloth c on c.uuid = m.uuid "
-+ "WHERE m.uuid = ? AND c.category_id = ? "
-+ "ORDER BY c.likes DESC, c.id DESC LIMIT ? ;"
++ "WHERE m.uuid = ? "
++ "ORDER BY c.likes DESC, c.id DESC ;"
 
 export const myClosetCategoryItem = 
 "SELECT c.id, c.brand_name, c.name, c.size, c.fit, c.likes, c.cloth_img "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
-+ "WHERE m.uuid = ? AND c.category_id = ? AND c.id < ? ";
-+ "ORDER BY c.likes DESC, c.id DESC LIMIT ? ;"
-
++ "WHERE m.uuid = ? AND c.category_id = ? "
++ "ORDER BY c.likes DESC, c.id DESC ;"
 
 export const getClothByClothId = 
 "SELECT c.uuid, c.id, c.brand_name, c.name, c.product_code, c.size, c.fit, c.color, c.url, c.rating, c.memo, c.cloth_img "
