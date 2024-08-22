@@ -69,4 +69,8 @@ export const status = {
   SIZE_BAD_REQUEST: { status: StatusCodes.BAD_REQUEST, isSuccess: false, code: "CLOSET004", message: "사이즈를 입력해주세요." },
   FIT_BAD_REQUEST: { status: StatusCodes.BAD_REQUEST, isSuccess: false, code: "CLOSET005", message: "핏을 입력해주세요." },
   CLOSET_BAD_REQUEST: { status: StatusCodes.BAD_REQUEST, isSuccess: false, code: "CLOSET006", message: "옷 정보를 입력해주세요." },
+
+  // recommend err
+  TRAIN_ERROR:{status: StatusCodes.NOT_FOUND, isSuccess: false, code: "TRAIN001", message: "모델 훈련 중 에러가 발생했습니다."},
+
 };

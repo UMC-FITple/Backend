@@ -18,6 +18,7 @@ export async function BodyInfoDataSaveDao(bodyInfo,uuid) {
     } catch (err) {
         if(err.name == "SequelizeUniqueConstraintError"){
             console.log("이미 정보가 존재합니다.");
+            console.log(err);
             return ({ isSuccess: false, code: 401 ,message: '이미 정보가 존재합니다.' });
         }
         console.log(err);
