@@ -2,36 +2,25 @@ import { query } from "express";
 import { pool } from "../../config/db.config.js";
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
-import { UserNicknameToClothIdAtFirst, UserNicknameToClothId, UserCategoryToClothIdAtFirst, UserCategoryToClothId, 
+import { UserNicknameToClothId, UserCategoryToClothId, 
     getClothByClothId, getUserIdToClothId, getUser, getFitToUserId, getStyleToUserId, 
-    UserNicknameToClothNameAtFirst, UserNicknameToClothName, UserCategoryToClothNameAtFirst, UserCategoryToClothName, 
-    brandToBrandName, userIdToNickname, userToNickname, getBrandToBrandId, UserNicknameToBrand } from "./search.sql.js";
+    UserNicknameToClothName, UserCategoryToClothName, 
+    brandToBrandName, userIdToNickname, userToNickname, getBrandToBrandId,
+    userToBrand, categoryToBrand, clothToBrand, clothCategoryToBrand } from "./search.sql.js";
 
 // nickname+cloth 반환
-    export const getNicknameToClothId = async (category, size, cursorId) => {
+    export const getNicknameToClothId = async (category) => {
     try {
         const conn = await pool.getConnection();
         
         if(typeof category == "undefined"){
-            if(typeof cursorId == "undefined"){
-                const [data] = await pool.query(UserNicknameToClothIdAtFirst);
-                conn.release();
-                return data;
-            }else{
-                const [data] = await pool.query(UserNicknameToClothId, cursorId);
-                conn.release();
-                return data;
-            }
+            const [data] = await pool.query(UserNicknameToClothId);
+            conn.release();
+            return data;
         }else{
-            if(typeof cursorId == "undefined"){
-                const [data] = await pool.query(UserCategoryToClothIdAtFirst, category);
-                conn.release();
-                return data;
-            }else{
-                const [data] = await pool.query(UserCategoryToClothId, [category, cursorId]);
-                conn.release();
-                return data;
-            }
+            const [data] = await pool.query(UserCategoryToClothId, category);
+            conn.release();
+            return data;
         }
     } catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
@@ -43,10 +32,16 @@ export const getPreviewCloth = async (clothId) => {
         const conn = await pool.getConnection();
         const cloth = await pool.query(getClothByClothId, clothId);
 
+        if(cloth[0].length == 0){
+            throw new BaseError(status.BAD_REQUEST);
+        }
         conn.release();
             
         return cloth;
     } catch (err) {
+        if (err.data.code === status.BAD_REQUEST.code) {
+            throw err;
+        }
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
 }
@@ -58,7 +53,12 @@ export const getUserToClothId = async (clothId) => {
         const userData =await pool.query(getUserIdToClothId, clothId);
 
         const userId = userData[0][0].uuid;
+
         const user = await pool.query(getUser, userId);
+        if(user[0].length == 0 ){
+            throw new BaseError(status.MYPROFILE_EMPTY_DATA);
+        }
+
         const fit = await pool.query(getFitToUserId, userId);
         const style = await pool.query(getStyleToUserId, userId);
 
@@ -70,36 +70,27 @@ export const getUserToClothId = async (clothId) => {
         return [ user, fit, style ];
         
     } catch (err) {
+        if (err.data.code === "MYPROFILE002") {
+            throw err;
+        }
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
 }
 
 
 // nickname+cloth 반환
-export const getNicknameToClothName = async (clothName, category, cursorId) => {
+export const getNicknameToClothName = async (clothName, category) => {
     try {
         const conn = await pool.getConnection();
         
         if(typeof category == "undefined"){
-            if(typeof cursorId == "undefined"){
-                const [data] = await pool.query(UserNicknameToClothNameAtFirst, clothName);
-                conn.release();
-                return data;
-            }else{
-                const [data] = await pool.query(UserNicknameToClothName, [clothName, cursorId]);
-                conn.release();
-                return data;
-            }
+            const [data] = await pool.query(UserNicknameToClothName, clothName);
+            conn.release();
+            return data;
         }else{
-            if(typeof cursorId == "undefined"){
-                const [data] = await pool.query(UserCategoryToClothNameAtFirst, [clothName, category]);
-                conn.release();
-                return data;
-            }else{
-                const [data] = await pool.query(UserCategoryToClothName, [clothName, category, cursorId]);
-                conn.release();
-                return data;
-            }
+            const [data] = await pool.query(UserCategoryToClothName, [clothName, category]);
+            conn.release();
+            return data;
         }
     } catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
@@ -123,17 +114,22 @@ export const getPreviewUser = async (userName) => {
     try {
         const conn = await pool.getConnection();
         const [userData] = await pool.query(userIdToNickname, userName);
-
         const result = [];
-        for (let i = 0; i < userData.length; i++) {
-            const userId = userData[i].uuid;
-            const [user] = await pool.query(userToNickname, userId);
-            const [fit] = await pool.query(getFitToUserId, userId);
-            const [style] = await pool.query(getStyleToUserId, userId);
-            result.push({user, fit, style});
+
+        if(userData.length == 0){
+            conn.release();
+            return -1;
+        }else{
+            for (let i = 0; i < userData.length; i++) {
+                const userId = userData[i].uuid;
+                const [user] = await pool.query(userToNickname, userId);
+                const [fit] = await pool.query(getFitToUserId, userId);
+                const [style] = await pool.query(getStyleToUserId, userId);
+                result.push({user, fit, style});
+            }
+            conn.release();
+            return result;
         }
-        conn.release();
-        return result;
     } catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
@@ -144,8 +140,10 @@ export const getPreviewUser = async (userName) => {
 export const getBrand = async (brandId) => {
     try {
         const conn = await pool.getConnection();
-        const [brand] = await pool.query(getBrandToBrandId, brandId);
-
+        const brand = await pool.query(getBrandToBrandId, brandId);
+        if(brand[0].length == 0){
+            throw new BaseError(status.PARAMETER_IS_WRONG);
+        }
         conn.release();
         return brand;
     } catch (err) {
@@ -154,29 +152,24 @@ export const getBrand = async (brandId) => {
 }
 
 // brand cloth 조회
-export const getNicknameToBrand = async (brandId, clothName, category, size) => {
+export const getNicknameToBrand = async (brandId, clothName, category) => {
     try {
         const conn = await pool.getConnection();
-        let query = UserNicknameToBrand;
-
+ 
         if(typeof clothName == "undefined" && typeof category == "undefined"){
-            query += "ORDER BY c.id DESC LIMIT ? ;";
-            const [data] = await pool.query(query, [brandId, size]);
+            const [data] = await pool.query(userToBrand, brandId);
             conn.release();
             return data;
         }else if(typeof clothName == "undefined"){
-            query += "WHERE c.category_id = ? ORDER BY c.id DESC LIMIT ? ;"
-            const [data] = await pool.query(query, [brandId, category, size]);
+            const [data] = await pool.query(categoryToBrand, [brandId, category]);
             conn.release();
             return data;
         }else if(typeof category == "undefined"){
-            query += "WHERE c.name REGEXP ? ORDER BY c.id DESC LIMIT ? ;"
-            const [data] = await pool.query(query, [brandId, clothName, size]);
+            const [data] = await pool.query(clothToBrand, [brandId, clothName]);
             conn.release();
             return data;
         }else{
-            query += "WHERE c.name REGEXP ? AND c.category_id = ? ORDER BY c.id DESC LIMIT ? ;"
-            const [data] = await pool.query(query, [brandId, clothName, category, size]);
+            const [data] = await pool.query(clothCategoryToBrand, [brandId, clothName, category]);
             conn.release();
             return data;
         }

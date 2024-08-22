@@ -12,7 +12,7 @@ export const status = {
   METHOD_NOT_ALLOWED: { status: StatusCodes.METHOD_NOT_ALLOWED, isSuccess: false, code: "COMMON003", message: "지원하지 않는 Http Method 입니다." },
   FORBIDDEN: { status: StatusCodes.FORBIDDEN, isSuccess: false, code: "COMMON004", message: "금지된 요청입니다." },
   NOT_FOUND: { status: StatusCodes.NOT_FOUND, isSuccess: false, code: "COMMON005", message: "요청한 페이지를 찾을 수 없습니다." },
-  PARAMETER_IS_WRONG: { status: StatusCodes.PARAMETER_IS_WRONG, isSuccess: false, code: "COMMON006", message: "잘못된 파라미터가 전달되었습니다." },
+  PARAMETER_IS_WRONG: { status: StatusCodes.BAD_REQUEST, isSuccess: false, code: "COMMON006", message: "잘못된 파라미터가 전달되었습니다." },
   
   // signup err
   USERID_ALREADY_EXIST: { status: StatusCodes.UNAUTHORIZED, isSuccess: false, code: "SIGNUP001", message: "이미 존재하는 아이디입니다." },
@@ -61,6 +61,14 @@ export const status = {
   MYPROFILE_PREFER_FIT_LENGHT_ERROR: { status: StatusCodes.LENGTH_REQUIRED, isSuccess: false, code: "MYPROFILE011", message: "선호 핏 개수를 다시 확인해주세요." },
   MYPROFILE_PREFER_STYLE_LENGHT_ERROR: { status: StatusCodes.PRECONDITION_FAILED, isSuccess: false, code: "MYPROFILE012", message: "선호 스타일 개수를 다시 확인해주세요." },
   MYPROFILE_NICKNAME_SET_ERROR: { status: StatusCodes.REQUEST_TOO_LONG, isSuccess: false, code: "MYPROFILE013", message: "닉네임을 다시 설정해주세요." },
+
+  //closet err
+  NAME_BAD_REQUEST: { status: StatusCodes.BAD_REQUEST, isSuccess: false, code: "CLOSET001", message: "제품명을 입력해주세요." },
+  CODE_BAD_REQUEST: { status: StatusCodes.BAD_REQUEST, isSuccess: false, code: "CLOSET002", message: "제품번호를 입력해주세요." },
+  CATEGORY_BAD_REQUEST: { status: StatusCodes.BAD_REQUEST, isSuccess: false, code: "CLOSET003", message: "분류를 입력해주세요." },
+  SIZE_BAD_REQUEST: { status: StatusCodes.BAD_REQUEST, isSuccess: false, code: "CLOSET004", message: "사이즈를 입력해주세요." },
+  FIT_BAD_REQUEST: { status: StatusCodes.BAD_REQUEST, isSuccess: false, code: "CLOSET005", message: "핏을 입력해주세요." },
+  CLOSET_BAD_REQUEST: { status: StatusCodes.BAD_REQUEST, isSuccess: false, code: "CLOSET006", message: "옷 정보를 입력해주세요." },
 
   // recommend err
   TRAIN_ERROR:{status: StatusCodes.NOT_FOUND, isSuccess: false, code: "TRAIN001", message: "모델 훈련 중 에러가 발생했습니다."},

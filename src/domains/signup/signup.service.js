@@ -23,7 +23,7 @@ export async function SignupService(signupData) {
         const accessToken = jwt.sign({ 
             uuid: result.uuid,
         }, process.env.JWT_SECRET_KEY, { 
-            expiresIn: '5m' 
+            expiresIn: '30m' 
         });
     
         const refreshToken = jwt.sign({

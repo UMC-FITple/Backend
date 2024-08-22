@@ -1,0 +1,80 @@
+paths:
+  /FITple/manualresults/{clothId}/best-fit:
+    get:
+      tags:
+        - ManualSizeResults
+      summary: 유저가 수기 등록한 사이즈 결과 반환
+      parameters:
+        - in: path
+          name: clothId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isSuccess:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: "최적의 사이즈를 성공적으로 찾았습니다."
+                  result:
+                    type: object
+                    properties:
+                      compareSize:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 8
+                          size:
+                            type: string
+                            example: "S"
+                          total_length:
+                            type: integer
+                            example: 65
+                          shoulder_width:
+                            type: integer
+                            example: 45
+                          chest_width:
+                            type: integer
+                            example: 50
+                          armhole_width:
+                            type: integer
+                            example: 20
+                          sleeve_width:
+                            type: integer
+                            example: 18
+                          sleeve_length:
+                            type: integer
+                            example: 60
+                          hem_width:
+                            type: integer
+                            example: 48
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isSuccess:
+                    type: boolean
+                    example: false
+                  code:
+                    type: integer
+                    example: 500
+                  message:
+                    type: string
+                    example: "서버 오류가 발생했습니다."
+                  data:
+                    type: object
