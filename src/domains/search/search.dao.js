@@ -2,37 +2,25 @@ import { query } from "express";
 import { pool } from "../../config/db.config.js";
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
-import { UserNicknameToClothIdAtFirst, UserNicknameToClothId, UserCategoryToClothIdAtFirst, UserCategoryToClothId, 
+import { UserNicknameToClothId, UserCategoryToClothId, 
     getClothByClothId, getUserIdToClothId, getUser, getFitToUserId, getStyleToUserId, 
-    UserNicknameToClothNameAtFirst, UserNicknameToClothName, UserCategoryToClothNameAtFirst, UserCategoryToClothName, 
+    UserNicknameToClothName, UserCategoryToClothName, 
     brandToBrandName, userIdToNickname, userToNickname, getBrandToBrandId,
     userToBrand, categoryToBrand, clothToBrand, clothCategoryToBrand } from "./search.sql.js";
 
 // nickname+cloth 반환
-    export const getNicknameToClothId = async (category, size, cursorId) => {
+    export const getNicknameToClothId = async (category) => {
     try {
         const conn = await pool.getConnection();
         
         if(typeof category == "undefined"){
-            if(typeof cursorId == "undefined"){
-                const [data] = await pool.query(UserNicknameToClothIdAtFirst);
-                conn.release();
-                return data;
-            }else{
-                const [data] = await pool.query(UserNicknameToClothId, cursorId);
-                conn.release();
-                return data;
-            }
+            const [data] = await pool.query(UserNicknameToClothId);
+            conn.release();
+            return data;
         }else{
-            if(typeof cursorId == "undefined"){
-                const [data] = await pool.query(UserCategoryToClothIdAtFirst, category);
-                conn.release();
-                return data;
-            }else{
-                const [data] = await pool.query(UserCategoryToClothId, [category, cursorId]);
-                conn.release();
-                return data;
-            }
+            const [data] = await pool.query(UserCategoryToClothId, category);
+            conn.release();
+            return data;
         }
     } catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
@@ -91,30 +79,18 @@ export const getUserToClothId = async (clothId) => {
 
 
 // nickname+cloth 반환
-export const getNicknameToClothName = async (clothName, category, cursorId) => {
+export const getNicknameToClothName = async (clothName, category) => {
     try {
         const conn = await pool.getConnection();
         
         if(typeof category == "undefined"){
-            if(typeof cursorId == "undefined"){
-                const [data] = await pool.query(UserNicknameToClothNameAtFirst, clothName);
-                conn.release();
-                return data;
-            }else{
-                const [data] = await pool.query(UserNicknameToClothName, [clothName, cursorId]);
-                conn.release();
-                return data;
-            }
+            const [data] = await pool.query(UserNicknameToClothName, clothName);
+            conn.release();
+            return data;
         }else{
-            if(typeof cursorId == "undefined"){
-                const [data] = await pool.query(UserCategoryToClothNameAtFirst, [clothName, category]);
-                conn.release();
-                return data;
-            }else{
-                const [data] = await pool.query(UserCategoryToClothName, [clothName, category, cursorId]);
-                conn.release();
-                return data;
-            }
+            const [data] = await pool.query(UserCategoryToClothName, [clothName, category]);
+            conn.release();
+            return data;
         }
     } catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);

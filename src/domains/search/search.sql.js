@@ -1,26 +1,13 @@
-export const UserNicknameToClothIdAtFirst = 
+export const UserNicknameToClothId = 
 "SELECT c.id, m.nickname, m.img_url, c.brand_name, c.name, c.size, c.fit, c.cloth_img "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
-+ "ORDER BY c.id DESC LIMIT 8 ;"
++ "ORDER BY c.id DESC ;"
 
-export const UserNicknameToClothId = 
-"SELECT c.id, m.nickname, m.img_url, c.brand_name, c.name, c.size, c.fit, c.id, c.cloth_img "
-+ "FROM member m JOIN cloth c on c.uuid = m.uuid "
-+ "WHERE c.id < ? "
-+ "ORDER BY c.id DESC LIMIT 8 ;"
-
-export const UserCategoryToClothIdAtFirst = 
+export const UserCategoryToClothId = 
 "SELECT c.id, m.nickname, m.img_url, c.brand_name, c.name, c.size, c.fit, c.cloth_img "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
 + "WHERE c.category_id = ? "
-+ "ORDER BY c.id DESC LIMIT 8 ;"
-
-export const UserCategoryToClothId = 
-"SELECT c.id, m.nickname, m.img_url, c.brand_name, c.name, c.size, c.fit, c.id, c.cloth_img "
-+ "FROM member m JOIN cloth c on c.uuid = m.uuid "
-+ "WHERE c.category_id = ? AND c.id < ? "
-+ "ORDER BY c.id DESC LIMIT 8 ;"
-
++ "ORDER BY c.id DESC ;"
 
 export const getClothByClothId = 
 "SELECT m.uuid, c.id, c.brand_name, c.name, c.product_code, c.size, c.fit, c.color, c.url, c.memo, c.cloth_img "
@@ -49,29 +36,17 @@ export const getStyleToUserId =
 + "WHERE us.uuid = ? ;"
 
 
-export const UserNicknameToClothNameAtFirst = 
+export const UserNicknameToClothName = 
 "SELECT c.id, m.nickname, m.img_url, c.brand_name, c.name, c.size, c.fit, c.cloth_img "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
 + "WHERE c.name REGEXP ? "
-+ "ORDER BY c.id DESC LIMIT 8 ;"
++ "ORDER BY c.id DESC ;"
 
-export const UserNicknameToClothName = 
-"SELECT c.id, m.nickname, m.img_url, c.brand_name, c.name, c.size, c.fit, c.id, c.cloth_img "
-+ "FROM member m JOIN cloth c on c.uuid = m.uuid "
-+ "WHERE c.name REGEXP ? AND c.id < ? "
-+ "ORDER BY c.id DESC LIMIT 8 ;"
-
-export const UserCategoryToClothNameAtFirst = 
+export const UserCategoryToClothName = 
 "SELECT c.id, m.nickname, m.img_url, c.brand_name, c.name, c.size, c.fit, c.cloth_img "
 + "FROM member m JOIN cloth c on c.uuid = m.uuid "
 + "WHERE c.name REGEXP ? AND c.category_id = ? "
-+ "ORDER BY c.id DESC LIMIT 8 ;"
-
-export const UserCategoryToClothName = 
-"SELECT c.id, m.nickname, m.img_url, c.brand_name, c.name, c.size, c.fit, c.id, c.cloth_img "
-+ "FROM member m JOIN cloth c on c.uuid = m.uuid "
-+ "WHERE c.name REGEXP ? AND c.category_id = ? AND c.id < ? "
-+ "ORDER BY c.id DESC LIMIT 8 ;"
++ "ORDER BY c.id DESC ;"
 
 export const brandToBrandName = 
 "SELECT b.id, b.name, b.eng_name, b.brand_img "
