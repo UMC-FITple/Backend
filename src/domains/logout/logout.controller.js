@@ -4,7 +4,7 @@ import { status } from "../../config/response.status.js";
 export async function LogoutLogic(req, res) {
     try {
         if(!req.cookies.accessToken || !req.cookies.refreshToken){
-            return res.json(401).send(response(status.BAD_REQUEST))
+            return res.json(400).send(response(status.BAD_REQUEST))
         }
         res.clearCookie('accessToken');
         res.clearCookie('refreshToken');
