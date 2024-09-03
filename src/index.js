@@ -21,6 +21,7 @@ import { tempRouter } from './routes/temp-token.js';
 import compareSizeRoutes from './routes/comparesize.routes.js';
 import manualResultsRoutes from './routes/manualresults.routes.js';
 import { profileRouter } from './routes/profile.js';
+import { logoutRouter } from './routes/logout.js';
 
 dotenv.config();
 
@@ -50,6 +51,7 @@ app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 // router setting
 app.use("/FITple/signup",signupRouter);
 app.use("/FITple/login",loginRouter);
+app.use('/FITple/logout',logoutRouter);
 app.use('/FITple/search', searchRouter);
 app.use('/FITple/uploadsize', sizeUploadRoutes);
 app.use("/FITple/refreshToken",refreshTokenRouter);
