@@ -383,7 +383,7 @@ paths:
                 type: string
                 example: 서버 에러, 관리자에게 문의 바랍니다.
 
-  /FITple/my/closet/{clothId}/add:
+  /FITple/search/{clothId}/add:
     get:
       tags:
         - Closet
@@ -445,6 +445,155 @@ paths:
               message:
                 type: string
                 example: 잘못된 요청입니다.
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
+
+    post:
+      tags:
+        - Closet
+      summary: 옷 등록 로직
+      operationId: closet
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  description: 이미지 URL
+                  example: https://fitple-dev-bucket.s3.ap-northeast-2.amazonaws.com/image/1724229063226-photo_0%20%2811%29.jpg
+                brand:
+                  type: string
+                  description: 브랜드
+                  example: 아디다스
+                name:
+                  type: string
+                  description: 제품명
+                  example: 에센셜 풀업 후디
+                product_code:
+                  type: string
+                  description: 제품번호
+                  example: IL2516
+                category:
+                  type: integer
+                  description: 분류
+                  example: 2
+                size:
+                  type: string
+                  description: 사이즈
+                  example: S
+                fit:
+                  type: string
+                  description: 핏
+                  example: 레귤러
+                color:
+                  type: string
+                  description: 색상
+                  example: 화이트
+                url:
+                  type: string
+                  description: URL
+                  example: https://adidas.co.kr/1245
+                rating:
+                  type: integer
+                  description: 평가
+                  example: 4
+                memo:
+                  type: string
+                  description: 메모
+                  example: 길이는 딱 맞고, 팔이 조금 길다.
+                length:
+                  type: integer
+                  example: 69
+                shoulder:
+                  type: integer
+                  example: 71
+                chest:
+                  type: integer
+                  example: 73
+                armhole:
+                  type: integer
+                  example: null
+                sleeve:
+                  type: integer
+                  example: null
+                sleeve_length:
+                  type: integer
+                  example: 75
+                hem:
+                  type: integer
+                  example: null
+              required:
+                - name
+                - product_code
+                - category
+                - size
+                - fit
+      responses:
+        '200':
+          description: 옷 등록 성공
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: array
+                example: {
+                  "clothData": [
+                    {
+                      "cloth_id": 20
+                    }
+                  ]
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
 
         '500':
           description: 서버 에러

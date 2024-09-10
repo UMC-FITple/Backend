@@ -460,7 +460,7 @@ paths:
                 - fit
       responses:
         '200':
-          description: 옷장 메인화면 조회 성공
+          description: 옷 등록 성공
           schema:
             type: object
             properties:
