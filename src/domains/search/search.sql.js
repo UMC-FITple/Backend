@@ -98,3 +98,11 @@ export const clothCategoryToBrand =
 + "JOIN brand b on c.brand_name = b.name "
 + "WHERE b.id = ? AND c.name REGEXP ? AND c.category_id = ? "
 + "ORDER BY c.id DESC ;"
+
+export const insertCloth = 
+"INSERT INTO cloth (uuid, cloth_img, brand_name, name, product_code, category_id, size, fit, color, url, rating, memo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ;"
+
+export const insertRealSize = 
+"INSERT INTO real_size (cloth_id, length, shoulder, chest, armhole, sleeve, sleeve_length, hem) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ;"
+
+export const getCloth = "SELECT * FROM cloth WHERE id = ? ; "
