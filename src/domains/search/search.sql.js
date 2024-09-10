@@ -10,7 +10,7 @@ export const UserCategoryToClothId =
 + "ORDER BY c.id DESC ;"
 
 export const getClothByClothId = 
-"SELECT m.uuid, c.id, c.brand_name, c.name, c.product_code, c.size, c.fit, c.color, c.url, c.memo, c.cloth_img "
+"SELECT m.uuid, c.id, c.brand_name, c.name, c.product_code, c.size, c.fit, c.color, c.url, c.memo, c.cloth_img, c.category_id "
 + "FROM cloth c JOIN member m on c.uuid = m.uuid "
 + "WHERE c.id = ? ;"
 

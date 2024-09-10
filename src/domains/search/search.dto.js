@@ -143,3 +143,18 @@ export const SearchBrandResponseDTO = (brand, clothData) => {
     }
     return {"brand_name": brand[0][0].name, "eng_name": brand[0][0].eng_name, "brand_image":brand[0][0].brand_img, "clothData": cloth};
 }
+
+export const previewMyClothResponseDTO = (data) => {
+
+    const cloth = [];
+
+    cloth.push({
+        "brand": data[0][0].brand_name,
+        "cloth_name": data[0][0].name,
+        "product_code": data[0][0].product_code,
+        "cloth_image": data[0][0].cloth_img,
+        "category_id": data[0][0].category_id
+    })
+
+    return { "clothData": cloth };
+}

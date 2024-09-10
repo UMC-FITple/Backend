@@ -177,3 +177,18 @@ export const getNicknameToBrand = async (brandId, clothName, category) => {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
 }
+
+export const getPreviewMyCloth = async (userId, clothId) => {
+    try {
+        const conn = await pool.getConnection();
+        const cloth = await pool.query(getClothByClothId, [userId, clothId]);
+        if(cloth[0].length == 0){
+            throw new BaseError(status.FORBIDDEN);
+        }
+        conn.release();
+        console.log("\n잉", cloth);
+        return cloth;
+    } catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
