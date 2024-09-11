@@ -386,7 +386,7 @@ paths:
   /FITple/search/{clothId}/add:
     get:
       tags:
-        - Closet
+        - Search
       summary: 추가할 옷 상세 조회 로직
       security:
         - bearerAuth: []
@@ -466,9 +466,9 @@ paths:
 
     post:
       tags:
-        - Closet
+        - Search
       summary: 옷 등록 로직
-      operationId: closet
+      operationId: search
       security:
         - bearerAuth: []
       requestBody:
