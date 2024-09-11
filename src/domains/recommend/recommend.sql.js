@@ -8,7 +8,7 @@ export const findUserToBody =
 + "FROM body_info b "
 + "WHERE NOT uuid = ? and height BETWEEN ?-5 AND ?+5 "
 + "AND weight BETWEEN ?-5 AND ?+5 "
-+ "ORDER BY ABS(height-?) + ABS(weight-?) ASC LIMIT 24;"
++ "ORDER BY ABS(height-?) + ABS(weight-?) ASC LIMIT 8;"
 
 export const getFitToUserId =
 "SELECT uf.uuid, uf.pf_name "
@@ -24,3 +24,11 @@ export const findUserToFit =
 "SELECT uf.uuid, uf.style_name "
 + "FROM user_fit uf "
 + "WHERE uf.pf_name = ? ;"
+
+
+export const findUserAllToBody =
+"SELECT b.uuid "
++ "FROM body_info b "
++ "WHERE NOT uuid = ? and height BETWEEN ?-5 AND ?+5 "
++ "AND weight BETWEEN ?-5 AND ?+5 "
++ "ORDER BY ABS(height-?) + ABS(weight-?) ASC LIMIT 24;"
