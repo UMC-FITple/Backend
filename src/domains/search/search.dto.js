@@ -143,3 +143,31 @@ export const SearchBrandResponseDTO = (brand, clothData) => {
     }
     return {"brand_name": brand[0][0].name, "eng_name": brand[0][0].eng_name, "brand_image":brand[0][0].brand_img, "clothData": cloth};
 }
+
+export const previewMyClothResponseDTO = (data) => {
+
+    const cloth = [];
+
+    cloth.push({
+        "brand": data[0][0].brand_name,
+        "cloth_name": data[0][0].name,
+        "product_code": data[0][0].product_code,
+        "cloth_image": data[0][0].cloth_img,
+        "category_id": data[0][0].category_id
+    })
+
+    return { "clothData": cloth };
+}
+
+export const addClothResponseDTO = (data) => {
+    
+    const cloth = [];
+    if(data.length == 0){
+        cloth.push("제품이 등록되지 않았어요.");
+    }else{
+        cloth.push({
+            "cloth_id": data[0][0].id
+        })
+    }
+    return {"clothData": cloth};
+}
