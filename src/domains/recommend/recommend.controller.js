@@ -9,7 +9,7 @@ export const bodyInfo = async (req, res, next) => {
 }
 
 export const bodyInfoAll = async (req, res, next) => {
-    console.log("비슷한 체형의 유저를 추천합니다");
+    console.log("비슷한 체형의 유저를 모두 추천합니다");
     const userId = res.locals.uuid;
     res.send(response(status.SUCCESS, await getBodyInfoAll(userId)));
 }
