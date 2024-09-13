@@ -171,3 +171,8 @@ export const addClothResponseDTO = (data) => {
     }
     return {"clothData": cloth};
 }
+
+export const addWishDTO = (data) => {
+    
+    return;
+}

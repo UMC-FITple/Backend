@@ -106,3 +106,5 @@ export const insertRealSize =
 "INSERT INTO real_size (cloth_id, length, shoulder, chest, armhole, sleeve, sleeve_length, hem) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ;"
 
 export const getCloth = "SELECT * FROM cloth WHERE id = ? ; "
+
+export const addWishSQL = "SELECT * FROM wish WHERE from_id = ? AND to_id = ? ; "

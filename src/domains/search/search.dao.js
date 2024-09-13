@@ -7,7 +7,8 @@ import { UserNicknameToClothId, UserCategoryToClothId,
     UserNicknameToClothName, UserCategoryToClothName, 
     brandToBrandName, userIdToNickname, userToNickname, getBrandToBrandId,
     userToBrand, categoryToBrand, clothToBrand, clothCategoryToBrand,
-    insertCloth, insertRealSize, getCloth } from "./search.sql.js";
+    insertCloth, insertRealSize, getCloth,
+    addWishSQL } from "./search.sql.js";
 
 // nickname+cloth 반환
     export const getNicknameToClothId = async (category) => {
@@ -222,6 +223,20 @@ export const getAddCloth = async (clothId) => {
         conn.release();
         return cloth;
     } catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+// Wish 추가
+export const addWishDAO = async (data) => {
+    try{
+        const conn = await pool.getConnection();
+
+        const user = await pool.query(addWishSQL, [data.uuid, data.size]);
+
+        conn.release();
+        return cloth[0].insertId;
+    }catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
 }
