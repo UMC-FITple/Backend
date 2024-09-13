@@ -31,3 +31,17 @@ export const findUserToFit =
 "SELECT uf.uuid, uf.style_name "
 + "FROM user_fit uf "
 + "WHERE uf.pf_name = ? ;"
+
+export const findUserAllToStyle1 =
+"SELECT DISTINCT uuid "
++ "FROM user_style "
++ "WHERE NOT uuid = ? "
++ "AND style_name = ? "
++ "ORDER BY uuid LIMIT 24;"
+
+export const findUserAllToStyle2 =
+"SELECT DISTINCT uuid "
++ "FROM user_style "
++ "WHERE NOT uuid = ? "
++ "AND (style_name = ? OR style_name = ?) "
++ "ORDER BY uuid LIMIT 24;"
