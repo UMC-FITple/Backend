@@ -1,0 +1,182 @@
+paths:
+  /FITple/recommend/style:
+    get:
+      tags:
+        - Recommend
+      summary: 비슷한 스타일의 유저 추천
+      operationId: getRecommendStyle
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: 비슷한 스타일의 유저 조회 성공
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: array
+                example: {
+                  "userData": [
+                    {
+                      "user_id": 32,
+                      "nickname": "선도하는요리사",
+                      "user_image": "https://fitple-dev-bucket.s3.ap-northeast-2.amazonaws.com/image/1724175918950-fitple_logo.png",
+                      "height": 165,
+                      "weight": 56,
+                      "prefer_fit": [
+                        "오버",
+                        "슬림"
+                      ],
+                      "prefer_style": [
+                        "모던시크",
+                        "유니크"
+                      ]
+                    },
+                    {
+                      "user_id": 23,
+                      "nickname": "지속가능한펭귄",
+                      "user_image": "https://fitple-dev-bucket.s3.ap-northeast-2.amazonaws.com/image/1724175918950-fitple_logo.png",
+                      "height": 166,
+                      "weight": 59,
+                      "prefer_fit": [
+                        "레귤러",
+                        "슬림"
+                      ],
+                      "prefer_style": [
+                        "러블리",
+                        "아메카지"
+                      ]
+                    }
+                  ]
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              isSuccess:
+                type: boolean
+              code:
+                type: integer
+              message:
+                type: string
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              isSuccess:
+                type: boolean
+              code:
+                type: integer
+              message:
+                type: string
+
+  /FITple/recommend/style/all:
+    get:
+      tags:
+        - Recommend
+      summary: 비슷한 스타일의 유저 모두 추천
+      operationId: getRecommendStyleAll
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: 비슷한 스타일의 유저 모두 조회 성공
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: array
+                example: {
+                  "userData": [
+                    {
+                      "user_id": 32,
+                      "nickname": "선도하는요리사",
+                      "user_image": "https://fitple-dev-bucket.s3.ap-northeast-2.amazonaws.com/image/1724175918950-fitple_logo.png",
+                      "height": 165,
+                      "weight": 56,
+                      "prefer_fit": [
+                        "오버",
+                        "슬림"
+                      ],
+                      "prefer_style": [
+                        "모던시크",
+                        "유니크"
+                      ]
+                    },
+                    {
+                      "user_id": 23,
+                      "nickname": "지속가능한펭귄",
+                      "user_image": "https://fitple-dev-bucket.s3.ap-northeast-2.amazonaws.com/image/1724175918950-fitple_logo.png",
+                      "height": 166,
+                      "weight": 59,
+                      "prefer_fit": [
+                        "레귤러",
+                        "슬림"
+                      ],
+                      "prefer_style": [
+                        "러블리",
+                        "아메카지"
+                      ]
+                    }
+                  ]
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              isSuccess:
+                type: boolean
+              code:
+                type: integer
+              message:
+                type: string
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+              isSuccess:
+                type: boolean
+              code:
+                type: integer
+              message:
+                type: string
