@@ -228,14 +228,13 @@ export const getAddCloth = async (clothId) => {
 }
 
 // Wish 추가
-export const addWishDAO = async (data) => {
+export const addWishDAO = async (userId, clothId) => {
     try{
         const conn = await pool.getConnection();
-
-        const user = await pool.query(addWishSQL, [data.uuid, data.size]);
+        const wish = await pool.query(addWish, [clothId, userId]);
 
         conn.release();
-        return cloth[0].insertId;
+        return wish[0].insertId;
     }catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
