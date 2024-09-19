@@ -22,6 +22,7 @@ import compareSizeRoutes from './routes/comparesize.routes.js';
 import manualResultsRoutes from './routes/manualresults.routes.js';
 import { profileRouter } from './routes/profile.js';
 import { logoutRouter } from './routes/logout.js';
+import { recommendRouter } from './routes/recommend.js';
 
 dotenv.config();
 
@@ -62,6 +63,7 @@ app.use('/temp-token', tempRouter);
 app.use('/FITple/comparesizes', compareSizeRoutes);
 app.use('/FITple/manualresults', manualResultsRoutes);
 app.use('/FITple/profile', profileRouter);
+app.use('/FITple/recommend', recommendRouter);
 
 // error handling
 app.use((req, res, next) => {
