@@ -8,7 +8,7 @@ import { UserNicknameToClothId, UserCategoryToClothId,
     brandToBrandName, userIdToNickname, userToNickname, getBrandToBrandId,
     userToBrand, categoryToBrand, clothToBrand, clothCategoryToBrand,
     insertCloth, insertRealSize, getCloth,
-    addWishSQL } from "./search.sql.js";
+    addWish } from "./search.sql.js";
 
 // nickname+cloth 반환
     export const getNicknameToClothId = async (category) => {
