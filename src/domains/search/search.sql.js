@@ -107,6 +107,8 @@ export const insertRealSize =
 
 export const getCloth = "SELECT * FROM cloth WHERE id = ? ; "
 
-export const addWish = "INSERT INTO wish (cloth_id, wisher_uuid) VALUES (?, ?) ;"
+export const addWishSQL = "INSERT INTO wish (cloth_id, wisher_uuid) VALUES (?, ?) ;"
 
-export const delWish = "DELETE FROM wish WHERE cloth_id = ? AND wisher_uuid = ? ;"
+export const delWishSQL = "DELETE FROM wish WHERE cloth_id = ? AND wisher_uuid = ? ;"
+
+export const getWishSQL = "SELECT id FROM wish WHERE cloth_id = ? AND wisher_uuid = ? ;"

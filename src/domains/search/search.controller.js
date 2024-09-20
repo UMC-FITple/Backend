@@ -1,6 +1,6 @@
 import { response } from "../../config/response.js";
 import { status } from "../../config/response.status.js";
-import { getSearch, getCloth, getSearchResult, getSearchBrand, getMyCloth } from "./search.provider.js";
+import { getSearch, getCloth, getSearchResult, getSearchBrand, getMyCloth, getMyWish } from "./search.provider.js";
 import { addMyCloth, addMyWish, delMyWish } from "./search.service.js";
 
 export const searchPreview = async (req, res, next) => {
@@ -45,4 +45,10 @@ export const delWish = async (req, res, next) => {
     console.log("관심 있는 옷 삭제를 요청하였습니다!");
     const userId = res.locals.uuid;
     res.send(response(status.SUCCESS, await delMyWish(userId, req.params.clothId)));
+}
+
+export const getWish = async (req, res, next) => {
+    console.log("관심 있는 옷 조회를 요청하였습니다!");
+    const userId = res.locals.uuid;
+    res.send(response(status.SUCCESS, await getMyWish(userId, req.params.clothId)));
 }

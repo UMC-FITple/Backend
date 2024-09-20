@@ -1,7 +1,7 @@
 import express from "express";
 import asyncHandler from 'express-async-handler';
 import { LoginCheck } from "../middlewares/logincheck.js";
-import { searchPreview, clothView, searchView, brandView, addClothPreview, addCloth, addWish, delWish } from "../domains/search/search.controller.js";
+import { searchPreview, clothView, searchView, brandView, addClothPreview, addCloth, addWish, delWish, getWish } from "../domains/search/search.controller.js";
 
 export const searchRouter = express.Router({mergeParams: true});
 
@@ -28,3 +28,6 @@ searchRouter.post('/:clothId/wish', LoginCheck, asyncHandler(addWish));
 
 //검색-wish에서 삭제
 searchRouter.delete('/:clothId/wish', LoginCheck, asyncHandler(delWish));
+
+//검색-wish
+searchRouter.get('/:clothId/wish', LoginCheck, asyncHandler(getWish));
