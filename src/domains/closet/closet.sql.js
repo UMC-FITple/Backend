@@ -67,5 +67,8 @@ export const updateRealSize =
 "UPDATE real_size SET length=?, shoulder=?, chest=?, armhole=?, sleeve=?, sleeve_length=?, hem=? "
 + "WHERE cloth_id = ? "
 
+export const myClothSizeDel =
+"DELETE FROM real_size WHERE cloth_id = ? ;"
 
-export const myClothDel = "DELETE FROM cloth WHERE uuid = ? AND id = ? ;"
+export const myClothDel =
+"DELETE FROM cloth WHERE uuid = ? AND id = ? ;"
