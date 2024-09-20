@@ -8,7 +8,7 @@ import { UserNicknameToClothId, UserCategoryToClothId,
     brandToBrandName, userIdToNickname, userToNickname, getBrandToBrandId,
     userToBrand, categoryToBrand, clothToBrand, clothCategoryToBrand,
     insertCloth, insertRealSize, getCloth,
-    addWish } from "./search.sql.js";
+    addWish, delWish } from "./search.sql.js";
 
 // nickname+cloth 반환
     export const getNicknameToClothId = async (category) => {
@@ -232,6 +232,19 @@ export const addWishDAO = async (userId, clothId) => {
     try{
         const conn = await pool.getConnection();
         const wish = await pool.query(addWish, [clothId, userId]);
+
+        conn.release();
+        return wish[0].insertId;
+    }catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+// Wish 삭제
+export const delWishDAO = async (userId, clothId) => {
+    try{
+        const conn = await pool.getConnection();
+        const wish = await pool.query(delWish, [clothId, userId]);
 
         conn.release();
         return wish[0].insertId;

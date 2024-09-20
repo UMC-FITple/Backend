@@ -175,3 +175,7 @@ export const addClothResponseDTO = (data) => {
 export const addWishDTO = (wish) => {
     return {"wish_id": wish};
 }
+
+export const delWishDTO = (wish) => {
+    return {"wish_id": wish};
+}

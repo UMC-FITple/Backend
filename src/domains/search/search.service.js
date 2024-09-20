@@ -1,7 +1,7 @@
 import { BaseError } from "../../config/error.js";
 import { status } from "../../config/response.status.js";
-import { addClothResponseDTO, addWishDTO } from "./search.dto.js";
-import { clothAdd, getAddCloth, addWishDAO } from "./search.dao.js";
+import { addClothResponseDTO, addWishDTO, delWishDTO } from "./search.dto.js";
+import { clothAdd, getAddCloth, addWishDAO, delWishDAO } from "./search.dao.js";
 
 export const addMyCloth = async (userId, body) => {
     const requiredFields = ['name', 'product_code', 'category', 'size', 'fit'];
@@ -50,4 +50,8 @@ export const addMyCloth = async (userId, body) => {
 
 export const addMyWish = async (userId, clothId) => {
     return addWishDTO(await addWishDAO(userId, clothId));
+}
+
+export const delMyWish = async (userId, clothId) => {
+    return delWishDTO(await delWishDAO(userId, clothId));
 }
