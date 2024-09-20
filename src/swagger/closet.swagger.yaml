@@ -10,7 +10,7 @@ paths:
       tags:
         - Closet
       summary: 내 옷장 조회 로직
-      operationId: closet
+      operationId: closetPreview
       security:
         - bearerAuth: []
       parameters:
@@ -107,6 +107,7 @@ paths:
       tags:
         - Closet
       summary: 내 옷 상세 조회 로직
+      operationId: closetView
       security:
         - bearerAuth: []
       parameters:
@@ -235,7 +236,7 @@ paths:
       tags:
         - Closet
       summary: 브랜드 조회 로직
-      operationId: closet
+      operationId: getBrand
       parameters:
         - name: name
           in: query
@@ -294,7 +295,7 @@ paths:
       tags:
         - Closet
       summary: 브랜드 등록 로직
-      operationId: closet
+      operationId: addBrand
       requestBody:
         required: true
         content:
@@ -377,7 +378,7 @@ paths:
       tags:
         - Closet
       summary: 옷 직접 등록 로직
-      operationId: closet
+      operationId: addCloth
       security:
         - bearerAuth: []
       requestBody:
@@ -527,7 +528,7 @@ paths:
       tags:
         - Closet
       summary: 옷 이미지 업로드
-      operationId: closet
+      operationId: addClothImg
       security:
         - bearerAuth: []
       requestBody:
@@ -605,6 +606,7 @@ paths:
       tags:
         - Closet
       summary: 내 옷 수정 로직
+      operationId: putCloth
       security:
         - bearerAuth: []
       parameters:
@@ -755,6 +757,7 @@ paths:
       tags:
         - Closet
       summary: 내 옷 삭제 로직
+      operationId: delCloth
       security:
         - bearerAuth: []
       parameters:
