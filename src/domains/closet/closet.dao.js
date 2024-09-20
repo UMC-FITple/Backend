@@ -4,7 +4,7 @@ import { status } from "../../config/response.status.js";
 import { myClosetItem, myClosetCategoryItem, myClosetSearchItem, myClosetSearchCategoryItem,
     getClothByClothId, getUserByClothId, getRealSizeByClothId,
     brandToBrandName, insertBrand, getBrand, insertCloth, insertRealSize, getCloth,
-    updateCloth, updateRealSize, myClothDel } from "./closet.sql.js";
+    updateCloth, updateRealSize, myClothSizeDel, myClothDel } from "./closet.sql.js";
 
 // cloth 반환
     export const getMyClosetPreview = async (userId, name, category) => {
@@ -153,8 +153,9 @@ export const clothPut = async (data) => {
 export const clothDel = async (userId, clothId) => {
     try {
         const conn = await pool.getConnection();
-        pool.query(myClothDel, [userId, clothId]);
-        const cloth = await pool.query(getCloth, clothId);
+        await pool.query(myClothSizeDel, parseInt(clothId));
+        await pool.query(myClothDel, [userId, parseInt(clothId)]);
+        const cloth = await pool.query(getCloth, parseInt(clothId));
 
         console.log(cloth);
         if(!cloth[0].length == 0){
