@@ -231,6 +231,10 @@ export const getAddCloth = async (clothId) => {
 export const addWishDAO = async (userId, clothId) => {
     try{
         const conn = await pool.getConnection();
+        const is_exist = await pool.query(getWishSQL, [clothId, userId]);
+        if(is_exist[0].length !== 0){
+            throw new BaseError(status.PARAMETER_IS_WRONG);
+        }
         const wish = await pool.query(addWishSQL, [clothId, userId]);
 
         conn.release();
