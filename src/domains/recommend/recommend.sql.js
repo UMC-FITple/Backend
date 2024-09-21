@@ -25,10 +25,37 @@ export const findUserToFit =
 + "FROM user_fit uf "
 + "WHERE uf.pf_name = ? ;"
 
-
 export const findUserAllToBody =
 "SELECT b.uuid "
 + "FROM body_info b "
 + "WHERE NOT uuid = ? and height BETWEEN ?-5 AND ?+5 "
 + "AND weight BETWEEN ?-5 AND ?+5 "
 + "ORDER BY ABS(height-?) + ABS(weight-?) ASC LIMIT 24;"
+
+export const findUserToStyle1 =
+"SELECT DISTINCT uuid "
++ "FROM user_style "
++ "WHERE NOT uuid = ? "
++ "AND style_name = ? "
++ "ORDER BY uuid LIMIT 8;"
+
+export const findUserToStyle2 =
+"SELECT DISTINCT uuid "
++ "FROM user_style "
++ "WHERE NOT uuid = ? "
++ "AND (style_name = ? OR style_name = ?) "
++ "ORDER BY uuid LIMIT 8;"
+
+export const findUserAllToStyle1 =
+"SELECT DISTINCT uuid "
++ "FROM user_style "
++ "WHERE NOT uuid = ? "
++ "AND style_name = ? "
++ "ORDER BY uuid LIMIT 24;"
+
+export const findUserAllToStyle2 =
+"SELECT DISTINCT uuid "
++ "FROM user_style "
++ "WHERE NOT uuid = ? "
++ "AND (style_name = ? OR style_name = ?) "
++ "ORDER BY uuid LIMIT 24;"
