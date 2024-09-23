@@ -70,5 +70,8 @@ export const updateRealSize =
 export const myClothSizeDel =
 "DELETE FROM real_size WHERE cloth_id = ? ;"
 
+export const myClothWishDel =
+"DELETE FROM wish WHERE cloth_id = ? ;"
+
 export const myClothDel =
 "DELETE FROM cloth WHERE uuid = ? AND id = ? ;"
