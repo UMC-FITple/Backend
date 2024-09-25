@@ -7,7 +7,8 @@ import { UserNicknameToClothId, UserCategoryToClothId,
     UserNicknameToClothName, UserCategoryToClothName, 
     brandToBrandName, userIdToNickname, userToNickname, getBrandToBrandId,
     userToBrand, categoryToBrand, clothToBrand, clothCategoryToBrand,
-    insertCloth, insertRealSize, getCloth } from "./search.sql.js";
+    insertCloth, insertRealSize, getCloth,
+    addWishSQL, delWishSQL, getWishSQL } from "./search.sql.js";
 
 // nickname+cloth 반환
     export const getNicknameToClothId = async (category) => {
@@ -222,6 +223,50 @@ export const getAddCloth = async (clothId) => {
         conn.release();
         return cloth;
     } catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+// Wish 추가
+export const addWishDAO = async (userId, clothId) => {
+    try{
+        const conn = await pool.getConnection();
+        const is_exist = await pool.query(getWishSQL, [clothId, userId]);
+        if(is_exist[0].length !== 0){
+            throw new BaseError(status.PARAMETER_IS_WRONG);
+        }
+        const wish = await pool.query(addWishSQL, [clothId, userId]);
+
+        conn.release();
+        return wish[0].insertId;
+    }catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+// Wish 삭제
+export const delWishDAO = async (userId, clothId) => {
+    try{
+        const conn = await pool.getConnection();
+        await pool.query(delWishSQL, [clothId, userId]);
+        const wish = await pool.query(getWishSQL, [clothId, userId]);
+
+        conn.release();
+        return wish;
+    }catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+// Wish 조회
+export const getWishDAO = async (userId, clothId) => {
+    try{
+        const conn = await pool.getConnection();
+        const wish = await pool.query(getWishSQL, [clothId, userId]);
+
+        conn.release();
+        return wish;
+    }catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
 }
