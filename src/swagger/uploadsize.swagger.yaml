@@ -1,0 +1,118 @@
+paths:
+  /FITple/uploadsize:
+    post:
+      tags:
+        - OCRCompareSize(이미지로사이즈비교)
+      summary: 사이즈 이미지 업로드
+      description: 사이즈 이미지를 서버에 업로드합니다.
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: file
+          in: formData
+          required: true
+          type: file
+          description: 업로드할 이미지 파일
+      responses:
+        '200':
+          description: 이미지 업로드 성공
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: string
+                example: "2000"
+              message:
+                type: string
+                example: "이미지 업로드 성공"
+              imageUrl:
+                type: object
+                properties:
+                  imagePath:
+                    type: string
+                    example: "private/uploads/1723129674820-무신사1.png"
+                  imageId:
+                    type: integer
+                    example: 1
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: string
+                example: "400"
+              message:
+                type: string
+                example: "잘못된 요청입니다."
+        '401':
+          description: 인증 오류
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: string
+                example: "401"
+              message:
+                type: string
+                example: "인증 정보가 올바르지 않습니다."
+        '402':
+          description: 비어있는 데이터
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: string
+                example: "402"
+              message:
+                type: string
+                example: "데이터가 비어있습니다."
+        '403':
+          description: 이미지 업로드 중 오류
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: string
+                example: "403"
+              message:
+                type: string
+                example: "이미지 업로드 중 오류"
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: string
+                example: "500"
+              message:
+                type: string
+                example: "서버 에러, 관리자에게 문의 바랍니다."
+
+      x-postman-collection:
+        description: |
+          파일 업로드 테스트 방법:
+          - POST 메서드 선택.
+          - URL 입력 (예: http://localhost:3000/FITple/uploadsize).
+          - Body -> form-data 선택.
+          - Key에 user_id, password, email, file 입력 (위에서 설정한 것과 일치해야 함).
+          - 파일 선택 후 Send 클릭.

@@ -1,0 +1,77 @@
+paths:
+  /FITple/refreshToken:
+    get:
+      tags:
+        - RefreshToken
+      summary: 토큰 재발급
+      responses:
+        '200':
+          description: 토큰 재발급 성공!
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: number
+                example: 200
+              message:
+                type: string
+                example: "success!"
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: string
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
+        '401':
+          description: refresh 토큰이 존재하지 않음
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: string
+                example: REFRESHTOKEN001
+              message:
+                type: string
+                example: refresh 토큰이 존재하지 않았습니다.
+        '402':
+          description: 유효하지 않는 refresh 토큰
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: string
+                example: REFRESHTOKEN002
+              message:
+                type: string
+                example: 유효하지 않은 refresh 토큰입니다.
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: string
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.

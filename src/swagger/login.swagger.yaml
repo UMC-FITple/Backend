@@ -1,0 +1,113 @@
+paths:
+  /FITple/login:
+    post:
+      tags:
+        - Login
+      summary: 로그인
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: 유저 아이디
+                  example: swaggerTest
+                password:
+                  type: string
+                  description: 유저 비밀번호
+                  example: 1234567
+              required:
+                - user_id
+                - password
+      responses:
+        '200':
+          description: 로그인 성공!
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: number
+                example: 200
+              message:
+                type: string
+                example: "success!"
+              result:
+                properties:
+                  accessToken:
+                    type: string
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: string
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
+        '401':
+          description: 존재하지 않는 아이디
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: string
+                example: LOGIN001
+              message:
+                type: string
+                example: 존재하지 않는 아이디입니다.
+        '402':
+          description: 비어있는 데이터
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: string
+                example: LOGIN002
+              message:
+                type: string
+                example: 데이터가 비어있습니다.
+        '403':
+          description: 일치하지 않는 비밀번호
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: string
+                example: LOGIN003
+              message:
+                type: string
+                example: 비밀번호가 일치하지 않습니다.
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: string
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
