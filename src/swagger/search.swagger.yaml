@@ -3,7 +3,8 @@ paths:
     get:
       tags:
         - Search
-      summary: 전체 옷장 조회 로직
+      summary: 검색 메인화면 조회 로직
+      operationId: searchPreview
       parameters:
         - name: category
           in: query
@@ -92,6 +93,7 @@ paths:
       tags:
         - Search
       summary: 옷 상세 조회 로직
+      operationId: searchView
       parameters:
         - name: clothId
           in: path
@@ -189,6 +191,7 @@ paths:
       tags:
         - Search
       summary: 통합 검색 조회 로직
+      operationId: searchWord
       parameters:
         - name: name
           in: query
@@ -290,6 +293,7 @@ paths:
       tags:
         - Search
       summary: 브랜드 상세 조회 로직
+      operationId: searchBrand
       parameters:
         - name: brandId
           in: path
@@ -388,6 +392,7 @@ paths:
       tags:
         - Search
       summary: 추가할 옷 상세 조회 로직
+      operationId: viewAddCloth
       security:
         - bearerAuth: []
       parameters:
@@ -468,7 +473,7 @@ paths:
       tags:
         - Search
       summary: 옷 등록 로직
-      operationId: search
+      operationId: addSearchCloth
       security:
         - bearerAuth: []
       requestBody:
@@ -573,6 +578,238 @@ paths:
                   "clothData": [
                     {
                       "cloth_id": 20
+                    }
+                  ]
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
+
+  /FITple/search/{clothId}/wish:
+    post:
+      tags:
+        - Search
+      summary: wish 등록 로직
+      operationId: addWish
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: clothId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: wish 등록 성공
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: array
+                example: {
+                  "clothData": [
+                    {
+                      "wish_id": 20
+                    }
+                  ]
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
+
+    delete:
+      tags:
+        - Search
+      summary: wish 삭제 로직
+      operationId: delWish
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: clothId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: wish 삭제 성공
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: array
+                example: {
+                  "clothData": [
+                    {
+                      "wish_id": 20
+                    }
+                  ]
+                }
+                
+        '400':
+          description: 잘못된 요청
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 400
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON001
+              message:
+                type: string
+                example: 잘못된 요청입니다
+
+        '500':
+          description: 서버 에러
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 500
+              isSuccess:
+                type: boolean
+                example: false
+              code:
+                type: integer
+                example: COMMON000
+              message:
+                type: string
+                example: 서버 에러, 관리자에게 문의 바랍니다.
+
+    get:
+      tags:
+        - Search
+      summary: wish 조회 로직
+      operationId: getWish
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: clothId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: wish 조회 성공
+          schema:
+            type: object
+            properties:
+              status:
+                type: integer
+                example: 200
+              isSuccess:
+                type: boolean
+                example: true
+              code:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "success!"
+              data:
+                type: array
+                example: {
+                  "clothData": [
+                    {
+                      "wish_id": 20
                     }
                   ]
                 }

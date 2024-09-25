@@ -1,8 +1,7 @@
-import { previewSearchResponseDTO, previewClothResponseDTO, SearchResultResponseDTO, SearchBrandResponseDTO, previewMyClothResponseDTO } from "./search.dto.js"
-import { getNicknameToClothId, 
-    getPreviewCloth, getUserToClothId, 
-    getNicknameToClothName, getPreviewBrand, getPreviewUser, 
-    getBrand, getNicknameToBrand, getPreviewMyCloth } from "./search.dao.js";
+import { previewSearchResponseDTO, previewClothResponseDTO, SearchResultResponseDTO, SearchBrandResponseDTO,
+    previewMyClothResponseDTO, getWishDTO } from "./search.dto.js"
+import { getNicknameToClothId, getPreviewCloth, getUserToClothId, getNicknameToClothName, getPreviewBrand, getPreviewUser, 
+    getBrand, getNicknameToBrand, getPreviewMyCloth, getWishDAO } from "./search.dao.js";
 
 export const getSearch = async (query) => {
     const { category } = query;
@@ -30,4 +29,9 @@ export const getSearchBrand = async (brandId, query) => {
 export const getMyCloth = async (userId, clothId) => {
 
     return previewMyClothResponseDTO(await getPreviewMyCloth(userId, clothId));
+}
+
+export const getMyWish = async (userId, clothId) => {
+
+    return getWishDTO(await getWishDAO(userId, clothId));
 }

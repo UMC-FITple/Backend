@@ -171,3 +171,28 @@ export const addClothResponseDTO = (data) => {
     }
     return {"clothData": cloth};
 }
+
+export const addWishDTO = (wish) => {
+    return {"wish_id": wish};
+}
+
+export const delWishDTO = (wish) => {
+    let wish_id;
+    if(wish[0].length == 0){
+        wish_id = 0;
+    }
+
+    return {"wish_id": wish_id};
+}
+
+export const getWishDTO = (wish) => {
+
+    let wish_id;
+    if(wish[0].length == 0){
+        wish_id = 0;
+    } else if(wish[0].length == 1){
+        wish_id = wish[0][0].id
+    }
+
+    return {"wish_id": wish_id};
+}
