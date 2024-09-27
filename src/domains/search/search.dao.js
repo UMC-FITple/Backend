@@ -276,6 +276,9 @@ export const addFollowDAO = async (userId, clothId) => {
     try{
         const conn = await pool.getConnection();
         const to_user = await pool.query(getUserIdToClothId, clothId);
+        if(userId == to_user[0][0].uuid){
+            throw new BaseError(status.PARAMETER_IS_WRONG);
+        }
         const is_exist = await pool.query(getFollowSQL, [userId, to_user[0][0].uuid]);
         if(is_exist[0].length !== 0){
             throw new BaseError(status.PARAMETER_IS_WRONG);
