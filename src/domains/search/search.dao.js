@@ -8,7 +8,7 @@ import { UserNicknameToClothId, UserCategoryToClothId,
     brandToBrandName, userIdToNickname, userToNickname, getBrandToBrandId,
     userToBrand, categoryToBrand, clothToBrand, clothCategoryToBrand,
     insertCloth, insertRealSize, getCloth,
-    addWishSQL, delWishSQL, getWishSQL, getFollowSQL, addFollowSQL } from "./search.sql.js";
+    addWishSQL, delWishSQL, getWishSQL } from "./search.sql.js";
 
 // nickname+cloth 반환
     export const getNicknameToClothId = async (category) => {
@@ -263,29 +263,9 @@ export const getWishDAO = async (userId, clothId) => {
     try{
         const conn = await pool.getConnection();
         const wish = await pool.query(getWishSQL, [clothId, userId]);
-        console.log(wish);
-        console.log(wish[0].length);
 
         conn.release();
         return wish;
-    }catch (err) {
-        throw new BaseError(status.PARAMETER_IS_WRONG);
-    }
-}
-
-// Follow 추가
-export const addFollowDAO = async (userId, clothId) => {
-    try{
-        const conn = await pool.getConnection();
-        const to_user = await pool.query(getUserIdToClothId, clothId);
-        const is_exist = await pool.query(getFollowSQL, [userId, to_user[0][0].uuid]);
-        if(is_exist[0].length !== 0){
-            throw new BaseError(status.PARAMETER_IS_WRONG);
-        }
-        const follow = await pool.query(addFollowSQL, [userId, to_user[0][0].uuid]);
-
-        conn.release();
-        return follow[0].insertId;
     }catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
