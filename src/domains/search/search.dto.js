@@ -196,3 +196,7 @@ export const getWishDTO = (wish) => {
 
     return {"wish_id": wish_id};
 }
+
+export const addFollowDTO = (follow) => {
+    return {"follow_id": follow};
+}
