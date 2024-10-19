@@ -200,3 +200,12 @@ export const getWishDTO = (wish) => {
 export const addFollowDTO = (follow) => {
     return {"follow_id": follow};
 }
+
+export const delFollowDTO = (follow) => {
+    let follow_id;
+    if(follow[0].length == 0){
+        follow_id = 0;
+    }
+
+    return {"follow_id": follow_id};
+}
