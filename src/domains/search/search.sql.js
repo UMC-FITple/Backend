@@ -112,3 +112,9 @@ export const addWishSQL = "INSERT INTO wish (cloth_id, wisher_uuid) VALUES (?, ?
 export const delWishSQL = "DELETE FROM wish WHERE cloth_id = ? AND wisher_uuid = ? ;"
 
 export const getWishSQL = "SELECT id FROM wish WHERE cloth_id = ? AND wisher_uuid = ? ;"
+
+export const getFollowSQL = "SELECT id FROM follow WHERE from_uuid = ? AND to_uuid = ? ;"
+
+export const addFollowSQL = "INSERT INTO follow (from_uuid, to_uuid) VALUES (?, ?) ;"
+
+export const delFollowSQL = "DELETE FROM follow WHERE from_uuid = ? AND to_uuid = ? ;"

@@ -8,7 +8,7 @@ import { UserNicknameToClothId, UserCategoryToClothId,
     brandToBrandName, userIdToNickname, userToNickname, getBrandToBrandId,
     userToBrand, categoryToBrand, clothToBrand, clothCategoryToBrand,
     insertCloth, insertRealSize, getCloth,
-    addWishSQL, delWishSQL, getWishSQL } from "./search.sql.js";
+    addWishSQL, delWishSQL, getWishSQL, getFollowSQL, addFollowSQL, delFollowSQL } from "./search.sql.js";
 
 // nickname+cloth 반환
     export const getNicknameToClothId = async (category) => {
@@ -266,6 +266,58 @@ export const getWishDAO = async (userId, clothId) => {
 
         conn.release();
         return wish;
+    }catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+// Follow 추가
+export const addFollowDAO = async (userId, clothId) => {
+    try{
+        const conn = await pool.getConnection();
+        const to_user = await pool.query(getUserIdToClothId, clothId);
+        if(userId == to_user[0][0].uuid){
+            throw new BaseError(status.PARAMETER_IS_WRONG);
+        }
+        const is_exist = await pool.query(getFollowSQL, [userId, to_user[0][0].uuid]);
+        if(is_exist[0].length !== 0){
+            throw new BaseError(status.PARAMETER_IS_WRONG);
+        }
+        const follow = await pool.query(addFollowSQL, [userId, to_user[0][0].uuid]);
+        conn.release();
+        return follow[0].insertId;
+    }catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+// Follow 취소
+export const delFollowDAO = async (userId, clothId) => {
+    try{
+        const conn = await pool.getConnection();
+        const to_user = await pool.query(getUserIdToClothId, clothId);
+        const is_exist = await pool.query(getFollowSQL, [userId, to_user[0][0].uuid]);
+        if(is_exist[0].length == 0){
+            throw new BaseError(status.PARAMETER_IS_WRONG);
+        }
+        await pool.query(delFollowSQL, [userId, to_user[0][0].uuid]);
+        const follow = await pool.query(getFollowSQL, [userId, to_user[0][0].uuid]);
+        conn.release();
+        return follow;
+    }catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
+
+// Follow 조회
+export const getFollowDAO = async (userId, clothId) => {
+    try{
+        const conn = await pool.getConnection();
+        const to_user = await pool.query(getUserIdToClothId, clothId);
+        const follow = await pool.query(getFollowSQL, [userId, to_user[0][0].uuid]);
+
+        conn.release();
+        return follow;
     }catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
