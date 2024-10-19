@@ -308,3 +308,17 @@ export const delFollowDAO = async (userId, clothId) => {
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
 }
+
+// Follow 조회
+export const getFollowDAO = async (userId, clothId) => {
+    try{
+        const conn = await pool.getConnection();
+        const to_user = await pool.query(getUserIdToClothId, clothId);
+        const follow = await pool.query(getFollowSQL, [userId, to_user[0][0].uuid]);
+
+        conn.release();
+        return follow;
+    }catch (err) {
+        throw new BaseError(status.PARAMETER_IS_WRONG);
+    }
+}
